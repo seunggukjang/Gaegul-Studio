@@ -11,6 +11,7 @@ GaegulGaegul/[Ll]ogs/
 GaegulGaegul/[Mm]emoryCaptures/
 GaegulGaegul//[Uu]ser[Ss]ettings/
 
+GaegulGaegul/[Rr]ecordings/
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !GaegulGaegul/[Aa]ssets/**/*.meta
 
@@ -53,6 +54,8 @@ GaegulGaegul/*.mdb.meta
 GaegulGaegul/sysinfo.txt
 
 # Builds
+GaegulGaegul/*.aab
+GaegulGaegul/*.app
 GaegulGaegul/*.apk
 GaegulGaegul/*.unitypackage
 
