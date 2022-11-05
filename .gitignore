@@ -9,6 +9,7 @@ GaegulGaegul/[Bb]uild/
 GaegulGaegul/[Bb]uilds/
 GaegulGaegul/[Ll]ogs/
 GaegulGaegul/[Mm]emoryCaptures/
+GaegulGaegul//[Uu]ser[Ss]ettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !GaegulGaegul/[Aa]ssets/**/*.meta
