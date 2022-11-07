@@ -15,7 +15,8 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;                          
 	[SerializeField] private Transform m_GroundCheck;                           
 	[SerializeField] private Transform m_TopFrogCheck;                          
-	[SerializeField] private Collider2D m_CrouchDisableCollider;                
+	[SerializeField] private Collider2D m_CrouchDisableCollider; 
+	[SerializeField] private Animator m_Animator;              
 
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	private bool m_Grounded;
@@ -38,6 +39,7 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 ground_halfSize = new Vector3();
 	private Vector3 halfSize = new Vector3();
 	private bool isJump = false;
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -61,22 +63,17 @@ public class CharacterController2D : MonoBehaviour
 		
         Collider2D[] colliders = Physics2D.OverlapAreaAll(m_GroundCheck.position - ground_halfSize, m_GroundCheck.position + ground_halfSize, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
-		{
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
 				isJump = false;
+				m_Animator.SetTrigger("idle");
             }
-		}
 
         colliders = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
-        {
             if (colliders[i].gameObject != gameObject)
-            {
                 m_FrogTouchGround = true;
-            }
-        }
     }
 	public void SetAirControl(bool isGrab)
 	{
@@ -89,20 +86,20 @@ public class CharacterController2D : MonoBehaviour
 			//m_Grounded = false;
 			m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce));
 			isJump = true;
+			m_Animator.SetTrigger("bigJump");
         }
 	}
 
 	public void Move(float move, bool crouch)
 	{
 		if (move == 0)
-		{
-            return;
-        }
-        
-        if (!m_Grounded)
-		{
+            return;     
+		Debug.Log(move);
+        if (!m_Grounded) {
 			m_FrogTouchGround = false;
+			m_Animator.SetTrigger("smallJump");
 		}
+
 		if (m_Grounded && m_FrogTouchGround)
 		{
 			m_Velocity.y = m_Rigidbody2D.velocity.y;
@@ -113,7 +110,7 @@ public class CharacterController2D : MonoBehaviour
 				
 			m_Velocity.x = move * m_MoveSpeed;
 			if(!isJump)
-			m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
+				m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
 
 			m_Rigidbody2D.velocity = (m_Velocity);
 			
@@ -124,15 +121,8 @@ public class CharacterController2D : MonoBehaviour
 			if(!isJump && m_Rigidbody2D.velocity.y > m_SmallJumpSpeed)
 				m_Velocity.y = m_SmallJumpSpeed;
 
-			if (move > 0 && !m_FacingRight)
-			{
+			if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight))
 				Flip();
-			}
-			else if (move < 0 && m_FacingRight)
-			{
-				Flip();
-			}
-            
         }
 		else if(m_AirControl)
 		{
@@ -143,7 +133,6 @@ public class CharacterController2D : MonoBehaviour
 		}
 		
 	}
-
 
 	private void Flip()
 	{
