@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DeathCounter : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private TextMeshProUGUI textMeshPro;
+    private int deathCount = 0;
+
     void Start()
     {
-        
+        textMeshPro = GetComponent<TextMeshProUGUI>();        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncrementDeathCount()
     {
-        
+        deathCount++;
+        textMeshPro.text = "Death(s) : " + deathCount.ToString();
+    }
+
+    public int getDeathCount()
+    {
+        return deathCount;
     }
 }
