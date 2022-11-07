@@ -15,8 +15,8 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;                          
 	[SerializeField] private Transform m_GroundCheck;                           
 	[SerializeField] private Transform m_TopFrogCheck;                          
-	[SerializeField] private Collider2D m_CrouchDisableCollider;                
-
+	[SerializeField] private Collider2D m_CrouchDisableCollider;
+	[SerializeField] private ParticleSystem particleSystem;
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	private bool m_Grounded;
 	private bool m_FrogTouchGround = false;
@@ -86,7 +86,7 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (m_Grounded)
 		{
-			//m_Grounded = false;
+			particleSystem.Emit(1);
 			m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce));
 			isJump = true;
         }
@@ -96,15 +96,16 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (move == 0)
 		{
-            return;
+			return;
         }
-        
-        if (!m_Grounded)
+		
+		if (!m_Grounded)
 		{
 			m_FrogTouchGround = false;
 		}
 		if (m_Grounded && m_FrogTouchGround)
 		{
+			particleSystem.Emit(1);
 			m_Velocity.y = m_Rigidbody2D.velocity.y;
 			if (move > 0)
 				move = 1;
