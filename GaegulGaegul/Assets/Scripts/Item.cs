@@ -16,6 +16,7 @@ public class Item : MonoBehaviour
             {
                 grab.CancelPulling();
             }
+            FindObjectOfType<AudioManager>().Play("coin");
             gameObject.SetActive(false);
         }
     }
