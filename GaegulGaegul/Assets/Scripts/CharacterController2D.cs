@@ -93,8 +93,7 @@ public class CharacterController2D : MonoBehaviour
 	public void Move(float move, bool crouch)
 	{
 		if (move == 0)
-            return;     
-		Debug.Log(move);
+            return;
         if (!m_Grounded) {
 			m_FrogTouchGround = false;
 			m_Animator.SetTrigger("smallJump");
