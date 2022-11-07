@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]private Transform spawnTransform;
     Vector2 spawnPosition;
     private LayerMask deadThings;
     private LayerMask flag;
     private Grab grab;
     private Vector3 halfSize;
+    
     void Start()
     {
         spawnPosition = spawnTransform.position;
