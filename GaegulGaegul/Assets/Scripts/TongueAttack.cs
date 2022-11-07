@@ -66,7 +66,6 @@ public class TongueAttack : MonoBehaviour
         }
         if(!this.isAttack)
         {
-            
             tongue.targetTransform = targetRB.transform;
             targetRB.transform.GetComponent<EnemyBoss>().Damage(1);
             this.isAttack = true;

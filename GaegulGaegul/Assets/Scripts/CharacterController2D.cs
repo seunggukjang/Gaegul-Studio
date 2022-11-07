@@ -35,7 +35,6 @@ public class CharacterController2D : MonoBehaviour
 	public class BoolEvent : UnityEvent<bool> { }
 
 	public BoolEvent OnCrouchEvent;
-	private bool m_wasCrouching = false;
 	private Vector3 ground_halfSize = new Vector3();
 	private Vector3 halfSize = new Vector3();
 	private bool isJump = false;
@@ -75,15 +74,16 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
                 m_FrogTouchGround = true;
     }
+
 	public void SetAirControl(bool isGrab)
 	{
 		m_AirControl = isGrab;
 	}
+
 	public void Jump()
 	{
 		if (m_Grounded)
 		{
-			//m_Grounded = false;
 			m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce));
 			isJump = true;
 			m_Animator.SetTrigger("bigJump");

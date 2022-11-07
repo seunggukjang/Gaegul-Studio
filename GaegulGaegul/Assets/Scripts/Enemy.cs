@@ -5,10 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform range;
+    [SerializeField] private Animator animator;
     private LayerMask frogLayer;
     private int holdingFrogID = -1;
     private bool isInFrog = false;
     private Rigidbody2D rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,6 +43,8 @@ public class Enemy : MonoBehaviour
         isInFrog = false;
         transform.position = frogPosition + (direction * rb.transform.lossyScale.magnitude);
         rb.AddForce(direction * force);
+        animator.SetTrigger("spitAttack");
+        animator.SetTrigger("idle");
     }
     public bool IsInFrog()
     {

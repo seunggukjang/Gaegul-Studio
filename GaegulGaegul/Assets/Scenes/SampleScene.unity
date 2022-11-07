@@ -348,7 +348,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -789,7 +789,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1319,6 +1319,10 @@ PrefabInstance:
       propertyPath: m_Animator
       value: 
       objectReference: {fileID: 1360117130}
+    - target: {fileID: 1585281070620239731, guid: b290d6d85800536468d647598bf34aa2, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1360117130}
     - target: {fileID: 1585281070620239735, guid: b290d6d85800536468d647598bf34aa2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1416,6 +1420,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2492323893996764384, guid: 982cd1f147c68ba43ab59101849fc3a5, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1360117130}
     - target: {fileID: 2492323893996764385, guid: 982cd1f147c68ba43ab59101849fc3a5, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1540,11 +1548,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8908917289880061290, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8908917289880061290, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.42
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908917289880061290, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8908917290235848262, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: m_Name
@@ -1556,11 +1568,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8908917290235848263, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.68
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8908917290235848263, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.21
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: 8908917290235848263, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: m_LocalPosition.z
