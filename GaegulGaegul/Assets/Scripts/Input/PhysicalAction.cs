@@ -11,7 +11,7 @@ public class PhysicalAction : MonoBehaviour
     private bool isAttack = false;
     private bool isJump = false;
     private Vector2 move = new Vector2 (0, 0);
-
+    Animator animator;
     private void Start()
     {
         controller = GetComponent<CharacterController2D>();
