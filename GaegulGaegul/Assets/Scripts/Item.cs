@@ -6,6 +6,11 @@ public class Item : MonoBehaviour
 {
     [SerializeField] private Transform range;
     [SerializeField] private LayerMask frogLayer;
+    private AudioManager audioManager;
+    private void Start()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
     void FixedUpdate()
     {
         Collider2D frogHit2D = Physics2D.OverlapCircle(transform.position, range.lossyScale.x * 0.5f + 0.2f, frogLayer);
@@ -16,7 +21,8 @@ public class Item : MonoBehaviour
             {
                 grab.CancelPulling();
             }
-            FindObjectOfType<AudioManager>().Play("coin");
+            if(audioManager != null)
+                audioManager.Play("coin");
             gameObject.SetActive(false);
         }
     }

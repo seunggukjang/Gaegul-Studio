@@ -23,8 +23,8 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;
 	private Vector3 m_Velocity = Vector3.zero;
-	
 
+	private AudioManager audioManager;
 	[Header("Events")]
 	[Space]
 
@@ -51,6 +51,7 @@ public class CharacterController2D : MonoBehaviour
         ground_halfSize.y = m_GroundCheck.lossyScale.y * 0.5f;
 		halfSize.x = transform.lossyScale.x * 0.5f;
 		halfSize.y = transform.lossyScale.y * 0.5f;
+		audioManager = FindObjectOfType<AudioManager>();
 	}
 
 	private void FixedUpdate()
@@ -85,8 +86,10 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (m_Grounded)
 		{
-			particleSystem.Emit(1);
-			FindObjectOfType<AudioManager>().Play("bigjump");
+			if(particleSystem != null)
+				particleSystem.Emit(1);
+			if(audioManager != null)
+				audioManager.Play("bigjump");
 			m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce));
 			isJump = true;
         }
@@ -105,8 +108,10 @@ public class CharacterController2D : MonoBehaviour
 		}
 		if (m_Grounded && m_FrogTouchGround)
 		{
-			particleSystem.Emit(1);
-			FindObjectOfType<AudioManager>().Play("jump");
+			if (particleSystem != null)
+				particleSystem.Emit(1);
+			if(audioManager != null)
+				audioManager.Play("jump");
 			m_Velocity.y = m_Rigidbody2D.velocity.y;
 			if (move > 0)
 				move = 1;

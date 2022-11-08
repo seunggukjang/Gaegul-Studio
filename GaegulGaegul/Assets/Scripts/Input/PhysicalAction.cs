@@ -15,7 +15,6 @@ public class PhysicalAction : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController2D>();
-        
     }
     void Restart()
     {
