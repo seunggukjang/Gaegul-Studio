@@ -10,13 +10,13 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private float m_maxSpeedX = 1.08f;
 	[SerializeField] private float m_MoveSpeed = 10f;
 	[SerializeField] private float m_SmallJumpSpeed = 5f;
-	[SerializeField] private float m_JumpForce = 400f;                          
-	[SerializeField] private bool m_AirControl = false;                         
-	[SerializeField] private LayerMask m_WhatIsGround;                          
-	[SerializeField] private Transform m_GroundCheck;                           
-	[SerializeField] private Transform m_TopFrogCheck;                          
-	[SerializeField] private Collider2D m_CrouchDisableCollider; 
-	[SerializeField] private Animator m_Animator;              
+	[SerializeField] private float m_JumpForce = 400f;
+	[SerializeField] private bool m_AirControl = false;
+	[SerializeField] private LayerMask m_WhatIsGround;
+	[SerializeField] private Transform m_GroundCheck;
+	[SerializeField] private Transform m_TopFrogCheck;
+	[SerializeField] private Collider2D m_CrouchDisableCollider;
+	[SerializeField] private Animator m_Animator;
 
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	private bool m_Grounded;
@@ -129,8 +129,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Velocity.y = m_Rigidbody2D.velocity.y;
 			m_Velocity.x = move * m_SwingSpeed;
 			m_Rigidbody2D.AddForce(m_Velocity);
-		}
-		
+		}	
 	}
 
 	private void Flip()
