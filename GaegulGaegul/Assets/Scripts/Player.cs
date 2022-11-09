@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     private Grab grab;
     private Vector3 halfSize;
     private DeathCounter deathCounter;
+
     void Start()
     {
         deathCounter = GameObject.Find("DeathCounter").GetComponent<DeathCounter>();
@@ -28,13 +30,9 @@ public class Player : MonoBehaviour
         Collider2D deadLineCollide = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, deadThings);
         Collider2D endFlag = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, flag);
         if(deadLineCollide)
-        {
             Dead();
-        }
         if(endFlag)
-        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
     }
     private void Dead()
     {
