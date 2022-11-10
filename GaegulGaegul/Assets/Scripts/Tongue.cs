@@ -27,7 +27,7 @@ public class Tongue : MonoBehaviour
     void Update()
     {
         if(targetTransform == null)
-        return;
+            return;
         direction = targetTransform.position - transform.position;
         tongueSize.x = direction.magnitude;
         tongueSprite.transform.localScale = tongueSize;
