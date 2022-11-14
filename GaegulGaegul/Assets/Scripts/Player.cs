@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private Grab grab;
     private Vector3 halfSize;
     private DeathCounter deathCounter;
+    [SerializeField] private Animator animator;
+    [SerializeField] private int skin = -1;
 
     void Start()
     {
@@ -22,6 +24,11 @@ public class Player : MonoBehaviour
         deadThings = 1 << LayerMask.NameToLayer("Dead") | 1 << LayerMask.NameToLayer("Enemy");
         flag = 1 << LayerMask.NameToLayer("Flag");
         halfSize = transform.lossyScale * 0.5f;
+
+        // random skin color [temp ?]
+        if (skin == -1)
+             skin = Random.Range(0, 5);
+        animator.SetLayerWeight(skin, 1);
     }
 
     // Update is called once per frame
