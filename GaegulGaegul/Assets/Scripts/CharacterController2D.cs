@@ -11,12 +11,13 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private float m_maxSpeedX = 1.08f;
 	[SerializeField] private float m_MoveSpeed = 10f;
 	[SerializeField] private float m_SmallJumpSpeed = 5f;
-	[SerializeField] private float m_JumpForce = 400f;                          
-	[SerializeField] private bool m_AirControl = false;                         
-	[SerializeField] private LayerMask m_WhatIsGround;                          
-	[SerializeField] private Transform m_GroundCheck;                           
-	[SerializeField] private Transform m_TopFrogCheck;                          
-	[SerializeField] private Collider2D m_CrouchDisableCollider;                
+	[SerializeField] private float m_JumpForce = 400f;
+	[SerializeField] private bool m_AirControl = false;
+	[SerializeField] private LayerMask m_WhatIsGround;
+	[SerializeField] private Transform m_GroundCheck;
+	[SerializeField] private Transform m_TopFrogCheck;
+	[SerializeField] private Collider2D m_CrouchDisableCollider;
+	[SerializeField] private Animator m_Animator;
 
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	private bool m_Grounded;
@@ -36,7 +37,6 @@ public class CharacterController2D : MonoBehaviour
 	public class BoolEvent : UnityEvent<bool> { }
 
 	public BoolEvent OnCrouchEvent;
-	private bool m_wasCrouching = false;
 	private Vector3 ground_halfSize = new Vector3();
 	private Vector3 halfSize = new Vector3();
 	private bool isJump = false;
@@ -66,37 +66,36 @@ public class CharacterController2D : MonoBehaviour
 		
         Collider2D[] colliders = Physics2D.OverlapAreaAll(m_GroundCheck.position - ground_halfSize, m_GroundCheck.position + ground_halfSize, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
-		{
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
 				isJump = false;
+				m_Animator.SetTrigger("idle");
             }
-		}
 
         colliders = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
-        {
             if (colliders[i].gameObject != gameObject)
-            {
                 m_FrogTouchGround = true;
             }
         }
 		}
     }
+
 	public void SetAirControl(bool isGrab)
 	{
 		m_AirControl = isGrab;
 	}
+
 	public void Jump()
 	{
 		view = GetComponent<PhotonView>();
 
 		if (m_Grounded && view.IsMine)
 		{
-			//m_Grounded = false;
 			m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce));
 			isJump = true;
+			m_Animator.SetTrigger("bigJump");
         }
 	}
 
@@ -107,14 +106,12 @@ public class CharacterController2D : MonoBehaviour
 		if (view.IsMine) {
 
 		if (move == 0)
-		{
             return;
-        }
-        
-        if (!m_Grounded)
-		{
+        if (!m_Grounded) {
 			m_FrogTouchGround = false;
+			m_Animator.SetTrigger("smallJump");
 		}
+
 		if (m_Grounded && m_FrogTouchGround)
 		{
 			m_Velocity.y = m_Rigidbody2D.velocity.y;
@@ -125,7 +122,7 @@ public class CharacterController2D : MonoBehaviour
 				
 			m_Velocity.x = move * m_MoveSpeed;
 			if(!isJump)
-			m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
+				m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
 
 			m_Rigidbody2D.velocity = (m_Velocity);
 			
@@ -136,15 +133,8 @@ public class CharacterController2D : MonoBehaviour
 			if(!isJump && m_Rigidbody2D.velocity.y > m_SmallJumpSpeed)
 				m_Velocity.y = m_SmallJumpSpeed;
 
-			if (move > 0 && !m_FacingRight)
-			{
+			if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight))
 				Flip();
-			}
-			else if (move < 0 && m_FacingRight)
-			{
-				Flip();
-			}
-            
         }
 		else if(m_AirControl)
 		{
@@ -155,7 +145,6 @@ public class CharacterController2D : MonoBehaviour
 		}
 		}
 	}
-
 
 	private void Flip()
 	{

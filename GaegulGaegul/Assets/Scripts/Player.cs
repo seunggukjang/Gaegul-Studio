@@ -13,11 +13,12 @@ public class Player : MonoBehaviour
     private LayerMask flag;
     private Grab grab;
     private Vector3 halfSize;
-
+    private DeathCounter deathCounter;
     PhotonView view;
-
+    
     void Start()
     {
+        deathCounter = GameObject.Find("DeathCounter").GetComponent<DeathCounter>();
         //spawnPosition = spawnTransform.position;
         grab = GetComponent<Grab>();
         deadThings = 1 << LayerMask.NameToLayer("Dead") | 1 << LayerMask.NameToLayer("Enemy");
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
     }
     private void Dead()
     {
+        deathCounter.IncrementDeathCount();
         grab.CancelAllPulling();
         //transform.position = spawnPosition;
     }
