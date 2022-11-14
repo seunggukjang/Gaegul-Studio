@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using Photon.Pun;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;
 	private Vector3 m_Velocity = Vector3.zero;
+	PhotonView view;
 	
 
 	[Header("Events")]
@@ -38,6 +40,7 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 ground_halfSize = new Vector3();
 	private Vector3 halfSize = new Vector3();
 	private bool isJump = false;
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -56,6 +59,8 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		view = GetComponent<PhotonView>();
+		if (view.IsMine) {
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 		
@@ -77,6 +82,7 @@ public class CharacterController2D : MonoBehaviour
                 m_FrogTouchGround = true;
             }
         }
+		}
     }
 	public void SetAirControl(bool isGrab)
 	{
@@ -84,7 +90,9 @@ public class CharacterController2D : MonoBehaviour
 	}
 	public void Jump()
 	{
-		if (m_Grounded)
+		view = GetComponent<PhotonView>();
+
+		if (m_Grounded && view.IsMine)
 		{
 			//m_Grounded = false;
 			m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce));
@@ -94,6 +102,10 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Move(float move, bool crouch)
 	{
+	view = GetComponent<PhotonView>();
+
+		if (view.IsMine) {
+
 		if (move == 0)
 		{
             return;
@@ -141,7 +153,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Velocity.x = move * m_SwingSpeed;
 			m_Rigidbody2D.AddForce(m_Velocity);
 		}
-		
+		}
 	}
 
 

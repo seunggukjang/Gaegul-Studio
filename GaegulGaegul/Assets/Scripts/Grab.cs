@@ -2,6 +2,8 @@ using System.Transactions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+
 public class Grab : MonoBehaviour
 {
     public float grabRangeRadius = 3f;

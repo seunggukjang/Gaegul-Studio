@@ -2,6 +2,8 @@ using System.Diagnostics;
 using System.Transactions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+
 public class PhysicalAction : MonoBehaviour
 {
     private CharacterController2D controller;
@@ -11,9 +13,11 @@ public class PhysicalAction : MonoBehaviour
     private bool isAttack = false;
     private bool isJump = false;
     private Vector2 move = new Vector2 (0, 0);
+    PhotonView view;
 
     private void Start()
     {
+		view = GetComponent<PhotonView>();
         controller = GetComponent<CharacterController2D>();
         
     }
@@ -78,25 +82,27 @@ public class PhysicalAction : MonoBehaviour
     }
     void Update()
     {
-        float input_x = Input.GetAxis("Horizontal");
-        move.x = input_x;
-        if (Input.GetButtonDown("Jump"))
-        {
-            isJump = true;
-        }
-        if (Input.GetMouseButtonDown(0) && !isGrab)
-        {
-            isGrab = true;
-            Grab();
-        }
-        if(Input.GetMouseButtonDown(1) && !isAttack)
-        {
-            isAttack = true;
-            
-        }
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            Restart();
+        if (view.IsMine) {
+            float input_x = Input.GetAxis("Horizontal");
+            move.x = input_x;
+            if (Input.GetButtonDown("Jump"))
+            {
+                isJump = true;
+            }
+            if (Input.GetMouseButtonDown(0) && !isGrab)
+            {
+                isGrab = true;
+                Grab();
+            }
+            if(Input.GetMouseButtonDown(1) && !isAttack)
+            {
+                isAttack = true;
+                
+            }
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                Restart();
+            }
         }
     }
     private void LateUpdate()
