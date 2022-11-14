@@ -108,12 +108,12 @@ TextureImporter:
       name: blueFrog_eat_7
       rect:
         serializedVersion: 2
-        x: 0
+        x: 14000
         y: 0
         width: 2000
         height: 2000
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,7 +126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blueFrog_eat_0
+      name: blueFrog_eat_1
       rect:
         serializedVersion: 2
         x: 2000
@@ -134,28 +134,7 @@ TextureImporter:
         width: 2000
         height: 2000
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8cf22c10dbc1bf0429de0bbf082264c9
-      internalID: 1243410087
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blueFrog_eat_1
-      rect:
-        serializedVersion: 2
-        x: 4000
-        y: 0
-        width: 2000
-        height: 2000
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,12 +150,12 @@ TextureImporter:
       name: blueFrog_eat_2
       rect:
         serializedVersion: 2
-        x: 6000
+        x: 4000
         y: 0
         width: 2000
         height: 2000
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -192,12 +171,12 @@ TextureImporter:
       name: blueFrog_eat_3
       rect:
         serializedVersion: 2
-        x: 8000
+        x: 6000
         y: 0
         width: 2000
         height: 2000
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,12 +192,12 @@ TextureImporter:
       name: blueFrog_eat_4
       rect:
         serializedVersion: 2
-        x: 10000
+        x: 8000
         y: 0
         width: 2000
         height: 2000
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -234,12 +213,12 @@ TextureImporter:
       name: blueFrog_eat_5
       rect:
         serializedVersion: 2
-        x: 12000
+        x: 10000
         y: 0
         width: 2000
         height: 2000
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -255,12 +234,12 @@ TextureImporter:
       name: blueFrog_eat_6
       rect:
         serializedVersion: 2
-        x: 14000
+        x: 12000
         y: 0
         width: 2000
         height: 2000
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -281,7 +260,7 @@ TextureImporter:
         width: 2000
         height: 2000
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -289,6 +268,27 @@ TextureImporter:
       bones: []
       spriteID: 755f72e47afef7945a8ed4602b969611
       internalID: -2078386921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blueFrog_eat_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2000
+        height: 2000
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63d6e6a1197569145bbc737d6a2dba98
+      internalID: -1780177928
       vertices: []
       indices: 
       edges: []
@@ -302,14 +302,14 @@ TextureImporter:
         width: 2000
         height: 2000
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63d6e6a1197569145bbc737d6a2dba98
-      internalID: -1780177928
+      spriteID: a3260a2b186a1654f800572d42ab7afb
+      internalID: 1480962012
       vertices: []
       indices: 
       edges: []
@@ -328,8 +328,8 @@ TextureImporter:
       blueFrog_eat_7: -897090590
       blueFrog_eat_3: 1944809802
       blueFrog_eat_2: -1346723253
-      blueFrog_eat_9: -1780177928
-      blueFrog_eat_0: 1243410087
+      blueFrog_eat_9: 1480962012
+      blueFrog_eat_0: -1780177928
       blueFrog_eat_8: -2078386921
       blueFrog_eat_6: 355602789
       blueFrog_eat_5: 1775244545
