@@ -16,6 +16,7 @@ public class Grab : MonoBehaviour
     [SerializeField] private Tongue tongue;
     private LayerMask[] layers = new LayerMask[3];
     [SerializeField] private float fireForce = 400f;
+    [SerializeField] private Animator animator;
 
     private bool isGrab = false;
     private MousePosition mousePos;
@@ -33,13 +34,9 @@ public class Grab : MonoBehaviour
     void Update()
     {
         if(!targetRB)
-        {
             return;
-        }
         if(isGrab && !targetRB.gameObject.activeSelf)
-        {
             CancelPulling();
-        }
     }
     public int GetTargeID()
     {
@@ -61,9 +58,7 @@ public class Grab : MonoBehaviour
                 if(hit)
                 {
                     if(hit.transform.name == gameObject.name)
-                    {
                         continue;
-                    }
                     else
                     {
                         targetRB = hit.rigidbody;
@@ -94,11 +89,13 @@ public class Grab : MonoBehaviour
                 joint.connectedBody = null;
                 joint.enabled = false;
                 tongueToObject.SetActive(false);
+                animator.SetTrigger("idle");
             }
             else if(targetTag == "Frog")
             {
                 tongueFrog.SetJointTargetRigidBody(null);
                 tongueToPlayer.SetActive(false);
+                animator.SetTrigger("idle");
             }
             isGrab = false;
             targetRB = null;
@@ -122,6 +119,7 @@ public class Grab : MonoBehaviour
             {
                 tongueFrog.SetJointTargetRigidBody(null);
                 tongueToPlayer.SetActive(false);
+                animator.SetTrigger("idle");
             }
             if(targetTag != "Enemy")
             {
@@ -143,9 +141,7 @@ public class Grab : MonoBehaviour
     public bool Grip()
     {
         if(!CanGrip() || SelectTarget() == null)
-        {
             return false;
-        }
         string targetTag = targetRB.gameObject.tag;
         if(targetTag == "Hook" || targetTag == "Enemy" || targetTag == "Item")
         {
@@ -153,6 +149,7 @@ public class Grab : MonoBehaviour
             {
                 joint.autoConfigureDistance = true;
                 joint.frequency = 0;
+                animator.SetTrigger("grab");
             }
             else
             {
@@ -164,6 +161,7 @@ public class Grab : MonoBehaviour
                     targetRB.gameObject.layer = LayerMask.NameToLayer("Item");
                     holdingEnemy = targetRB.GetComponent<Enemy>();
                     holdingEnemy.SetFrogID(gameObject.GetInstanceID());
+                    animator.SetTrigger("eat");
                 }
             }
             joint.enabled = true;
@@ -171,11 +169,11 @@ public class Grab : MonoBehaviour
             
             tongueToObject.SetActive(true);
             tongue.targetTransform = targetRB.transform;
-
         }
         else if(targetTag == "Frog")
         {
             tongueToPlayer.SetActive(true);
+            animator.SetTrigger("grab");
             tongueFrog.SetJointTargetRigidBody(targetRB);
         }
         isGrab = true;
