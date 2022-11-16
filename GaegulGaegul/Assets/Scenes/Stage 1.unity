@@ -1370,6 +1370,14 @@ PrefabInstance:
       value: Frog
       objectReference: {fileID: 0}
     - target: {fileID: 1585281070620239759, guid: b290d6d85800536468d647598bf34aa2, type: 3}
+      propertyPath: skin
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585281070620239759, guid: b290d6d85800536468d647598bf34aa2, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1360117130}
+    - target: {fileID: 1585281070620239759, guid: b290d6d85800536468d647598bf34aa2, type: 3}
       propertyPath: spawnTransform
       value: 
       objectReference: {fileID: 86478397}
