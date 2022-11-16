@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
@@ -101,12 +98,14 @@ public class CharacterController2D : MonoBehaviour
 		if (move == 0)
 		{
 			return;
-        }
-		
+		}
+
 		if (!m_Grounded)
 		{
-            return;
-        if (!m_Grounded) {
+			return;
+		}
+		if (!m_Grounded)
+		{
 			m_FrogTouchGround = false;
 			m_Animator.SetTrigger("smallJump");
 		}
@@ -115,39 +114,39 @@ public class CharacterController2D : MonoBehaviour
 		{
 			if (particleSystem != null)
 				particleSystem.Emit(1);
-			if(audioManager != null)
+			if (audioManager != null)
 				audioManager.Play("jump");
 			m_Velocity.y = m_Rigidbody2D.velocity.y;
 			if (move > 0)
 				move = 1;
 			else if (move < 0)
 				move = -1;
-				
+
 			m_Velocity.x = move * m_MoveSpeed;
-			if(!isJump)
+			if (!isJump)
 				m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
 
 			m_Rigidbody2D.velocity = (m_Velocity);
-			
-			if(m_Rigidbody2D.velocity.x > m_maxSpeedX)
+
+			if (m_Rigidbody2D.velocity.x > m_maxSpeedX)
 				m_Velocity.x = m_maxSpeedX;
-			else if(m_Rigidbody2D.velocity.x < -m_maxSpeedX)
+			else if (m_Rigidbody2D.velocity.x < -m_maxSpeedX)
 				m_Velocity.x = -m_maxSpeedX;
-			if(!isJump && m_Rigidbody2D.velocity.y > m_SmallJumpSpeed)
+			if (!isJump && m_Rigidbody2D.velocity.y > m_SmallJumpSpeed)
 				m_Velocity.y = m_SmallJumpSpeed;
 
 			if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight))
 				Flip();
-        }
-		else if(m_AirControl)
+		}
+		else if (m_AirControl)
 		{
 			m_Velocity.x = 0;
 			m_Velocity.y = m_Rigidbody2D.velocity.y;
 			m_Velocity.x = move * m_SwingSpeed;
 			m_Rigidbody2D.AddForce(m_Velocity);
-		}	
+		}
 	}
-
+	
 	private void Flip()
 	{
 		m_FacingRight = !m_FacingRight;

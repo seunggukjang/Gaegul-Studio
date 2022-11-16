@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [SerializeField]private Transform spawnTransform;
+    [SerializeField]private Dissolve dissolve;
     Vector2 spawnPosition;
     private LayerMask deadThings;
     private LayerMask flag;
@@ -29,14 +30,27 @@ public class Player : MonoBehaviour
         Collider2D deadLineCollide = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, deadThings);
         Collider2D endFlag = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, flag);
         if(deadLineCollide)
-            Dead();
+        {
+            StartCoroutine(Dead());
+        }
+            
         if(endFlag)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        {
+            StartCoroutine(NextScene());
+        }
+            
     }
-    private void Dead()
+    IEnumerator Dead()
     {
+        dissolve.SetIsDissolving(true);
+        yield return new WaitForSeconds(2);
         deathCounter.IncrementDeathCount();
         grab.CancelAllPulling();
         transform.position = spawnPosition;
+    }
+    IEnumerator NextScene()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

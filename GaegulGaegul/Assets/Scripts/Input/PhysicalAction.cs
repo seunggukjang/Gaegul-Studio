@@ -79,6 +79,7 @@ public class PhysicalAction : MonoBehaviour
     {
         float input_x = Input.GetAxis("Horizontal");
         move.x = input_x;
+
         if (Input.GetButtonDown("Jump"))
         {
             isJump = true;
