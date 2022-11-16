@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
     [SerializeField]private Transform spawnTransform;
     [SerializeField]private Dissolve dissolve;
+    
     Vector2 spawnPosition;
     private LayerMask deadThings;
     private LayerMask flag;
@@ -15,11 +16,14 @@ public class Player : MonoBehaviour
     private DeathCounter deathCounter;
     [SerializeField] private Animator animator;
     [SerializeField] private int skin = -1;
-
+    private bool isDead = false;
     void Start()
     {
         deathCounter = GameObject.Find("DeathCounter").GetComponent<DeathCounter>();
-        spawnPosition = spawnTransform.position;
+        if (spawnTransform)
+            spawnPosition = spawnTransform.position;
+        else
+            spawnPosition = transform.position;
         grab = GetComponent<Grab>();
         deadThings = 1 << LayerMask.NameToLayer("Dead") | 1 << LayerMask.NameToLayer("Enemy");
         flag = 1 << LayerMask.NameToLayer("Flag");
@@ -35,29 +39,29 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Collider2D deadLineCollide = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, deadThings);
-        Collider2D endFlag = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, flag);
+        
         if(deadLineCollide)
         {
             StartCoroutine(Dead());
         }
             
-        if(endFlag)
-        {
-            StartCoroutine(NextScene());
-        }
             
     }
     IEnumerator Dead()
     {
-        dissolve.SetIsDissolving(true);
-        yield return new WaitForSeconds(2);
-        deathCounter.IncrementDeathCount();
-        grab.CancelAllPulling();
-        transform.position = spawnPosition;
+        if (!isDead)
+        {
+            isDead = true;
+            if (dissolve)
+            {
+                dissolve.SetIsDissolving(true);
+                yield return new WaitForSeconds(2);
+            }
+            deathCounter.IncrementDeathCount();
+            grab.CancelAllPulling();
+            transform.position = spawnPosition;
+            isDead = false;
+        }
     }
-    IEnumerator NextScene()
-    {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    
 }

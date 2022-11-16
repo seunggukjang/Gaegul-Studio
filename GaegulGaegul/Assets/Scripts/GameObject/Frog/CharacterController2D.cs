@@ -65,7 +65,7 @@ public class CharacterController2D : MonoBehaviour
 			{
 				m_Grounded = true;
 				isJump = false;
-				m_Animator.SetTrigger("idle");
+				
             }
 
         colliders = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, m_WhatIsGround);
@@ -97,21 +97,26 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (move == 0)
 		{
-			return;
-		}
-
-		if (!m_Grounded)
-		{
+			m_Animator.SetTrigger("idle");
 			return;
 		}
 		if (!m_Grounded)
 		{
 			m_FrogTouchGround = false;
-			m_Animator.SetTrigger("smallJump");
+			if (m_AirControl)
+			{
+				m_Velocity.x = 0;
+				m_Velocity.y = m_Rigidbody2D.velocity.y;
+				m_Velocity.x = move * m_SwingSpeed;
+				m_Rigidbody2D.AddForce(m_Velocity);
+			}
+			return;
 		}
 
 		if (m_Grounded && m_FrogTouchGround)
 		{
+			if(!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("smallJump"))
+				m_Animator.SetTrigger("smallJump");
 			if (particleSystem != null)
 				particleSystem.Emit(1);
 			if (audioManager != null)

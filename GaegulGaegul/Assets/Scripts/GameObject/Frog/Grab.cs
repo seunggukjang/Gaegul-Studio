@@ -26,9 +26,10 @@ public class Grab : MonoBehaviour
     {
         joint = GetComponent<SpringJoint2D>();
         mousePos = GetComponent<MousePosition>();
-        tongueFrog = tongueToPlayer.GetComponent<TongueFrog>();
+        //tongueFrog = tongueToPlayer.GetComponent<TongueFrog>();
         layers[0] = 1 << LayerMask.NameToLayer("Hook");
-        layers[1] = 1 << LayerMask.NameToLayer("Frog");
+        //layers[1] = 1 << LayerMask.NameToLayer("Frog");
+        layers[1] = 1 << LayerMask.NameToLayer("Item");
         layers[2] = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Item");
     }
     void Update()
@@ -91,12 +92,12 @@ public class Grab : MonoBehaviour
                 tongueToObject.SetActive(false);
                 animator.SetTrigger("idle");
             }
-            else if(targetTag == "Frog")
-            {
-                tongueFrog.SetJointTargetRigidBody(null);
-                tongueToPlayer.SetActive(false);
-                animator.SetTrigger("idle");
-            }
+            //else if(targetTag == "Frog")
+            //{
+            //    tongueFrog.SetJointTargetRigidBody(null);
+            //    tongueToPlayer.SetActive(false);
+            //    animator.SetTrigger("idle");
+            //}
             isGrab = false;
             targetRB = null;
             return false;
@@ -115,12 +116,12 @@ public class Grab : MonoBehaviour
                 joint.enabled = false;
                 tongueToObject.SetActive(false);
             }
-            else if(targetTag == "Frog")
-            {
-                tongueFrog.SetJointTargetRigidBody(null);
-                tongueToPlayer.SetActive(false);
-                animator.SetTrigger("idle");
-            }
+            //else if(targetTag == "Frog")
+            //{
+            //    tongueFrog.SetJointTargetRigidBody(null);
+            //    tongueToPlayer.SetActive(false);
+            //    animator.SetTrigger("idle");
+            //}
             if(targetTag != "Enemy")
             {
                 isGrab = false;
@@ -133,7 +134,7 @@ public class Grab : MonoBehaviour
         joint.connectedBody = null;
         joint.enabled = false;
         tongueToObject.SetActive(false);
-        tongueFrog.SetJointTargetRigidBody(null);
+        //tongueFrog.SetJointTargetRigidBody(null);
         tongueToPlayer.SetActive(false);
         isGrab = false;
         targetRB = null;
@@ -170,12 +171,12 @@ public class Grab : MonoBehaviour
             tongueToObject.SetActive(true);
             tongue.targetTransform = targetRB.transform;
         }
-        else if(targetTag == "Frog")
-        {
-            tongueToPlayer.SetActive(true);
-            animator.SetTrigger("grab");
-            tongueFrog.SetJointTargetRigidBody(targetRB);
-        }
+        //else if(targetTag == "Frog")
+        //{
+        //    tongueToPlayer.SetActive(true);
+        //    animator.SetTrigger("grab");
+        //    tongueFrog.SetJointTargetRigidBody(targetRB);
+        //}
         isGrab = true;
         return true;
     }
