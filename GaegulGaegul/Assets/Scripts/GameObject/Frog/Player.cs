@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         deathCounter = GameObject.Find("DeathCounter").GetComponent<DeathCounter>();
+        spawnTransform = GameObject.Find("StartPosition").transform;
         if (spawnTransform)
             spawnPosition = spawnTransform.position;
         else
