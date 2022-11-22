@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private int skin = -1;
     private bool isDead = false;
+    private bool isRevive = false;
+    private AudioManager audioManager;
     void Start()
     {
         deathCounter = GameObject.Find("DeathCounter").GetComponent<DeathCounter>();
@@ -29,7 +31,7 @@ public class Player : MonoBehaviour
         deadThings = 1 << LayerMask.NameToLayer("Dead") | 1 << LayerMask.NameToLayer("Enemy");
         flag = 1 << LayerMask.NameToLayer("Flag");
         halfSize = transform.lossyScale * 0.5f;
-
+        audioManager = FindObjectOfType<AudioManager>();
         // random skin color [temp ?]
         if (skin == -1)
              skin = Random.Range(0, 5);
@@ -48,20 +50,33 @@ public class Player : MonoBehaviour
             
             
     }
+    IEnumerator Revive()
+    {
+        if (dissolve)
+        {
+            dissolve.SetIsAppear(true);
+            yield return new WaitForSeconds(2);
+        }
+    }
     IEnumerator Dead()
     {
         if (!isDead)
         {
             isDead = true;
+            if (audioManager)
+                audioManager.Play("dead");
             if (dissolve)
             {
-                dissolve.SetIsDissolving(true);
+                dissolve.SetIsDisappear(true);
                 yield return new WaitForSeconds(2);
             }
             deathCounter.IncrementDeathCount();
             grab.CancelAllPulling();
             transform.position = spawnPosition;
             isDead = false;
+            
+            StartCoroutine(Revive());
+
         }
     }
     
