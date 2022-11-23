@@ -128,8 +128,8 @@ public class CharacterController2D : MonoBehaviour
 				move = -1;
 
 			m_Velocity.x = move * m_MoveSpeed;
-			if (!isJump)
-				m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
+			//if (!isJump)
+			//	m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
 
 			m_Rigidbody2D.velocity = (m_Velocity);
 
