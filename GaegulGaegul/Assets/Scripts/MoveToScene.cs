@@ -6,7 +6,12 @@ using UnityEngine.SceneManagement;
 public class MoveToScene : MonoBehaviour
 {
     public void LoadwithSceneID(int sceneID)
-        {
-            SceneManager.LoadScene(sceneID);
-        }
+    {
+        SceneManager.LoadScene(sceneID);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
