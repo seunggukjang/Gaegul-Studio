@@ -1,14 +1,15 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundTrigger : Trigger
+public class CannonTrigger : Trigger
 {
-    
+    [SerializeField] bool isFire = false;
     Vector2 halfSize;
     Vector2 position;
     LayerMask frogMask;
-    // Start is called before the first frame update
+    [SerializeField] private Cannon canon;
     void Start()
     {
         this.isWork = false;
@@ -17,14 +18,16 @@ public class GroundTrigger : Trigger
         frogMask = 1 << LayerMask.NameToLayer("Frog");
     }
     public override bool GetIsWork() { return this.isWork; }
+    // Update is called once per frame
     private void FixedUpdate()
     {
-        if(this.isWork)
-            return;
+        this.isWork = false;
         Collider2D collider = Physics2D.OverlapArea(position - halfSize, position + halfSize, frogMask);
-        if(collider)
+        if (canon.GetFrogIn() && (collider || isFire))
         {
             this.isWork = true;
+            canon.Fire();
+            canon.SetFrogIn(false);
         }
     }
 }
