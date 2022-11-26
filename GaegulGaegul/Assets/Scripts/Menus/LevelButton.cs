@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LevelButton : MonoBehaviour
 {
     public Text levelNumber;
+    public int levelNumberInt;
     public bool levelUnlocked;
 
     public bool levelCompleted;

@@ -9,7 +9,6 @@ public class Level
     public string levelName;
     public int levelNumber;
     public bool levelCompleted;
-    public bool levelUnlocked;
 }
 
 public class LevelManager : MonoBehaviour
@@ -21,6 +20,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         fillList();
+        SaveAll();
     }
 
     void fillList()
@@ -29,10 +29,38 @@ public class LevelManager : MonoBehaviour
         {
             GameObject newButton = Instantiate(LevelButtonPrefab) as GameObject;
             LevelButton button = newButton.GetComponent<LevelButton>();
-            button.levelCompleted = level.levelCompleted;
-            button.levelUnlocked = level.levelUnlocked;
+
             button.levelNumber.GetComponent<Text>().text = level.levelNumber.ToString();
+            button.levelNumberInt = level.levelNumber;
+            if (PlayerPrefs.GetInt("LevelCompleted" + level.levelNumber.ToString()) == 1) {
+                button.levelCompleted = true;
+                button.levelUnlocked = true;
+            }
+            if (level.levelNumber == 1) // unlock first level
+                button.levelUnlocked = true;
+
+            button.GetComponentInChildren<Button>().interactable = button.levelUnlocked;
             newButton.transform.SetParent(Spacer, false);
+        }
+    }
+
+    void SaveAll()
+    {
+        GameObject[] allButtons = GameObject.FindGameObjectsWithTag("LevelButton");
+
+        foreach (var button in allButtons)
+        {
+            LevelButton levelButton = button.GetComponent<LevelButton>();
+            Level level = LevelList[levelButton.levelNumberInt - 1];
+
+            if (level.levelCompleted) {
+                PlayerPrefs.SetInt("LevelCompleted" + level.levelNumber, 1);
+                PlayerPrefs.SetInt("LevelUnlocked" + level.levelNumber, 1);
+            }
+            else {
+                PlayerPrefs.SetInt("LevelCompleted" + level.levelNumber, 0);
+                PlayerPrefs.SetInt("LevelUnlocked" + level.levelNumber, 0);
+            }
         }
     }
 }
