@@ -19,18 +19,17 @@ public class Grab : MonoBehaviour
     [SerializeField] private Animator animator;
 
     private bool isGrab = false;
-    private MousePosition mousePos;
-    
+    Vector3 mousePos;
     private Enemy holdingEnemy = null;
     void Start()
     {
         joint = GetComponent<SpringJoint2D>();
-        mousePos = GetComponent<MousePosition>();
+        mousePos = Input.mousePosition;
         //tongueFrog = tongueToPlayer.GetComponent<TongueFrog>();
         layers[0] = 1 << LayerMask.NameToLayer("Hook");
         //layers[1] = 1 << LayerMask.NameToLayer("Frog");
         layers[1] = 1 << LayerMask.NameToLayer("Item");
-        layers[2] = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Item");
+        layers[2] = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Item") | 1 << LayerMask.NameToLayer("Weight");
     }
     void Update()
     {
@@ -47,7 +46,10 @@ public class Grab : MonoBehaviour
     }
     private Vector3 GetFrogToMouseDirection()
     {
-        return (mousePos.GetMousePosition() - transform.position).normalized;
+        
+        Debug.Log("mouse position : " + Input.mousePosition);
+        Debug.Log("screen mouse position : " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        return (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
     }
     private Rigidbody2D SelectTarget()
     {
@@ -76,9 +78,9 @@ public class Grab : MonoBehaviour
         if(isGrab == true)
         {
             string targetTag = targetRB.gameObject.tag;
-            if(targetTag == "Hook" || targetTag == "Enemy" || targetTag == "Item")
+            if(targetTag == "Hook" || targetTag == "Enemy" || targetTag == "Item" || targetTag == "Weight")
             {
-                if(targetTag == "Enemy" && !joint.enabled)
+                if (targetTag == "Enemy" && !joint.enabled)
                 {
                     holdingEnemy = targetRB.GetComponent<Enemy>();
                     holdingEnemy.gameObject.SetActive(true);
@@ -87,6 +89,8 @@ public class Grab : MonoBehaviour
                     targetRB = null;
                     return false;
                 }
+                else if (targetTag == "Weight")
+                    targetRB.GetComponent<Weight>().DecreaseGrabNumber();
                 joint.connectedBody = null;
                 joint.enabled = false;
                 tongueToObject.SetActive(false);
@@ -110,11 +114,15 @@ public class Grab : MonoBehaviour
         if(isGrab == true)
         {
             string targetTag = targetRB.gameObject.tag;
-            if(targetTag == "Hook" || targetTag == "Enemy" || targetTag == "Item")
+            if(targetTag == "Hook" || targetTag == "Enemy" || targetTag == "Item" || targetTag == "Weight")
             {
                 joint.connectedBody = null;
                 joint.enabled = false;
                 tongueToObject.SetActive(false);
+                if(targetTag == "Weight")
+                {
+                    targetRB.GetComponent<Weight>().DecreaseGrabNumber();
+                }
             }
             //else if(targetTag == "Frog")
             //{
@@ -144,13 +152,17 @@ public class Grab : MonoBehaviour
         if(!CanGrip() || SelectTarget() == null)
             return false;
         string targetTag = targetRB.gameObject.tag;
-        if(targetTag == "Hook" || targetTag == "Enemy" || targetTag == "Item")
+        if(targetTag == "Hook" || targetTag == "Enemy" || targetTag == "Item" || targetTag == "Weight")
         {
-            if(targetTag == "Hook")
+            if(targetTag == "Hook" || targetTag == "Weight")
             {
                 joint.autoConfigureDistance = true;
                 joint.frequency = 0;
                 animator.SetTrigger("grab");
+                if (targetTag == "Weight")
+                {
+                    targetRB.gameObject.GetComponent<Weight>().IncreaseGrabNumber();
+                }
             }
             else
             {

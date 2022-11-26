@@ -60,7 +60,9 @@ public class PhysicalAction : MonoBehaviour
         isAttack = false;
     }
     void Move(Vector2 m) {
+        //controller.SetAirControl(true);
         controller.Move(m.x, false);
+        //controller.SetAirControl(false);
     }
     void Jump() {
         if (!isJump)
@@ -68,13 +70,7 @@ public class PhysicalAction : MonoBehaviour
         controller.Jump();
         isJump = false;
     }
-    private void FixedUpdate()
-    {
-        Jump();
-        Move(move);
-        TongueAttack();
-        
-    }
+   
     void Update()
     {
         float input_x = Input.GetAxis("Horizontal");
@@ -98,6 +94,10 @@ public class PhysicalAction : MonoBehaviour
         {
             Restart();
         }
+
+        Jump();
+        Move(move);
+        TongueAttack();
     }
     private void LateUpdate()
     {

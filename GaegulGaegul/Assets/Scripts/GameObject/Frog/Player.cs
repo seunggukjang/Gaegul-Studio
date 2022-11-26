@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private int skin = -1;
     private bool isDead = false;
-    private bool isRevive = false;
+    //private bool isRevive = false;
     private AudioManager audioManager;
     void Start()
     {

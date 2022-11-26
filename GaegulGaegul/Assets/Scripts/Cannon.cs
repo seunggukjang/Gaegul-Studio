@@ -7,19 +7,25 @@ public class Cannon : MonoBehaviour
 {
     Vector2 halfSize;
     Vector2 position;
+    [SerializeField] Vector3 offsetPosition;
+    [SerializeField] Weight weight;
     LayerMask frogMask;
     bool canFrogGet = false;
     bool isFrogIn = false;
     GameObject frogObject;
     [SerializeField] private float fireForceX = 20;
     [SerializeField] private float fireForceY = 20;
-    [SerializeField] private float angularSpeed = 0.00001f;
+    [SerializeField] private float angularSpeed = 0.1f;
+    [SerializeField] private bool isWeight = false;
     float angle = 0f;
+    Vector3 previousRotation = new Vector3();
+    Vector3 rotation = new Vector3();
     Vector2 fire_direction = new Vector2();
+
     void Start()
     {
         halfSize = transform.lossyScale * 0.5f;
-        position = transform.position;
+        position = transform.position + offsetPosition;
         frogMask = 1 << LayerMask.NameToLayer("Frog");
         canFrogGet = false;
     }
@@ -42,9 +48,24 @@ public class Cannon : MonoBehaviour
     private void Update()
     {
         float previous_angle = angle;
-        if(isFrogIn)
+
+        if (isFrogIn)
         {
-            angle += Input.GetAxis("Vertical");
+            if(!isWeight)
+            angle += Input.GetAxis("Vertical") * Time.deltaTime * angularSpeed;
+            else
+            {
+                if(weight.GetGrabNumber() == 0)
+                {
+                    angle -= Time.deltaTime * angularSpeed * 30;
+                    if (angle < 0)
+                        angle = 0;
+                }
+                else if (angle < weight.GetGrabNumber() * 30)
+                    angle += weight.GetGrabNumber() * 30 * Time.deltaTime * angularSpeed;
+                else
+                    angle = weight.GetGrabNumber() * 30;
+            }
             
         }
         else if(angle != 0)
@@ -53,14 +74,24 @@ public class Cannon : MonoBehaviour
         }
         if(previous_angle != angle)
         {
-            transform.Rotate(0, 0, angle - previous_angle);
+            if (!isWeight)
+                transform.Rotate(0, 0, angle - previous_angle);
+            else
+            {
+                previousRotation.z = previous_angle - 90;
+                rotation.z = angle - 90;
+                transform.rotation = Quaternion.Euler(rotation);
+            }
+                
         }
+        
     }
     private void LateUpdate()
     {
         if(canFrogGet && Input.GetKeyDown(KeyCode.F))
         {
             isFrogIn = true;
+            frogObject.GetComponent<Grab>().CancelAllPulling();
             frogObject.SetActive(false);
         }
     }
