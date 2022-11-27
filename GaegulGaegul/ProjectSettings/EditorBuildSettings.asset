@@ -6,6 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Stage 3.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Menus/MainMenu.unity
+    guid: 6447bedbf6dc7e64984dace0a44f2159
+  - enabled: 1
+    path: Assets/Scenes/Menus/SettingsMenu.unity
+    guid: 27301f4a37f66eb4abdff489e308a8fb
+  - enabled: 1
+    path: Assets/Scenes/Menus/MenuChooseMode.unity
+    guid: addb966e8a0945849bd8628d4699cbef
+  - enabled: 1
+    path: Assets/Scenes/Menus/Cinematic.unity
+    guid: d12faca92470eeb469d6a37391f431b4
+  - enabled: 1
+    path: Assets/Scenes/Menus/puzzleMenu.unity
+    guid: 6e1df7aa542cc83479e715cc91b4e2d3
+  - enabled: 1
+    path: Assets/Scenes/Menus/pvpMenu.unity
+    guid: a6e991ec4b17b3840a138f24b58f6e38
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tuto 1.unity
+    guid: 83daaf9483f4a8f4caf31af952e22375
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tuto 2.unity
+    guid: 375648f55582b1248b18d4853b78c993
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tuto 3.unity
+    guid: ca04b11c2d423a54084e0626ff1824b2
   m_configObjects: {}
