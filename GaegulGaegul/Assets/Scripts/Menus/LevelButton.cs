@@ -8,7 +8,6 @@ public class LevelButton : MonoBehaviour
     public string levelName;
     public Text levelNumber;
     public int levelNumberInt;
-    public bool levelUnlocked;
 
     public bool levelCompleted;
     public GameObject star;
