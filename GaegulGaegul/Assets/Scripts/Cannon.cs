@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Cannon : MonoBehaviour
 {
-    Vector2 halfSize;
+    Vector2 halfSize = new Vector2(1,1);
     Vector2 position;
     [SerializeField] Vector3 offsetPosition;
     [SerializeField] Weight weight;
@@ -21,13 +21,15 @@ public class Cannon : MonoBehaviour
     Vector3 previousRotation = new Vector3();
     Vector3 rotation = new Vector3();
     Vector2 fire_direction = new Vector2();
-
+    AudioManager audioManager;
+    bool canCannonBGM = true;
     void Start()
     {
-        halfSize = transform.lossyScale * 0.5f;
+        halfSize = halfSize * 1.5f;
         position = transform.position + offsetPosition;
         frogMask = 1 << LayerMask.NameToLayer("Frog");
         canFrogGet = false;
+        audioManager = FindObjectOfType<AudioManager>();
     }
     // Update is called once per frame
     private void FixedUpdate()
@@ -51,8 +53,14 @@ public class Cannon : MonoBehaviour
 
         if (isFrogIn)
         {
+            if(audioManager && canCannonBGM)
+            {
+                audioManager.Stop("bgm");
+                audioManager.Play("cannonbgm");
+                canCannonBGM = false;
+            }
             if(!isWeight)
-            angle += Input.GetAxis("Vertical") * Time.deltaTime * angularSpeed;
+            angle += Input.GetAxis("Vertical") * 30 * Time.deltaTime * angularSpeed;
             else
             {
                 if(weight.GetGrabNumber() == 0)
@@ -66,7 +74,6 @@ public class Cannon : MonoBehaviour
                 else
                     angle = weight.GetGrabNumber() * 30;
             }
-            
         }
         else if(angle != 0)
         {
@@ -74,13 +81,15 @@ public class Cannon : MonoBehaviour
         }
         if(previous_angle != angle)
         {
+            if (audioManager)
+                audioManager.Play("cannondrag");
             if (!isWeight)
-                transform.Rotate(0, 0, angle - previous_angle);
+                transform.Rotate(previous_angle - angle, 0, 0);
             else
             {
-                previousRotation.z = previous_angle - 90;
-                rotation.z = angle - 90;
-                transform.rotation = Quaternion.Euler(rotation);
+                previousRotation.x = previous_angle;
+                rotation.x = angle;
+                transform.localRotation = Quaternion.Euler(-rotation);
             }
                 
         }
@@ -90,8 +99,10 @@ public class Cannon : MonoBehaviour
     {
         if(canFrogGet && Input.GetKeyDown(KeyCode.F))
         {
+            if (audioManager)
+                audioManager.Play("cannonammo");
             isFrogIn = true;
-            frogObject.GetComponent<Grab>().CancelAllPulling();
+            frogObject.GetComponent<Grab>().CancelPulling();
             frogObject.SetActive(false);
         }
     }
@@ -99,13 +110,22 @@ public class Cannon : MonoBehaviour
     {
         return isFrogIn;
     }
-        public void SetFrogIn(bool isIn)
+    public void SetFrogIn(bool isIn)
     {
         isFrogIn = isIn;
     }
     public void Fire()
     {
+        if (audioManager && canCannonBGM == false)
+        {
+            audioManager.Play("cannonfire");
+            audioManager.Stop("cannonbgm");
+            audioManager.Play("bgm");
+            canCannonBGM = true;
+        }
+            
         frogObject.SetActive(true);
+        frogObject.transform.position = new Vector3(transform.position.x, transform.position.y, frogObject.transform.position.z);
         float radian = angle * Mathf.PI / 180;
         fire_direction.x = Mathf.Cos(radian) * fireForceX;
         fire_direction.y = Mathf.Sin(radian) * fireForceY;

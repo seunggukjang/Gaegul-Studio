@@ -46,9 +46,6 @@ public class Grab : MonoBehaviour
     }
     private Vector3 GetFrogToMouseDirection()
     {
-        
-        Debug.Log("mouse position : " + Input.mousePosition);
-        Debug.Log("screen mouse position : " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
         return (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
     }
     private Rigidbody2D SelectTarget()
