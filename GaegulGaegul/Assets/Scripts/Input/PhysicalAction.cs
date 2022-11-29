@@ -60,9 +60,7 @@ public class PhysicalAction : MonoBehaviour
         isAttack = false;
     }
     void Move(Vector2 m) {
-        //controller.SetAirControl(true);
         controller.Move(m.x, false);
-        //controller.SetAirControl(false);
     }
     void Jump() {
         if (!isJump)
