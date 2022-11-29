@@ -2,44 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundTrigger : MonoBehaviour
+public class GroundTrigger : Trigger
 {
+    
+    Vector2 halfSize;
+    Vector2 position;
+    LayerMask frogMask;
     // Start is called before the first frame update
-    [SerializeField] private Transform stopTransform;
-    [SerializeField] private float smoothTime = 0.3f;
-    [SerializeField] private GameObject[] pieces;
-    private int piecesCount = 0;
-    private Vector3 velocity = Vector3.zero;
-    private Vector3 stopPosition;
-    private bool isTriggerOver = false;
-    private bool isMove = false;
     void Start()
     {
-        stopPosition = stopTransform.position;
-        piecesCount = pieces.Length;
+        this.isWork = false;
+        halfSize = transform.lossyScale * 0.5f;
+        position = transform.position;
+        frogMask = 1 << LayerMask.NameToLayer("Frog");
     }
-    void Update()
+    public override bool GetIsWork() { return this.isWork; }
+    private void FixedUpdate()
     {
-        if(isTriggerOver)
+        if(this.isWork)
             return;
-        if(isMove)
+        Collider2D collider = Physics2D.OverlapArea(position - halfSize, position + halfSize, frogMask);
+        if(collider)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, stopPosition, ref velocity, smoothTime);
-            if(transform.position == stopPosition)
-            {
-                isMove = false;
-                isTriggerOver = true;
-            }
-        }
-        int triggeredPieces = 0;
-        for(int i = 0; i < piecesCount; i++)
-        {
-            if(!pieces[i].activeSelf)
-            {
-                triggeredPieces++;
-            }
-            if(triggeredPieces >= piecesCount)
-                isMove = true;
+            this.isWork = true;
         }
     }
 }

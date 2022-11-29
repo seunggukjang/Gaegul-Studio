@@ -476,7 +476,6 @@ GameObject:
   - component: {fileID: 542248098}
   - component: {fileID: 542248101}
   - component: {fileID: 542248100}
-  - component: {fileID: 542248099}
   m_Layer: 6
   m_Name: GoundRight
   m_TagString: Untagged
@@ -499,22 +498,6 @@ Transform:
   m_Father: {fileID: 1015847473}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &542248099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542248097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75aa0f5ca8fc4b45bd6a19d9f9207e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopTransform: {fileID: 38915415}
-  smoothTime: 0.3
-  pieces:
-  - {fileID: 1465422720}
 --- !u!70 &542248100
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1111,11 +1094,6 @@ Transform:
   m_Father: {fileID: 1058073081}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1465422720 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8908917290235848262, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
-  m_PrefabInstance: {fileID: 8908917288972809670}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1465422721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8908917290235848263, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}

@@ -68,10 +68,10 @@ public class CharacterController2D : MonoBehaviour
 				
             }
 
-        colliders = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, m_WhatIsGround);
-        for (int i = 0; i < colliders.Length; i++)
-            if (colliders[i].gameObject != gameObject)
-                m_FrogTouchGround = true;
+        //colliders = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, m_WhatIsGround);
+        //for (int i = 0; i < colliders.Length; i++)
+        //    if (colliders[i].gameObject != gameObject)
+        //        m_FrogTouchGround = true;
     }
 
 	public void SetAirControl(bool isGrab)
@@ -113,7 +113,7 @@ public class CharacterController2D : MonoBehaviour
 			return;
 		}
 
-		if (m_Grounded && m_FrogTouchGround)
+		if (m_Grounded)
 		{
 			if(!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("smallJump"))
 				m_Animator.SetTrigger("smallJump");
@@ -129,7 +129,7 @@ public class CharacterController2D : MonoBehaviour
 
 			m_Velocity.x = move * m_MoveSpeed;
 			if (!isJump)
-				m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
+			 m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
 
 			m_Rigidbody2D.velocity = (m_Velocity);
 
