@@ -1853,7 +1853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908330124673046985, guid: 1d3f941dd99f371409437b39825d8618, type: 3}
       propertyPath: skin
-      value: 2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7908330124673046985, guid: 1d3f941dd99f371409437b39825d8618, type: 3}
       propertyPath: spawnTransform
