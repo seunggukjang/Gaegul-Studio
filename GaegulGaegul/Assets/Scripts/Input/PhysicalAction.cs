@@ -12,6 +12,8 @@ public class PhysicalAction : MonoBehaviour
     private bool isJump = false;
     private Vector2 move = new Vector2 (0, 0);
     Animator animator;
+    [SerializeField] bool isPVPmode = false;
+    private bool isJumpDown = false;
     private void Start()
     {
         controller = GetComponent<CharacterController2D>();
@@ -65,18 +67,31 @@ public class PhysicalAction : MonoBehaviour
     void Jump() {
         if (!isJump)
             return;
-        controller.Jump();
+        if (isPVPmode)
+            controller.JumpUp();
+        else
+            controller.Jump();
         isJump = false;
     }
-   
+   void JumpDown()
+    {
+        if (!isJumpDown && !isPVPmode)
+            return;
+        controller.JumpDown();
+        isJumpDown = false;
+    }
     void Update()
     {
         float input_x = Input.GetAxis("Horizontal");
         move.x = input_x;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && Input.GetAxis("Vertical") >= 0)
         {
             isJump = true;
+        }
+        if(Input.GetButton("Jump") && Input.GetAxis("Vertical") < 0)
+        {
+            isJumpDown = true;
         }
         if (Input.GetMouseButtonDown(0) && !isGrab)
         {
@@ -94,6 +109,7 @@ public class PhysicalAction : MonoBehaviour
         }
 
         Jump();
+        JumpDown();
         Move(move);
         TongueAttack();
     }

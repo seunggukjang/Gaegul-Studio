@@ -1,5 +1,6 @@
 using UnityEngine.Events;
 using UnityEngine;
+using System.Collections;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Animator m_Animator;
 
 	[SerializeField] private SpriteRenderer spriteRenderer;
+
+	bool jumpOffCoroutineIsRunning = false;
 	private bool m_Grounded;
 	private bool m_FrogTouchGround = false;
 	private Rigidbody2D m_Rigidbody2D;
@@ -36,12 +39,18 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 ground_halfSize = new Vector3();
 	private Vector3 halfSize = new Vector3();
 	private bool isJump = false;
+	private LayerMask frogMask;
+	private LayerMask jumpOffPlatformMask;
+	private bool canJumpDown = false;
+	[SerializeField] bool isPVPJump = false;
 	//private bool airControlinSmallJump = false;
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		frogMask = LayerMask.NameToLayer("Frog");
+		jumpOffPlatformMask = LayerMask.NameToLayer("JumpOffPlatform");
 
-		if (OnLandEvent == null)
+        if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 
 		if (OnCrouchEvent == null)
@@ -54,7 +63,8 @@ public class CharacterController2D : MonoBehaviour
 		audioManager = FindObjectOfType<AudioManager>();
 	}
 
-	private void FixedUpdate()
+    
+    private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
@@ -78,7 +88,43 @@ public class CharacterController2D : MonoBehaviour
 	{
 		m_AirControl = isGrab;
 	}
-
+    IEnumerator JumpOff()
+    {
+        jumpOffCoroutineIsRunning = true;
+        Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, true);
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, false);
+        jumpOffCoroutineIsRunning = false;
+    }
+    public void JumpUp()
+	{
+        if (m_Grounded)
+        {
+            if (particleSystem != null)
+                particleSystem.Emit(1);
+            if (audioManager != null)
+                audioManager.Play("bigjump");
+            m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce));
+            isJump = true;
+            m_Animator.SetTrigger("bigJump");
+        }
+        StartCoroutine(JumpOff());
+    }
+	public void JumpDown()
+	{
+		if (m_Grounded)
+		{
+			if (particleSystem != null)
+				particleSystem.Emit(1);
+			if (audioManager != null)
+			{
+				m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, -m_JumpForce));
+				isJump = true;
+				m_Animator.SetTrigger("bigJump");
+			}
+			StartCoroutine(JumpOff());
+		}
+    }
 	public void Jump()
 	{
 		if (m_Grounded)
