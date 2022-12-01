@@ -19,9 +19,17 @@ public class LevelManager : MonoBehaviour
     public Transform Spacer;
     public Transform Canvas;
 
+    [Space]
+    public GameObject NextPage;
+    public GameObject PreviousPage;
+    public int currentDisplayedPage = 0;
+    private int totalPages = 0;
+    private Spacer[] pages;
+
     void Start()
     {
         fillList();
+        handlePages();
         //SaveAll();
     }
 
@@ -56,12 +64,59 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    void handlePages()
+    {
+        pages = Canvas.GetComponentsInChildren<Spacer>();
+        totalPages = pages.Length;
+        foreach (var page in pages)
+        {
+            page.gameObject.SetActive(false);
+        }
+        pages[currentDisplayedPage].gameObject.SetActive(true);
+    }
+
+    void Update() 
+    {
+        if (totalPages == 1) {
+            NextPage.SetActive(false);
+            PreviousPage.SetActive(false);
+            return;
+        }
+
+        if (currentDisplayedPage == 0) {
+            PreviousPage.SetActive(false);
+            NextPage.SetActive(true);
+        }
+        else if (currentDisplayedPage == totalPages - 1) {
+            PreviousPage.SetActive(true);
+            NextPage.SetActive(false);
+        }
+        else {
+            PreviousPage.SetActive(true);
+            NextPage.SetActive(true);
+        }
+    }
+
+    public void nexpPage()
+    {
+        pages[currentDisplayedPage].gameObject.SetActive(false);
+        currentDisplayedPage++;
+        pages[currentDisplayedPage].gameObject.SetActive(true);
+    }
+
+    public void previousPage()
+    {
+        pages[currentDisplayedPage].gameObject.SetActive(false);
+        currentDisplayedPage--;
+        pages[currentDisplayedPage].gameObject.SetActive(true);
+    }
+
     void loadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
     }
 
-    void SaveAll()
+    /*void SaveAll()
     {
         GameObject[] allButtons = GameObject.FindGameObjectsWithTag("LevelButton");
 
@@ -75,5 +130,5 @@ public class LevelManager : MonoBehaviour
             else
                 PlayerPrefs.SetInt("LevelCompleted" + level.levelNumber, 0);
         }
-    }
+    }*/
 }

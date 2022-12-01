@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 575891782551792943}
   - component: {fileID: 575891782551792940}
   - component: {fileID: 575891782551792942}
+  - component: {fileID: 4277719347576652017}
   m_Layer: 5
   m_Name: Spacer
   m_TagString: Untagged
@@ -101,3 +102,16 @@ MonoBehaviour:
   m_Spacing: {x: 130, y: 100}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &4277719347576652017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575891782551792938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be1fb680d5d7fd43b6ce805b6b37a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageNumber: 0
