@@ -162,33 +162,6 @@ MonoBehaviour:
   - levelName: Tuto 3
     levelNumber: 3
     levelCompleted: 0
-  - levelName: Tuto 3
-    levelNumber: 3
-    levelCompleted: 0
-  - levelName: Tuto 3
-    levelNumber: 3
-    levelCompleted: 0
-  - levelName: Tuto 3
-    levelNumber: 3
-    levelCompleted: 0
-  - levelName: Tuto 3
-    levelNumber: 3
-    levelCompleted: 0
-  - levelName: Tuto 3
-    levelNumber: 3
-    levelCompleted: 0
-  - levelName: Tuto 3
-    levelNumber: 3
-    levelCompleted: 0
-  - levelName: Tuto 3
-    levelNumber: 3
-    levelCompleted: 0
-  - levelName: Tuto 3
-    levelNumber: 3
-    levelCompleted: 0
-  - levelName: Tuto 3
-    levelNumber: 3
-    levelCompleted: 0
   LevelButtonPrefab: {fileID: 5576764496039862562, guid: 263b25bb531f0a44b88d725dcadf9818, type: 3}
   Spacer: {fileID: 575891782551792941, guid: 6a002ae7b78a85c4198d3ed0ce5c8bc3, type: 3}
   Canvas: {fileID: 1967478027}
