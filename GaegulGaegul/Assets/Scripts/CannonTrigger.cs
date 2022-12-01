@@ -6,6 +6,7 @@ using UnityEngine;
 public class CannonTrigger : Trigger
 {
     [SerializeField] bool isFire = false;
+    SpriteRenderer spriteRenderer;
     Vector2 halfSize;
     Vector2 position;
     LayerMask frogMask;
@@ -15,6 +16,8 @@ public class CannonTrigger : Trigger
         this.isWork = false;
         halfSize = transform.lossyScale * 0.5f;
         position = transform.position;
+        spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
+        
         frogMask = 1 << LayerMask.NameToLayer("Frog");
     }
     public override bool GetIsWork() { return this.isWork; }
@@ -28,6 +31,7 @@ public class CannonTrigger : Trigger
             this.isWork = true;
             canon.Fire();
             canon.SetFrogIn(false);
+            
         }
     }
 }

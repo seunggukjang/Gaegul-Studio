@@ -87,9 +87,9 @@ public class Cannon : MonoBehaviour
                 transform.Rotate(previous_angle - angle, 0, 0);
             else
             {
-                previousRotation.x = previous_angle;
-                rotation.x = angle;
-                transform.localRotation = Quaternion.Euler(-rotation);
+                previousRotation.z = previous_angle;
+                rotation.z = angle;
+                transform.localRotation = Quaternion.Euler(rotation);
             }
                 
         }
