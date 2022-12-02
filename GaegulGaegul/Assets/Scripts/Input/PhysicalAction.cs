@@ -68,13 +68,7 @@ public class PhysicalAction : MonoBehaviour
         controller.Jump();
         isJump = false;
     }
-    private void FixedUpdate()
-    {
-        Jump();
-        Move(move);
-        TongueAttack();
-        
-    }
+   
     void Update()
     {
         float input_x = Input.GetAxis("Horizontal");
@@ -98,6 +92,10 @@ public class PhysicalAction : MonoBehaviour
         {
             Restart();
         }
+
+        Jump();
+        Move(move);
+        TongueAttack();
     }
     private void LateUpdate()
     {

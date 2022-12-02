@@ -36,7 +36,7 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 ground_halfSize = new Vector3();
 	private Vector3 halfSize = new Vector3();
 	private bool isJump = false;
-
+	//private bool airControlinSmallJump = false;
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -68,10 +68,10 @@ public class CharacterController2D : MonoBehaviour
 				
             }
 
-        colliders = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, m_WhatIsGround);
-        for (int i = 0; i < colliders.Length; i++)
-            if (colliders[i].gameObject != gameObject)
-                m_FrogTouchGround = true;
+        //colliders = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, m_WhatIsGround);
+        //for (int i = 0; i < colliders.Length; i++)
+        //    if (colliders[i].gameObject != gameObject)
+        //        m_FrogTouchGround = true;
     }
 
 	public void SetAirControl(bool isGrab)
@@ -92,28 +92,34 @@ public class CharacterController2D : MonoBehaviour
 			m_Animator.SetTrigger("bigJump");
         }
 	}
-
+	float previousMove = 0;
 	public void Move(float move, bool crouch)
 	{
+		
 		if (move == 0)
 		{
 			m_Animator.SetTrigger("idle");
+			previousMove = move;
 			return;
 		}
 		if (!m_Grounded)
 		{
-			m_FrogTouchGround = false;
 			if (m_AirControl)
 			{
-				m_Velocity.x = 0;
 				m_Velocity.y = m_Rigidbody2D.velocity.y;
 				m_Velocity.x = move * m_SwingSpeed;
 				m_Rigidbody2D.AddForce(m_Velocity);
 			}
+			else if (previousMove * move <= 0)
+            {
+				m_Velocity.x = 0;
+				m_Velocity.y = m_Rigidbody2D.velocity.y;
+				m_Rigidbody2D.velocity = m_Velocity;
+			}
 			return;
 		}
 
-		if (m_Grounded && m_FrogTouchGround)
+		if (m_Grounded)
 		{
 			if(!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("smallJump"))
 				m_Animator.SetTrigger("smallJump");
@@ -128,8 +134,8 @@ public class CharacterController2D : MonoBehaviour
 				move = -1;
 
 			m_Velocity.x = move * m_MoveSpeed;
-			//if (!isJump)
-			//	m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
+			if (!isJump)
+			 m_Velocity.y = m_SmallJumpSpeed * (move != 0 ? 1 : 0);
 
 			m_Rigidbody2D.velocity = (m_Velocity);
 
@@ -150,6 +156,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Velocity.x = move * m_SwingSpeed;
 			m_Rigidbody2D.AddForce(m_Velocity);
 		}
+		previousMove = move;
 	}
 	
 	private void Flip()
