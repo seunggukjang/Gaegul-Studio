@@ -17,7 +17,7 @@ public class Flag : MonoBehaviour
         isPlay = false;
     }
 
-        private void FixedUpdate()
+    private void FixedUpdate()
     {
         Collider2D frogCollider = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, frogLayer);
         if(frogCollider && !isPlay)
