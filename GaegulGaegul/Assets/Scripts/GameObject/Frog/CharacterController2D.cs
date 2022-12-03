@@ -4,6 +4,7 @@ using UnityEngine;
 public class CharacterController2D : MonoBehaviour
 {
 	[SerializeField] private float m_SwingSpeed = 1f;
+	[SerializeField] private float m_MaxSwingSpeed = 10f;
 	[SerializeField] private float m_maxSpeedX = 1.08f;
 	[SerializeField] private float m_MoveSpeed = 10f;
 	[SerializeField] private float m_SmallJumpSpeed = 5f;
@@ -107,9 +108,13 @@ public class CharacterController2D : MonoBehaviour
 			if (m_AirControl)
 			{
 				m_Velocity.y = m_Rigidbody2D.velocity.y;
-				m_Velocity.x = move * m_SwingSpeed;
+				if(m_Rigidbody2D.velocity.x > m_MaxSwingSpeed)
+					m_Velocity.x = 0;
+				else
+					m_Velocity.x = move * m_SwingSpeed;
 				m_Rigidbody2D.AddForce(m_Velocity);
-			}
+				
+            }
 			else if (previousMove * move <= 0)
             {
 				m_Velocity.x = 0;

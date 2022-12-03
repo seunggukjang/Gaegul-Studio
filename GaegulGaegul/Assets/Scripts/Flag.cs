@@ -19,6 +19,7 @@ public class Flag : MonoBehaviour
         
         Player[] frogs = FindObjectsOfType(typeof(Player), false) as Player[];
         frogsCount = frogs.Length;
+        Debug.Log("FrogsCount : " + frogsCount);
     }
 
     private void FixedUpdate()
