@@ -11,7 +11,7 @@ public class PhysicalAction : MonoBehaviour
     private bool isAttack = false;
     private bool isJump = false;
     private Vector2 move = new Vector2 (0, 0);
-    Animator animator;
+    public Animator animator;
     private void Start()
     {
         controller = GetComponent<CharacterController2D>();
@@ -68,13 +68,7 @@ public class PhysicalAction : MonoBehaviour
         controller.Jump();
         isJump = false;
     }
-    private void FixedUpdate()
-    {
-        Jump();
-        Move(move);
-        TongueAttack();
-        
-    }
+   
     void Update()
     {
         float input_x = Input.GetAxis("Horizontal");
@@ -98,6 +92,10 @@ public class PhysicalAction : MonoBehaviour
         {
             Restart();
         }
+
+        Jump();
+        Move(move);
+        TongueAttack();
     }
     private void LateUpdate()
     {

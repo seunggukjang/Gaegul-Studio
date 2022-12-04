@@ -9,18 +9,23 @@ public class Flag : MonoBehaviour
     private Vector3 halfSize;
     private LayerMask frogLayer;
     private bool isPlay = false;
+    private int frogsCount = 0;
     
     void Start()
     {
         frogLayer = 1 << LayerMask.NameToLayer("Frog");
         halfSize = transform.lossyScale * 0.5f;
         isPlay = false;
+        
+        Player[] frogs = FindObjectsOfType(typeof(Player), false) as Player[];
+        frogsCount = frogs.Length;
+        Debug.Log("FrogsCount : " + frogsCount);
     }
 
-        private void FixedUpdate()
+    private void FixedUpdate()
     {
-        Collider2D frogCollider = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, frogLayer);
-        if(frogCollider && !isPlay)
+        Collider2D[] frogsCollider = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, frogLayer);
+        if (frogsCollider.Length == frogsCount && !isPlay)
         {
             particles.Play();
             isPlay = true;

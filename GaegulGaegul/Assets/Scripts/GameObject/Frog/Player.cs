@@ -17,8 +17,17 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private int skin = -1;
     private bool isDead = false;
-    private bool isRevive = false;
+    //private bool isRevive = false;
     private AudioManager audioManager;
+    bool isChange = false;
+    private void Awake()
+    {
+        // random skin color [temp ?]
+        if (skin == -1)
+            skin = Random.Range(0, 5);
+        animator.SetLayerWeight(skin, 1);
+    }
+    
     void Start()
     {
         deathCounter = GameObject.Find("DeathCounter").GetComponent<DeathCounter>();
@@ -32,10 +41,7 @@ public class Player : MonoBehaviour
         flag = 1 << LayerMask.NameToLayer("Flag");
         halfSize = transform.lossyScale * 0.5f;
         audioManager = FindObjectOfType<AudioManager>();
-        // random skin color [temp ?]
-        if (skin == -1)
-             skin = Random.Range(0, 5);
-        animator.SetLayerWeight(skin, 1);
+        
     }
 
     // Update is called once per frame

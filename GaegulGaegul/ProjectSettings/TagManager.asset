@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemyBoss
   - Item
+  - Weight
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Item
   - Flag
   - Dead
-  - Enemy
+  - Weight
   - 
   - 
   - 
