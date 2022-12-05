@@ -39,7 +39,5 @@ public class Flag : MonoBehaviour
             SceneManager.LoadScene(next_scene_name);
         else
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
-            
     }
 }

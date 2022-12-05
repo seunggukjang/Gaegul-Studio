@@ -30,7 +30,6 @@ public class LevelManager : MonoBehaviour
     {
         fillList();
         handlePages();
-        //SaveAll();
     }
 
     void fillList()
@@ -55,10 +54,12 @@ public class LevelManager : MonoBehaviour
             button.levelNumberInt = level.levelNumber;
             button.levelName = level.levelName;
             button.levelCompleted = false;
+
             button.GetComponentInChildren<Button>().interactable = true;
             button.GetComponentInChildren<Button>().onClick.AddListener(
                 () => loadLevel(level.levelName)
             );
+            
             newButton.transform.SetParent(currentPage, false);
             levelNumber++;
         }
@@ -87,7 +88,8 @@ public class LevelManager : MonoBehaviour
             PreviousPage.SetActive(false);
             NextPage.SetActive(true);
         }
-        else if (currentDisplayedPage == totalPages - 1) {
+        else if (currentDisplayedPage == totalPages - 1) 
+        {
             PreviousPage.SetActive(true);
             NextPage.SetActive(false);
         }
@@ -97,7 +99,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void nexpPage()
+    public void nextPage()
     {
         pages[currentDisplayedPage].gameObject.SetActive(false);
         currentDisplayedPage++;
@@ -115,20 +117,4 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(levelName);
     }
-
-    /*void SaveAll()
-    {
-        GameObject[] allButtons = GameObject.FindGameObjectsWithTag("LevelButton");
-
-        foreach (var button in allButtons)
-        {
-            LevelButton levelButton = button.GetComponent<LevelButton>();
-            Level level = LevelList[levelButton.levelNumberInt - 1];
-
-            if (level.levelCompleted)
-                PlayerPrefs.SetInt("LevelCompleted" + level.levelNumber, 1);
-            else
-                PlayerPrefs.SetInt("LevelCompleted" + level.levelNumber, 0);
-        }
-    }*/
 }
