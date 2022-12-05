@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Gluten-Regular SDF
+  m_Name: Gluten-Regular SDF - Copy
   m_EditorClassIdentifier: 
   hashCode: -970798393
   material: {fileID: -1572081953149855007}
