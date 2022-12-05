@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]private Transform spawnTransform;
     [SerializeField]private Dissolve dissolve;
+    [SerializeField]private BlackHole blackHole;
     [SerializeField] private Combat combat;
     private bool isPvPmode = false;
     Vector2 spawnPosition;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     private LayerMask flag;
     private Grab grab;
     private Vector3 halfSize;
+    private bool isDisolveDead = false;
+    private bool isBlackHoldeDead = false;
     private DeathCounter deathCounter;
     [SerializeField] private Animator animator;
     [SerializeField] private int skin = -1;
@@ -45,28 +48,41 @@ public class Player : MonoBehaviour
         flag = 1 << LayerMask.NameToLayer("Flag");
         halfSize = transform.lossyScale * 0.5f;
         audioManager = FindObjectOfType<AudioManager>();
+        isDisolveDead = false;
+        isBlackHoldeDead = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         Collider2D deadLineCollide = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, deadThings);
         Collider2D deadSaw = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, saw);
         if (deadLineCollide)
         {
+            isDisolveDead = true;
             StartCoroutine(Dead(false));
         }
         else if(deadSaw)
         {
-            StopCoroutine(Dead(true));
+            
+            isBlackHoldeDead = true;
+            StartCoroutine(Dead(true));
         }
             
     }
     IEnumerator Revive()
     {
-        if (dissolve)
+        if (dissolve && isDisolveDead)
         {
             dissolve.SetIsAppear(true);
+            isDisolveDead = false;
+            yield return new WaitForSeconds(2);
+        }
+        else if(blackHole && isBlackHoldeDead)
+        {
+            blackHole.SetIsAppear(true);
+            isBlackHoldeDead=false;
             yield return new WaitForSeconds(2);
         }
     }
@@ -87,9 +103,15 @@ public class Player : MonoBehaviour
                 }
             }
                 
-            if (dissolve)
+            if (dissolve && isDisolveDead)
             {
                 dissolve.SetIsDisappear(true);
+                yield return new WaitForSeconds(2);
+            }
+            else if (blackHole && isBlackHoldeDead)
+            {
+                Debug.Log("Working22");
+                blackHole.SetIsTwirl(true);
                 yield return new WaitForSeconds(2);
             }
             deathCounter.IncrementDeathCount();

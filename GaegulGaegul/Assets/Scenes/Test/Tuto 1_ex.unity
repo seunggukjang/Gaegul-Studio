@@ -317,6 +317,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &79346819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3072832917960311998, guid: a6e49f979e1d2364f90cae4342b5f901, type: 3}
+  m_PrefabInstance: {fileID: 762153199}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &79346824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79346819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1753405a489f274982c8910ac76fc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: fc4325a3c6bbedb488ec97b23670039f, type: 2}
 --- !u!1 &86478396
 GameObject:
   m_ObjectHideFlags: 0
@@ -5324,6 +5342,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1058073081}
     m_Modifications:
+    - target: {fileID: 3072832918497921292, guid: a6e49f979e1d2364f90cae4342b5f901, type: 3}
+      propertyPath: blackHole
+      value: 
+      objectReference: {fileID: 79346824}
     - target: {fileID: 3072832918497921524, guid: a6e49f979e1d2364f90cae4342b5f901, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -11279,6 +11301,7 @@ MonoBehaviour:
     pitch: 3
     loop: 0
     source: {fileID: 0}
+  current_sound_name: 
 --- !u!4 &1290736080
 Transform:
   m_ObjectHideFlags: 0
@@ -11471,6 +11494,22 @@ MonoBehaviour:
   stopTransform: {fileID: 1211368746}
   smoothTime: 0.99
   rotateVelocity: 500
+--- !u!58 &1380485803
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380485799}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1392431796
 GameObject:
   m_ObjectHideFlags: 0
