@@ -114,15 +114,17 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (m_Grounded)
 		{
-			if (particleSystem != null)
+			Debug.Log("Working jump down");
+            StartCoroutine(JumpOff());
+            if (particleSystem != null)
 				particleSystem.Emit(1);
-			if (audioManager != null)
-			{
-				m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, -m_JumpForce));
-				isJump = true;
-				m_Animator.SetTrigger("bigJump");
-			}
-			StartCoroutine(JumpOff());
+            if (audioManager != null)
+                audioManager.Play("bigjump");
+            m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, -m_JumpForce));
+            isJump = true;
+            m_Animator.SetTrigger("bigJump");
+
+            
 		}
     }
 	public void Jump()

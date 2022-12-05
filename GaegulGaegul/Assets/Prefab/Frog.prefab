@@ -5052,6 +5052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f01e29984dc56542b75f6dd08a9cbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPVPmode: 0
 --- !u!114 &7908330124673046839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5072,7 +5073,7 @@ MonoBehaviour:
   m_AirControl: 0
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 13640
   m_GroundCheck: {fileID: 7908330125313306148}
   m_TopFrogCheck: {fileID: 7908330125740938064}
   m_CrouchDisableCollider: {fileID: 0}
@@ -5085,6 +5086,7 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+  isPVPJump: 0
 --- !u!50 &7908330124673046836
 Rigidbody2D:
   serializedVersion: 4
