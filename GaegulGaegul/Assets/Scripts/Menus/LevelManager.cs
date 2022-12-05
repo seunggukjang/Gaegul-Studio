@@ -10,7 +10,6 @@ public class Level
     public string levelName;
     public int levelNumber;
     public bool levelCompleted;
-    public bool levelUnlocked;
 }
 
 public class LevelManager : MonoBehaviour
@@ -18,36 +17,98 @@ public class LevelManager : MonoBehaviour
     public List<Level> LevelList;
     public GameObject LevelButtonPrefab;
     public Transform Spacer;
+    public Transform Canvas;
+
+    [Space]
+    public GameObject NextPage;
+    public GameObject PreviousPage;
+    public int currentDisplayedPage = 0;
+    private int totalPages = 0;
+    private Spacer[] pages;
 
     void Start()
     {
         fillList();
+        handlePages();
         //SaveAll();
     }
 
     void fillList()
     {
+        int levelNumber = 0;
+        Transform firstPage = Instantiate(Spacer) as Transform;
+        firstPage.transform.SetParent(Canvas, false);
+        Transform currentPage = firstPage;
+    
         foreach (var level in LevelList)
         {
+            if (levelNumber % 9 == 0 && levelNumber != 0)
+            {
+                Transform newPage = Instantiate(Spacer) as Transform;
+                newPage.transform.SetParent(Canvas, false);
+                currentPage = newPage;
+            }
             GameObject newButton = Instantiate(LevelButtonPrefab) as GameObject;
             LevelButton button = newButton.GetComponent<LevelButton>();
 
             button.levelNumber.GetComponent<Text>().text = level.levelNumber.ToString();
             button.levelNumberInt = level.levelNumber;
             button.levelName = level.levelName;
-            //if (PlayerPrefs.GetInt("LevelCompleted" + level.levelNumber.ToString()) == 1) {
-                button.levelCompleted = true;
-                button.levelUnlocked = true;
-            //}
-            /*if (level.levelNumber == 1) // unlock first level
-                button.levelUnlocked = true;*/
-
-            button.GetComponentInChildren<Button>().interactable = button.levelUnlocked;
+            button.levelCompleted = false;
+            button.GetComponentInChildren<Button>().interactable = true;
             button.GetComponentInChildren<Button>().onClick.AddListener(
                 () => loadLevel(level.levelName)
             );
-            newButton.transform.SetParent(Spacer, false);
+            newButton.transform.SetParent(currentPage, false);
+            levelNumber++;
         }
+    }
+
+    void handlePages()
+    {
+        pages = Canvas.GetComponentsInChildren<Spacer>();
+        totalPages = pages.Length;
+        foreach (var page in pages)
+        {
+            page.gameObject.SetActive(false);
+        }
+        pages[currentDisplayedPage].gameObject.SetActive(true);
+    }
+
+    void Update() 
+    {
+        if (totalPages == 1) {
+            NextPage.SetActive(false);
+            PreviousPage.SetActive(false);
+            return;
+        }
+
+        if (currentDisplayedPage == 0) {
+            PreviousPage.SetActive(false);
+            NextPage.SetActive(true);
+        }
+        else if (currentDisplayedPage == totalPages - 1) {
+            PreviousPage.SetActive(true);
+            NextPage.SetActive(false);
+        }
+        else {
+            PreviousPage.SetActive(true);
+            NextPage.SetActive(true);
+        }
+    }
+
+    public void nexpPage()
+    {
+        pages[currentDisplayedPage].gameObject.SetActive(false);
+        currentDisplayedPage++;
+        pages[currentDisplayedPage].gameObject.SetActive(true);
+    }
+
+    public void previousPage()
+    {
+        pages[currentDisplayedPage].gameObject.SetActive(false);
+        currentDisplayedPage--;
+        pages[currentDisplayedPage].gameObject.SetActive(true);
     }
 
     void loadLevel(string levelName)
@@ -55,7 +116,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(levelName);
     }
 
-    void SaveAll()
+    /*void SaveAll()
     {
         GameObject[] allButtons = GameObject.FindGameObjectsWithTag("LevelButton");
 
@@ -64,14 +125,10 @@ public class LevelManager : MonoBehaviour
             LevelButton levelButton = button.GetComponent<LevelButton>();
             Level level = LevelList[levelButton.levelNumberInt - 1];
 
-            if (level.levelCompleted) {
+            if (level.levelCompleted)
                 PlayerPrefs.SetInt("LevelCompleted" + level.levelNumber, 1);
-                PlayerPrefs.SetInt("LevelUnlocked" + level.levelNumber, 1);
-            }
-            else {
+            else
                 PlayerPrefs.SetInt("LevelCompleted" + level.levelNumber, 0);
-                PlayerPrefs.SetInt("LevelUnlocked" + level.levelNumber, 0);
-            }
         }
-    }
+    }*/
 }

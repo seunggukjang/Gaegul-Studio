@@ -19,9 +19,10 @@ public class Flag : MonoBehaviour
         
         Player[] frogs = FindObjectsOfType(typeof(Player), false) as Player[];
         frogsCount = frogs.Length;
+        Debug.Log("FrogsCount : " + frogsCount);
     }
 
-        private void FixedUpdate()
+    private void FixedUpdate()
     {
         Collider2D[] frogsCollider = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, frogLayer);
         if (frogsCollider.Length == frogsCount && !isPlay)
