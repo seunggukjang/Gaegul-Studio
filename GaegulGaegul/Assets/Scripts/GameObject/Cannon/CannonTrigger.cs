@@ -11,6 +11,9 @@ public class CannonTrigger : Trigger
     Vector2 position;
     LayerMask frogMask;
     [SerializeField] private Cannon canon;
+    [SerializeField] private GameObject onSprite;
+    [SerializeField] private GameObject offSprite;
+    bool isOff = false;
     void Start()
     {
         this.isWork = false;
@@ -26,6 +29,18 @@ public class CannonTrigger : Trigger
     {
         this.isWork = false;
         Collider2D collider = Physics2D.OverlapArea(position - halfSize, position + halfSize, frogMask);
+        if(collider != null && !isOff)
+        {
+            onSprite.SetActive(false);
+            offSprite.SetActive(true);
+            isOff = true;
+        }
+        else if(collider == null && isOff)
+        {
+            onSprite.SetActive(true);
+            offSprite.SetActive(false);
+            isOff = false;
+        }
         if (canon.GetFrogIn() && (collider || isFire))
         {
             this.isWork = true;
