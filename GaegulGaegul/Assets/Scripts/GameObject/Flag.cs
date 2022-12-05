@@ -14,12 +14,11 @@ public class Flag : MonoBehaviour
     void Start()
     {
         frogLayer = 1 << LayerMask.NameToLayer("Frog");
-        halfSize = transform.lossyScale * 0.5f;
+        halfSize = transform.lossyScale * 1.5f;
         isPlay = false;
         
         Player[] frogs = FindObjectsOfType(typeof(Player), false) as Player[];
         frogsCount = frogs.Length;
-        Debug.Log("FrogsCount : " + frogsCount);
     }
 
     private void FixedUpdate()

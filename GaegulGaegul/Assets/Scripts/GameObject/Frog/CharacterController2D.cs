@@ -17,12 +17,12 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Collider2D m_CrouchDisableCollider;
 	[SerializeField] private ParticleSystem particleSystem;
 	[SerializeField] private Animator m_Animator;
-
+	[SerializeField] private Transform m_GroundCheckForBigJump;
 	[SerializeField] private SpriteRenderer spriteRenderer;
 
 	bool jumpOffCoroutineIsRunning = false;
 	private bool m_Grounded;
-	private bool m_FrogTouchGround = false;
+	private bool m_FrogBigJumpGround = false;
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;
 	private Vector3 m_Velocity = Vector3.zero;
@@ -38,6 +38,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public BoolEvent OnCrouchEvent;
 	private Vector3 ground_halfSize = new Vector3();
+	private Vector3 groundForBigJump_halfSize = new Vector3();
 	private Vector3 halfSize = new Vector3();
 	private bool isJump = false;
 	private LayerMask frogMask;
@@ -59,7 +60,10 @@ public class CharacterController2D : MonoBehaviour
 
 		ground_halfSize.x = m_GroundCheck.lossyScale.x * 0.5f;
         ground_halfSize.y = m_GroundCheck.lossyScale.y * 0.5f;
-		halfSize.x = transform.lossyScale.x * 0.5f;
+		groundForBigJump_halfSize.x = m_GroundCheckForBigJump.lossyScale.x * 0.5f;
+        groundForBigJump_halfSize.y = m_GroundCheckForBigJump.lossyScale.y * 0.5f;
+
+        halfSize.x = transform.lossyScale.x * 0.5f;
 		halfSize.y = transform.lossyScale.y * 0.5f;
 		audioManager = FindObjectOfType<AudioManager>();
 	}
@@ -68,7 +72,8 @@ public class CharacterController2D : MonoBehaviour
     private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
-		m_Grounded = false;
+		m_FrogBigJumpGround = false;
+        m_Grounded = false;
 		
         Collider2D[] colliders = Physics2D.OverlapAreaAll(m_GroundCheck.position - ground_halfSize, m_GroundCheck.position + ground_halfSize, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
@@ -79,22 +84,22 @@ public class CharacterController2D : MonoBehaviour
 				
             }
 
-        //colliders = Physics2D.OverlapAreaAll(transform.position - halfSize, transform.position + halfSize, m_WhatIsGround);
-        //for (int i = 0; i < colliders.Length; i++)
-        //    if (colliders[i].gameObject != gameObject)
-        //        m_FrogTouchGround = true;
-    }
+		colliders = Physics2D.OverlapAreaAll(m_GroundCheckForBigJump.position - groundForBigJump_halfSize, m_GroundCheckForBigJump.position + groundForBigJump_halfSize, m_WhatIsGround);
+		for (int i = 0; i < colliders.Length; i++)
+			if (colliders[i].gameObject != gameObject)
+                m_FrogBigJumpGround = true;
+	}
 
-	public void SetAirControl(bool isGrab)
+    public void SetAirControl(bool isGrab)
 	{
 		m_AirControl = isGrab;
 	}
     IEnumerator JumpOff()
     {
         jumpOffCoroutineIsRunning = true;
-        //Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, true);
+        Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, true);
         yield return new WaitForSeconds(0.5f);
-        //Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, false);
+        Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, false);
         jumpOffCoroutineIsRunning = false;
     }
     public void JumpUp()
@@ -130,7 +135,7 @@ public class CharacterController2D : MonoBehaviour
     }
 	public void Jump()
 	{
-		if (m_Grounded)
+		if (m_FrogBigJumpGround)
 		{
 			if(particleSystem != null)
 				particleSystem.Emit(1);
