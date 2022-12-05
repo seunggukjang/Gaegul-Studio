@@ -10,6 +10,7 @@ TagManager:
   - EnemyBoss
   - Item
   - Weight
+  - Saw
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Weight
   - JumpOffPlatform
   - FrogHead
-  - 
+  - Saw
   - 
   - 
   - 
