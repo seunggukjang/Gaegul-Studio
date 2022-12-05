@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SwingSpeed: 3
-  m_MaxSwingSpeed: 10
+  m_MaxSwingSpeed: 100
   m_maxSpeedX: 5
   m_MoveSpeed: 5
   m_SmallJumpSpeed: 5

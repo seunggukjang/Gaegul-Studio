@@ -20,6 +20,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheckForBigJump;
 	[SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] FrogHead head;
+	
     bool jumpOffCoroutineIsRunning = false;
 	private bool m_Grounded;
 	private bool m_FrogBigJumpGround = false;
@@ -146,6 +147,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Animator.SetTrigger("bigJump");
         }
 	}
+	bool wasGrab = false;
 	float previousMove = 0;
 	public void Move(float move, bool crouch)
 	{
@@ -161,14 +163,19 @@ public class CharacterController2D : MonoBehaviour
 			if (m_AirControl)
 			{
 				m_Velocity.y = m_Rigidbody2D.velocity.y;
-				if(m_Rigidbody2D.velocity.x > m_MaxSwingSpeed)
+                m_Velocity.x = move * m_SwingSpeed;
+				wasGrab = true;
+
+                float swingSpeed = m_Velocity.sqrMagnitude;
+				if(swingSpeed > m_MaxSwingSpeed)
+				{
 					m_Velocity.x = 0;
-				else
-					m_Velocity.x = move * m_SwingSpeed;
-				m_Rigidbody2D.AddForce(m_Velocity);
-				
+					m_Velocity.y = 0;
+                    
+                }
+                m_Rigidbody2D.AddForce(m_Velocity);
             }
-			else if (previousMove * move <= 0)
+			else if (!wasGrab && previousMove * move <= 0)
             {
 				m_Velocity.x = 0;
 				m_Velocity.y = m_Rigidbody2D.velocity.y;
@@ -179,7 +186,9 @@ public class CharacterController2D : MonoBehaviour
 
 		if (m_Grounded)
 		{
-			if(!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("smallJump"))
+			wasGrab = false;
+
+            if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("smallJump"))
 				m_Animator.SetTrigger("smallJump");
 			if (particleSystem != null)
 				particleSystem.Emit(1);
