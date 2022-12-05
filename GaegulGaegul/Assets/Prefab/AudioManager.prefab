@@ -99,3 +99,15 @@ MonoBehaviour:
     pitch: 1.5
     loop: 1
     source: {fileID: 0}
+  - name: deadsaw
+    clip: {fileID: 8300000, guid: 7dab385710ef4624d93d492acfe4d6d7, type: 3}
+    vloume: 0.2
+    pitch: 3
+    loop: 0
+    source: {fileID: 0}
+  - name: saw
+    clip: {fileID: 8300000, guid: b72ef15fd494e2f4d9cdb7dba76b368e, type: 3}
+    vloume: 0.1
+    pitch: 3
+    loop: 1
+    source: {fileID: 0}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     private bool isPvPmode = false;
     Vector2 spawnPosition;
     private LayerMask deadThings;
+    private LayerMask saw;
     private LayerMask flag;
     private Grab grab;
     private Vector3 halfSize;
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
             spawnPosition = transform.position;
         grab = GetComponent<Grab>();
         deadThings = 1 << LayerMask.NameToLayer("Dead") | 1 << LayerMask.NameToLayer("Enemy");
+        saw = 1 << LayerMask.NameToLayer("Saw");
         flag = 1 << LayerMask.NameToLayer("Flag");
         halfSize = transform.lossyScale * 0.5f;
         audioManager = FindObjectOfType<AudioManager>();
@@ -48,12 +51,15 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Collider2D deadLineCollide = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, deadThings);
-        
-        if(deadLineCollide)
+        Collider2D deadSaw = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, saw);
+        if (deadLineCollide)
         {
-            StartCoroutine(Dead());
+            StartCoroutine(Dead(false));
         }
-        
+        else if(deadSaw)
+        {
+            StopCoroutine(Dead(true));
+        }
             
     }
     IEnumerator Revive()
@@ -64,13 +70,23 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(2);
         }
     }
-    IEnumerator Dead()
+    IEnumerator Dead(bool isSawDead)
     {
         if (!isDead)
         {
             isDead = true;
             if (audioManager)
-                audioManager.Play("dead");
+            {
+                if(isSawDead)
+                {
+                    audioManager.Play("deadsaw");
+                }
+                else
+                {
+                    audioManager.Play("dead");
+                }
+            }
+                
             if (dissolve)
             {
                 dissolve.SetIsDisappear(true);
@@ -85,5 +101,4 @@ public class Player : MonoBehaviour
 
         }
     }
-    
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 
 public class MoveSaw : MonoBehaviour
@@ -17,17 +18,40 @@ public class MoveSaw : MonoBehaviour
     private bool isMove = false;
     private Vector3 halfSize;
     private LayerMask frogMask;
-
+    private AudioManager audiomanager;
+    private bool isSoundPlay = false;
     void Start()
     {
         originRotateVelocity = rotateVelocity;
         stopPosition = stopTransform.position;
         startPosition = startTransform.position;
         halfSize = transform.lossyScale * 0.4f;
+        audiomanager = FindObjectOfType<AudioManager>();
         frogMask = 1 << LayerMask.NameToLayer("Frog");
+            
     }
     void Update()
     {
+        if(Camera.main != null && audiomanager)
+        {
+            float cameradistance = (Camera.main.transform.position - transform.position).sqrMagnitude;
+            if (cameradistance < 5)
+            {
+                if(isSoundPlay == false)
+                {
+                    audiomanager.Play("saw");
+                    isSoundPlay = true;
+                }
+                if (cameradistance > 1)
+                    audiomanager.SetVolume(1 / cameradistance);
+
+            }
+            else
+            {
+                audiomanager.Stop("saw");
+                isSoundPlay=false;
+            }
+        }
         transform.Rotate(0,0, Time.deltaTime * rotateVelocity);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, halfSize.x, frogMask);
         if(colliders.Length > 0)
