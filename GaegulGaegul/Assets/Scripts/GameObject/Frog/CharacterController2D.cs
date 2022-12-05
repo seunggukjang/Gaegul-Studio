@@ -19,8 +19,8 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Animator m_Animator;
 	[SerializeField] private Transform m_GroundCheckForBigJump;
 	[SerializeField] private SpriteRenderer spriteRenderer;
-
-	bool jumpOffCoroutineIsRunning = false;
+    [SerializeField] FrogHead head;
+    bool jumpOffCoroutineIsRunning = false;
 	private bool m_Grounded;
 	private bool m_FrogBigJumpGround = false;
 	private Rigidbody2D m_Rigidbody2D;
@@ -44,7 +44,7 @@ public class CharacterController2D : MonoBehaviour
 	private LayerMask frogMask;
 	private LayerMask jumpOffPlatformMask;
 	private bool canJumpDown = false;
-	[SerializeField] bool isPVPJump = false;
+
 	//private bool airControlinSmallJump = false;
 	private void Awake()
 	{
@@ -71,7 +71,6 @@ public class CharacterController2D : MonoBehaviour
     
     private void FixedUpdate()
 	{
-		bool wasGrounded = m_Grounded;
 		m_FrogBigJumpGround = false;
         m_Grounded = false;
 		
@@ -96,14 +95,18 @@ public class CharacterController2D : MonoBehaviour
 	}
     IEnumerator JumpOff()
     {
+        
         jumpOffCoroutineIsRunning = true;
         Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, true);
+		head.CollideOff();
         yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, false);
+		head.CollideOn();
         jumpOffCoroutineIsRunning = false;
     }
     public void JumpUp()
 	{
+		
         if (m_Grounded)
         {
             if (particleSystem != null)
@@ -120,8 +123,6 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (m_Grounded)
 		{
-			Debug.Log("Working jump down");
-            StartCoroutine(JumpOff());
             if (particleSystem != null)
 				particleSystem.Emit(1);
             if (audioManager != null)
@@ -129,9 +130,8 @@ public class CharacterController2D : MonoBehaviour
             m_Rigidbody2D.velocity = (new Vector2(m_Rigidbody2D.velocity.x, -m_JumpForce));
             isJump = true;
             m_Animator.SetTrigger("bigJump");
-
-            
 		}
+        StartCoroutine(JumpOff());
     }
 	public void Jump()
 	{

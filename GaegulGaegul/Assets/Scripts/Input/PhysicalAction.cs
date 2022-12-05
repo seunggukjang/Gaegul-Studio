@@ -77,7 +77,7 @@ public class PhysicalAction : MonoBehaviour
     {
         if (!isJumpDown)
             return;
-        if (!isPVPmode)
+        if (isPVPmode)
         controller.JumpDown();
         isJumpDown = false;
     }
