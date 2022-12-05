@@ -12,10 +12,14 @@ public class Combat : MonoBehaviour
     public Transform headAttack_pos;
     public float headAttack_range = 0.3f;
     public int headAttack_dmg = 10;
+    public float headAttack_cooldown = 0.33f;
+    private float next_headAttack;
 
     public Transform legAttack_pos;
     public float legAttack_range = 0.3f;
     public int legAttack_dmg = 18;
+    public float legAttack_cooldown = 0.8f;
+    private float next_legAttack;
 
     public int damageTaken;
 
@@ -26,15 +30,17 @@ public class Combat : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && Time.time > next_headAttack)
         {
             Debug.Log("headAttack");
+            next_headAttack = Time.time + headAttack_cooldown;
             headAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && Time.time > next_legAttack)
         {
             Debug.Log("legAttack");
+            next_legAttack = Time.time + legAttack_cooldown;
             legAttack();
         }
     }
@@ -49,8 +55,9 @@ public class Combat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject != gameObject) {
-                Debug.Log("hit" + enemy.name + " headAttack");
+                Debug.Log("hit" + enemy.name + " headAttack + flash");
                 enemy.GetComponent<Combat>().TakeDamage(headAttack_dmg);
+                enemy.GetComponentInChildren<takeDmg>().Flash();
             }
 
             // damage enemey
@@ -67,8 +74,9 @@ public class Combat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject != gameObject) {
-                Debug.Log("hit" + enemy.name + " leg attack");
+                Debug.Log("hit" + enemy.name + " leg attack + flash");
                 enemy.GetComponent<Combat>().TakeDamage(headAttack_dmg);
+                enemy.GetComponentInChildren<takeDmg>().Flash();
             }
 
             // damage enemey
