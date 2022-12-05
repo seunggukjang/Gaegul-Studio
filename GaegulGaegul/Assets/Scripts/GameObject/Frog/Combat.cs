@@ -27,7 +27,6 @@ public class Combat : MonoBehaviour
     {
         damageTaken = 0;
     }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q) && Time.time > next_headAttack)

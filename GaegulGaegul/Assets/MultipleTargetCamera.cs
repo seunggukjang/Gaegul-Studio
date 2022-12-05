@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class MultipleTargetCamera : MonoBehaviour
 {
-    public List<Transform> targets;
+    private List<Transform> targets = new List<Transform>();
     public Vector3 offset;
 
     public float smoothTime = .5f;
@@ -23,8 +23,11 @@ public class MultipleTargetCamera : MonoBehaviour
     
     void Start()
     {
-    //     position = targetTransform.position;
-    //     position.z = -10;
+        Player[] frogs = FindObjectsOfType(typeof(Player), false) as Player[];
+        for (int i = 0; i < frogs.Length; i++)
+        {
+            targets.Add(frogs[i].transform);
+        }
         cam = GetComponent<Camera>();
     }
     // void Update()

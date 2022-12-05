@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4366399454393720253
 Transform:
   m_ObjectHideFlags: 0
@@ -722,6 +722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTransform: {fileID: 0}
   dissolve: {fileID: 5144497375721581069}
+  combat: {fileID: 0}
   animator: {fileID: 3072832917960311992}
   skin: -1
 --- !u!114 &3072832918497921523
