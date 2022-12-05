@@ -10645,105 +10645,6 @@ Transform:
   m_Father: {fileID: 2106682111}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1290736078
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1290736080}
-  - component: {fileID: 1290736079}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1290736079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290736078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dde57584aa059c43945a098fff5733a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: bgm
-    clip: {fileID: 8300000, guid: 026f2260180827f49b8b1d564423e8a7, type: 3}
-    vloume: 0.143
-    pitch: 0.85
-    loop: 1
-    source: {fileID: 0}
-  - name: jump
-    clip: {fileID: 8300000, guid: d786eb17ff5cce3429ff9a60e1e5ec29, type: 3}
-    vloume: 0.481
-    pitch: 0.85
-    loop: 0
-    source: {fileID: 0}
-  - name: coin
-    clip: {fileID: 8300000, guid: 964fbb7f6be86014795baf7003542f29, type: 3}
-    vloume: 0.328
-    pitch: 0.85
-    loop: 0
-    source: {fileID: 0}
-  - name: bigjump
-    clip: {fileID: 8300000, guid: c634f027a36ace14384064f3c1219ed9, type: 3}
-    vloume: 0.339
-    pitch: 0.82
-    loop: 0
-    source: {fileID: 0}
-  - name: dead
-    clip: {fileID: 8300000, guid: e134d7848a461424ca1d3495834e84e2, type: 3}
-    vloume: 0.339
-    pitch: 0.82
-    loop: 0
-    source: {fileID: 0}
-  - name: cannonammo
-    clip: {fileID: 8300000, guid: 546fdec80827548c1a982d7c83cea0d5, type: 3}
-    vloume: 0.339
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: cannonfire
-    clip: {fileID: 8300000, guid: 32ce5711c86fe459ea31782f593f3810, type: 3}
-    vloume: 0.3
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: cannondrag
-    clip: {fileID: 8300000, guid: 9a5cce88a70604d1985ba18a0cafa9c4, type: 3}
-    vloume: 0.02
-    pitch: 1.5
-    loop: 0
-    source: {fileID: 0}
-  - name: cannonbgm
-    clip: {fileID: 8300000, guid: 693e5ce250d18bd43b4424edef2eefbf, type: 3}
-    vloume: 0.3
-    pitch: 1.5
-    loop: 1
-    source: {fileID: 0}
---- !u!4 &1290736080
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290736078}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56.46671, y: -1.1245886, z: -0.17664854}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1358560458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10757,7 +10658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8908917290235848263, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8908917290235848263, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11688,6 +11589,63 @@ Transform:
   m_Father: {fileID: 1192585836}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5910610391699636858
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 56.46671
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1245886
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.17664854
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825066, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825076, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 494c757ec53d1104799d302cd5958add, type: 3}
 --- !u!1001 &7577709024396511430
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField]private Transform spawnTransform;
     [SerializeField]private Dissolve dissolve;
-    
+    [SerializeField] private Combat combat;
+    private bool isPvPmode = false;
     Vector2 spawnPosition;
     private LayerMask deadThings;
     private LayerMask flag;
@@ -41,7 +42,6 @@ public class Player : MonoBehaviour
         flag = 1 << LayerMask.NameToLayer("Flag");
         halfSize = transform.lossyScale * 0.5f;
         audioManager = FindObjectOfType<AudioManager>();
-        
     }
 
     // Update is called once per frame
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(Dead());
         }
-            
+        
             
     }
     IEnumerator Revive()

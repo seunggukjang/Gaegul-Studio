@@ -56,7 +56,9 @@ public class Combat : MonoBehaviour
         {
             if (enemy.gameObject != gameObject) {
                 Debug.Log("hit" + enemy.name + " headAttack + flash");
-                enemy.GetComponent<Combat>().TakeDamage(headAttack_dmg);
+                Combat enemyComBat = enemy.GetComponent<Combat>();
+                enemyComBat.TakeDamage(headAttack_dmg);
+                enemy.GetComponent<KnockBack>().Activate(transform.right, enemyComBat.damageTaken);
                 enemy.GetComponentInChildren<takeDmg>().Flash();
             }
 
@@ -75,8 +77,12 @@ public class Combat : MonoBehaviour
         {
             if (enemy.gameObject != gameObject) {
                 Debug.Log("hit" + enemy.name + " leg attack + flash");
-                enemy.GetComponent<Combat>().TakeDamage(headAttack_dmg);
+                Combat enemyComBat = enemy.GetComponent<Combat>();
+                enemyComBat.TakeDamage(headAttack_dmg);
+                enemy.GetComponent<KnockBack>().Activate(transform.right, enemyComBat.damageTaken);
+                
                 enemy.GetComponentInChildren<takeDmg>().Flash();
+
             }
 
             // damage enemey
