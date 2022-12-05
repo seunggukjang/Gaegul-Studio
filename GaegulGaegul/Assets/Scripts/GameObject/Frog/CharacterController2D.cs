@@ -92,9 +92,9 @@ public class CharacterController2D : MonoBehaviour
     IEnumerator JumpOff()
     {
         jumpOffCoroutineIsRunning = true;
-        Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, true);
+        //Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, true);
         yield return new WaitForSeconds(0.5f);
-        Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, false);
+        //Physics2D.IgnoreLayerCollision(frogMask, jumpOffPlatformMask, false);
         jumpOffCoroutineIsRunning = false;
     }
     public void JumpUp()

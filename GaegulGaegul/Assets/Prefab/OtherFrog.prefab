@@ -5052,8 +5052,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6907470498358152417}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6907470498999401461}
@@ -5474,6 +5474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SwingSpeed: 3
+  m_MaxSwingSpeed: 10
   m_maxSpeedX: 5
   m_MoveSpeed: 5
   m_SmallJumpSpeed: 5
@@ -5494,6 +5495,7 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+  isPVPJump: 0
 --- !u!50 &6907470498999401456
 Rigidbody2D:
   serializedVersion: 4
