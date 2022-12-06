@@ -21,7 +21,13 @@ public class Combat : MonoBehaviour
     public float legAttack_cooldown = 0.8f;
     private float next_legAttack;
 
-    public int damageTaken;
+    private int BeeBullet = 0;
+    public Transform BeeAttack_pos;
+    public GameObject HoneyBulletPrefab;
+    public float BeeAttack_cooldown = 0.8f;
+    private float next_BeeAttack;
+
+    public float damageTaken;
 
     void Start()
     {
@@ -43,11 +49,25 @@ public class Combat : MonoBehaviour
             next_legAttack = Time.time + legAttack_cooldown;
             legAttack();
         }
+
+        if (Input.GetKeyDown(KeyCode.T) && Time.time > next_BeeAttack && BeeBullet > 0)
+        {
+            Debug.Log("Bee Bullet nbr = " + BeeBullet);
+            next_BeeAttack = Time.time + BeeAttack_cooldown;
+            BeeAttack();
+            BeeBullet--;
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Debug.Log("changeSkin / adding 3 BeeBullets");
+            BeeBullet += 3;
+            GetComponentInParent<Player>().ChangeSkin(5);
+        }
     }
 
     void headAttack()
     {
-        // add: player Attack Animation
         m_Animator.SetTrigger("headAttack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(headAttack_pos.position, headAttack_range, enemyLayers);
@@ -55,18 +75,13 @@ public class Combat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject != gameObject) {
-                Debug.Log("hit" + enemy.name + " headAttack + flash");
                 enemy.GetComponent<Combat>().TakeDamage(headAttack_dmg);
-                enemy.GetComponentInChildren<takeDmg>().Flash();
             }
-
-            // damage enemey
         }
     }
 
     void legAttack()
     {
-        // add: player Attack Animation
         m_Animator.SetTrigger("legAttack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(legAttack_pos.position, legAttack_range, enemyLayers);
@@ -74,13 +89,14 @@ public class Combat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject != gameObject) {
-                Debug.Log("hit" + enemy.name + " leg attack + flash");
-                enemy.GetComponent<Combat>().TakeDamage(headAttack_dmg);
-                enemy.GetComponentInChildren<takeDmg>().Flash();
+                enemy.GetComponent<Combat>().TakeDamage(legAttack_dmg);
             }
-
-            // damage enemey
         }
+    }
+
+    void BeeAttack()
+    {
+        Instantiate(HoneyBulletPrefab, BeeAttack_pos.position, BeeAttack_pos.rotation);
     }
 
     void OnDrawGizmosSelected()
@@ -92,10 +108,10 @@ public class Combat : MonoBehaviour
         Gizmos.DrawWireSphere(legAttack_pos.position, legAttack_range);
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         damageTaken += dmg;
-
-        // play hurt animation
+        GetComponentInChildren<takeDmg>().Flash();
+        GetComponentInChildren<percentDamage>().UpdateDmgTaken(damageTaken);
     }
 }
