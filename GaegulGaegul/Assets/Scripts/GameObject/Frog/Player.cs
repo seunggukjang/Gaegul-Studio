@@ -52,10 +52,15 @@ public class Player : MonoBehaviour
         if(deadLineCollide)
         {
             StartCoroutine(Dead());
-        }
-            
-            
+        }    
     }
+
+    public void ChangeSkin(int skin)
+    {
+        // 5 = bee
+        animator.SetLayerWeight(skin, 1);
+    }
+
     IEnumerator Revive()
     {
         if (dissolve)
@@ -64,6 +69,7 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(2);
         }
     }
+
     IEnumerator Dead()
     {
         if (!isDead)
