@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: c7d2fc4b782340c4eabd90c0573c9e10
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GUI_ocre_46
+      rect:
+        serializedVersion: 2
+        x: 2456
+        y: 384
+        width: 270
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d4406f9b03cbb24e9919c1cc32361c6
+      internalID: 1284368564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      GUI_ocre_45: 1815754303
+      GUI_ocre_10: -216456277
+      GUI_ocre_44: -1694570302
+      GUI_ocre_1: 51119415
+      GUI_ocre_47: -829308714
+      GUI_ocre_60: -1780087238
+      GUI_ocre_37: 1626071000
+      GUI_ocre_14: -1406389173
+      GUI_ocre_18: 208032000
+      GUI_ocre_58: -90912694
+      GUI_ocre_7: -465358927
+      GUI_ocre_8: -603463485
+      GUI_ocre_16: 867583362
+      GUI_ocre_59: 65169365
+      GUI_ocre_22: -1012161253
+      GUI_ocre_49: 1666014248
+      GUI_ocre_32: 1646882079
+      GUI_ocre_42: 133113372
+      GUI_ocre_2: -1998499224
+      GUI_ocre_52: 1225458694
+      GUI_ocre_35: -1807059945
+      GUI_ocre_36: -378170393
+      GUI_ocre_27: -1310584161
+      GUI_ocre_5: 1301915504
+      GUI_ocre_24: -195174074
+      GUI_ocre_11: 271838387
+      GUI_ocre_61: 623422156
+      GUI_ocre_41: 1416260978
+      GUI_ocre_15: 1445165384
+      GUI_ocre_28: 1441201262
+      GUI_ocre_20: -1240807528
+      GUI_ocre_50: -379414909
+      GUI_ocre_55: -1507724243
+      GUI_ocre_43: 1662464404
+      GUI_ocre_48: -1529727107
+      GUI_ocre_51: -1757332452
+      GUI_ocre_53: 1820026381
+      GUI_ocre_9: 574814430
+      GUI_ocre_30: 1679271458
+      GUI_ocre_12: 91634728
+      GUI_ocre_13: 48290315
+      GUI_ocre_19: -1414396239
+      GUI_ocre_21: -363381262
+      GUI_ocre_17: -1276866010
+      GUI_ocre_25: -440108168
+      GUI_ocre_31: -167022268
+      GUI_ocre_33: 1643439900
+      GUI_ocre_3: -231988379
+      GUI_ocre_46: 1284368564
+      GUI_ocre_39: -1789572029
+      GUI_ocre_54: 1376052131
+      GUI_ocre_40: 278060769
+      GUI_ocre_26: -546667907
+      GUI_ocre_34: -138516113
+      GUI_ocre_23: 1341876058
+      GUI_ocre_57: -1915400532
+      GUI_ocre_4: -2026758959
+      GUI_ocre_29: 1397012741
+      GUI_ocre_56: 265695136
+      GUI_ocre_38: -1447358131
+      GUI_ocre_6: 1742519409
+      GUI_ocre_0: 163336069
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
