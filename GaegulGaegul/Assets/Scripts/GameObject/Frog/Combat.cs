@@ -75,7 +75,9 @@ public class Combat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject != gameObject) {
-                enemy.GetComponent<Combat>().TakeDamage(headAttack_dmg);
+                Combat enemyCombat = enemy.GetComponent<Combat>();
+                enemyCombat.TakeDamage(headAttack_dmg);
+                enemy.GetComponent<KnockBack>().Activate(transform.right, enemyCombat.damageTaken);
             }
         }
     }
@@ -89,7 +91,9 @@ public class Combat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject != gameObject) {
-                enemy.GetComponent<Combat>().TakeDamage(legAttack_dmg);
+                Combat enemyCombat = enemy.GetComponent<Combat>();
+                enemyCombat.TakeDamage(headAttack_dmg);
+                enemy.GetComponent<KnockBack>().Activate(transform.right, enemyCombat.damageTaken);
             }
         }
     }

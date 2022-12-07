@@ -973,7 +973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908330124673046833, guid: 1d3f941dd99f371409437b39825d8618, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37
+      value: 30.94
       objectReference: {fileID: 0}
     - target: {fileID: 7908330124673046833, guid: 1d3f941dd99f371409437b39825d8618, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10917,6 +10917,7 @@ MonoBehaviour:
     pitch: 0.82
     loop: 0
     source: {fileID: 0}
+  current_sound_name: 
 --- !u!4 &1290736080
 Transform:
   m_ObjectHideFlags: 0
@@ -11243,6 +11244,19 @@ MonoBehaviour:
   HoneyBulletPrefab: {fileID: 7610434445798427835, guid: df35572d47c36e54b98c96a24316ea1d, type: 3}
   BeeAttack_cooldown: 0.8
   damageTaken: 0
+--- !u!114 &1573839672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573839667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5a92f7b37e54f4bb5ffa824d717bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offSetPower: 50
 --- !u!1 &1582941210
 GameObject:
   m_ObjectHideFlags: 0
@@ -11477,6 +11491,19 @@ MonoBehaviour:
   HoneyBulletPrefab: {fileID: 7610434445798427835, guid: df35572d47c36e54b98c96a24316ea1d, type: 3}
   BeeAttack_cooldown: 0.8
   damageTaken: 0
+--- !u!114 &1596391758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617766841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5a92f7b37e54f4bb5ffa824d717bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offSetPower: 50
 --- !u!1001 &1623875061
 PrefabInstance:
   m_ObjectHideFlags: 0
