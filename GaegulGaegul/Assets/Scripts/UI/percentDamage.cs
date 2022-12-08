@@ -20,7 +20,6 @@ public class percentDamage : MonoBehaviour
 
     public void UpdateDmgTaken(float dmg)
     {
-        Debug.Log("pourcentage affiché : " + dmg);
         dmgTaken = dmg;
     }
 }
