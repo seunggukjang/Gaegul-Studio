@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5936260392489092435}
   - component: {fileID: 4570649302784709253}
   m_Layer: 0
-  m_Name: HoneyBullet
+  m_Name: RedBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1681349464, guid: 3d929e8c621a63446aec620f0c1ecced, type: 3}
+  m_Sprite: {fileID: -1505732241, guid: d2d6ae660d7952f4d804d56aecc00733, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
