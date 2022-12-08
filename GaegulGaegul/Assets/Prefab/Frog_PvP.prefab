@@ -5560,9 +5560,18 @@ MonoBehaviour:
   legAttack_range: 0.3
   legAttack_dmg: 18
   legAttack_cooldown: 0.8
+  Beetext: {fileID: 0}
+  BeeCrown: {fileID: 0}
   BeeAttack_pos: {fileID: 834932001967151423}
   HoneyBulletPrefab: {fileID: 7610434445798427835, guid: df35572d47c36e54b98c96a24316ea1d, type: 3}
   BeeAttack_cooldown: 0.8
+  Ladybugtext: {fileID: 0}
+  LadybugCrown: {fileID: 0}
+  RedBulletPrefab: {fileID: 0}
+  LadybugAttack_cooldown: 0.8
+  Beetletext: {fileID: 0}
+  BeetleCrown: {fileID: 0}
+  BeetleAttack_cooldown: 0.8
   damageTaken: 0
 --- !u!114 &834932001026744720
 MonoBehaviour:
@@ -6284,22 +6293,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 834932001919419824}
     m_Modifications:
-    - target: {fileID: 126220742135848418, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
-      propertyPath: m_text
-      value: 100%
-      objectReference: {fileID: 0}
-    - target: {fileID: 251310794203688769, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 633278548410254974, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 633278548410254974, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1284368564, guid: c7d2fc4b782340c4eabd90c0573c9e10, type: 3}
     - target: {fileID: 3682114787558333370, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6335,14 +6328,6 @@ PrefabInstance:
     - target: {fileID: 3682114787558333370, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682114787558333370, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682114787558333370, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3682114787558333370, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6403,20 +6388,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3682114787558333370, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
   m_PrefabInstance: {fileID: 834932001546490258}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6566999508937254221 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5815534126439494879, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
-  m_PrefabInstance: {fileID: 834932001546490258}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &834932000806165908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6566999508937254221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6ce4417b3db8094f97ea643c8bc0883, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
