@@ -137,7 +137,6 @@ public class Combat : MonoBehaviour
                 GetComponentInParent<Player>().ChangeSkin(playerskin);
                 LadybugCrown.SetActive(false);
                 isLadybug = false;
-                // back to basic skin
             }
         }
 
@@ -186,7 +185,7 @@ public class Combat : MonoBehaviour
             if (enemy.gameObject != gameObject) {
                 Combat enemyCombat = enemy.GetComponent<Combat>();
                 enemyCombat.TakeDamage(headAttack_dmg);
-                enemy.GetComponent<KnockBack>().Activate(transform.right, enemyCombat.damageTaken);
+                enemy.GetComponent<KnockBack>().Activate(transform.up, enemyCombat.damageTaken);
             }
         }
     }
