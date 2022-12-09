@@ -13,7 +13,6 @@ public class MoveSaw : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector3 stopPosition;
     private Vector3 startPosition;
-    private bool isFrogTouch = false;
     private bool isMove = false;
     private Vector3 halfSize;
     private LayerMask frogMask;
@@ -55,7 +54,6 @@ public class MoveSaw : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, halfSize.x, frogMask);
         if(colliders.Length > 0)
         {
-            isFrogTouch = true;
             rotateVelocity = originRotateVelocity * 2;
         }
         else
