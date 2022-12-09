@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7408980128112761000
 RectTransform:
   m_ObjectHideFlags: 0
@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 1703370753526058896}
   - component: {fileID: 4494235753939429400}
   - component: {fileID: 6446482918033133566}
+  - component: {fileID: 8429078959558288358}
   m_Layer: 5
   m_Name: Frog-icon
   m_TagString: Untagged
@@ -402,6 +403,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8429078959558288358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170315119325849029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4776013fec9819a46814e5f95d86d1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconList:
+  - {fileID: 21300000, guid: 62b9f76df9c4e0d4582dff27251e7f2b, type: 3}
+  - {fileID: 21300000, guid: 5f7b4727d6bab4d4382667f34ee65901, type: 3}
+  - {fileID: 21300000, guid: dd2211ae39a50a44aa1bc05b0b7b2cff, type: 3}
+  - {fileID: 21300000, guid: b99d49ee8e0c80a4b92cf2a54ab0517c, type: 3}
+  - {fileID: 21300000, guid: 801b3d05bbbe0414a9bd5062a68b2700, type: 3}
+  iconDead: {fileID: 21300000, guid: 79492995d3a26fc40b1bc61745819062, type: 3}
 --- !u!1 &3316128433313023517
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8516769222948638299
 RectTransform:
   m_ObjectHideFlags: 0
@@ -601,7 +621,7 @@ RectTransform:
   m_GameObject: {fileID: 3914454647067996280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5440679855589298689}
@@ -857,6 +877,7 @@ GameObject:
   - component: {fileID: 3755424952047405210}
   - component: {fileID: 3514050345839804512}
   - component: {fileID: 126220742135848418}
+  - component: {fileID: 5175813490574084222}
   m_Layer: 5
   m_Name: Percentage
   m_TagString: Untagged
@@ -981,6 +1002,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5175813490574084222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5815534126439494879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ce4417b3db8094f97ea643c8bc0883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5981392012508369433
 GameObject:
   m_ObjectHideFlags: 0

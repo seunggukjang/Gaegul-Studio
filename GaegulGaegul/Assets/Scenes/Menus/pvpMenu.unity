@@ -1186,7 +1186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700b8f577d9b980498665100fec3583d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelList: []
+  LevelList:
+  - levelName: pvpMap1
+    levelNumber: 1
+    levelCompleted: 1
   LevelButtonPrefab: {fileID: 5576764496039862562, guid: 263b25bb531f0a44b88d725dcadf9818, type: 3}
   Spacer: {fileID: 575891782551792941, guid: 6a002ae7b78a85c4198d3ed0ce5c8bc3, type: 3}
   Canvas: {fileID: 626646667}
