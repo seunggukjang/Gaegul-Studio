@@ -70,6 +70,20 @@ public class Combat : MonoBehaviour
             Shield();
         }
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("bee : " + isBee + " ladybug : " + isLadybug + " beetle : " + isBeetle);
+            if (isBee == true || isLadybug == true || isBeetle == true) {
+                m_Animator.SetTrigger("shoot");
+                Debug.Log("shoot");
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            m_Animator.SetTrigger("legBottom");
+        }
+
         if (Input.GetKeyDown(KeyCode.Q) && Time.time > next_headAttack)
         {
             next_headAttack = Time.time + headAttack_cooldown;
