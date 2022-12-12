@@ -24,6 +24,12 @@ public class Combat : MonoBehaviour
     public float legAttack_cooldown = 0.8f;
     private float next_legAttack;
 
+    public Transform legAttack2_pos;
+    public float legAttack2_range = 0.3f;
+    public int legAttack2_dmg = 18;
+    public float legAttack2_cooldown = 0.8f;
+    private float next_legAttack2;
+
     //TRANSFORMATIONS 
     private int BeeBullet = 0;
     private bool isBee = false;
@@ -49,7 +55,7 @@ public class Combat : MonoBehaviour
     public TextMeshProUGUI Beetletext;
     public GameObject BeetleCrown;
     public int BeetleAttack_dmg = 48;
-    public float BeetleAttack_range = 0.5f;
+    public float BeetleAttack_range = 0.8f;
     public float BeetleAttack_cooldown = 0.8f;
     private float next_BeetleAttack;
 
@@ -58,28 +64,28 @@ public class Combat : MonoBehaviour
     void Start()
     {
         playerskin = GetComponent<Player>().GetSkin();
-        Debug.Log("playerskin = " + playerskin);
         damageTaken = 0;
     }
 
     void Update()
     {
+
+        if (m_Animator.GetBool("isShield"))
+        {
+            Debug.Log("il ce shield");
+        }
+
         // BASIC ATTACKS
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            Shield();
+            m_Animator.SetTrigger("shield");
+            m_Animator.SetBool("isShield", true);
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.O) && Time.time > next_legAttack2)
         {
-            if (isBee == true || isLadybug == true || isBeetle == true) {
-                m_Animator.SetTrigger("shoot");
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            m_Animator.SetTrigger("legBottom");
+            next_legAttack2 = Time.time + legAttack2_cooldown;
+            legAttack2();
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && Time.time > next_headAttack)
@@ -199,7 +205,23 @@ public class Combat : MonoBehaviour
         {
             if (enemy.gameObject != gameObject) {
                 Combat enemyCombat = enemy.GetComponent<Combat>();
-                enemyCombat.TakeDamage(headAttack_dmg);
+                enemyCombat.TakeDamage(legAttack_dmg);
+                enemy.GetComponent<KnockBack>().Activate(transform.up, enemyCombat.damageTaken);
+            }
+        }
+    }
+
+    void legAttack2()
+    {
+        m_Animator.SetTrigger("legBottom");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(legAttack2_pos.position, legAttack2_range, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            if (enemy.gameObject != gameObject) {
+                Combat enemyCombat = enemy.GetComponent<Combat>();
+                enemyCombat.TakeDamage(legAttack2_dmg);
                 enemy.GetComponent<KnockBack>().Activate(transform.up, enemyCombat.damageTaken);
             }
         }
@@ -233,11 +255,6 @@ public class Combat : MonoBehaviour
         }
     }
 
-    void Shield()
-    {
-        m_Animator.SetTrigger("shield");
-    }
-
     void OnDrawGizmosSelected()
     {
         if (headAttack_pos == null || legAttack_pos == null)
@@ -249,6 +266,10 @@ public class Combat : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        if (m_Animator.GetBool("isShield"))
+        {
+            Debug.Log("il ce shield");
+        }
         damageTaken += dmg;
         GetComponentInChildren<takeDmg>().Flash();
         GetComponentInChildren<percentDamage>().UpdateDmgTaken(damageTaken);

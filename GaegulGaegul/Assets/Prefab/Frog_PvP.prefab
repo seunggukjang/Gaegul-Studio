@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &261964926798906762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9013739458214748443}
+  m_Layer: 0
+  m_Name: legAttack2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9013739458214748443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261964926798906762}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.007, y: -0.663, z: 0.08840387}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7374167623005010094}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &834932000921594468
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +95,7 @@ RectTransform:
   m_Children:
   - {fileID: 4075539790578600488}
   m_Father: {fileID: 7374167623005010094}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -161,7 +192,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7374167623005010094}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 52.702}
 --- !u!1 &834932002122498162
 GameObject:
@@ -193,7 +224,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7374167623005010094}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &834932002122498160
 SpriteRenderer:
@@ -5119,7 +5150,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7374167623005010094}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5336727344105842729
 GameObject:
@@ -5379,6 +5410,7 @@ Transform:
   - {fileID: 8100350699651247335}
   - {fileID: 834932000921594469}
   - {fileID: 834932002229848890}
+  - {fileID: 9013739458214748443}
   - {fileID: 834932001967151423}
   - {fileID: 3201927215776160882}
   - {fileID: 406364288623628011}
@@ -5591,8 +5623,12 @@ MonoBehaviour:
   headAttack_cooldown: 0.33
   legAttack_pos: {fileID: 834932002229848890}
   legAttack_range: 0.3
-  legAttack_dmg: 18
+  legAttack_dmg: 12
   legAttack_cooldown: 0.8
+  legAttack2_pos: {fileID: 9013739458214748443}
+  legAttack2_range: 0.3
+  legAttack2_dmg: 18
+  legAttack2_cooldown: 0.8
   Beetext: {fileID: 8370418761828673855}
   BeeCrown: {fileID: 642488550141705939}
   BeeAttack_pos: {fileID: 834932001967151423}
@@ -6228,7 +6264,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7374167623005010094}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8543671098080935629
 GameObject:
