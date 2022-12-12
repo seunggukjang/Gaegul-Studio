@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-<<<<<<< Updated upstream:GaegulGaegul/Assets/MoveSaw.cs
-using TreeEditor;
-=======
-using TMPro;
->>>>>>> Stashed changes:GaegulGaegul/Assets/Scripts/GameObject/MoveSaw.cs
+
 using UnityEngine;
 
 public class MoveSaw : MonoBehaviour
