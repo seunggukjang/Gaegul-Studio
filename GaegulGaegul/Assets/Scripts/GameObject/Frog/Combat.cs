@@ -128,22 +128,25 @@ public class Combat : MonoBehaviour
             Beetext.text = "x " + BeeBullet.ToString();
             BeeAttack();
             if (BeeBullet < 1) {
-                isBee = false;
-                GetComponentInParent<Player>().ChangeSkin(playerskin);
+                StartCoroutine(DelayChangeSkin(playerskin));
                 BeeCrown.SetActive(false);
+                isBee = false;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.T) && Time.time > next_LadybugAttack && LadybugBullet > 0)
         {
-            if (isBee == true || isBeetle == true)
+            if (isBee == true || isBeetle == true) {
+                
                 return;
+            }
             isLadybug = true;
             next_LadybugAttack = Time.time + LadybugAttack_cooldown;
             LadybugAttack();
             LadybugBullet--;
+            Ladybugtext.text = "x " + LadybugBullet.ToString();
             if (LadybugBullet < 1) {
-                GetComponentInParent<Player>().ChangeSkin(playerskin);
+                StartCoroutine(DelayChangeSkin(playerskin));
                 LadybugCrown.SetActive(false);
                 isLadybug = false;
             }
@@ -157,8 +160,9 @@ public class Combat : MonoBehaviour
             next_BeetleAttack = Time.time + BeetleAttack_cooldown;
             BeetleAttack();
             BeetleBullet--;
+            Beetletext.text = "x " + BeetleBullet.ToString();
             if (BeetleBullet < 1) {
-                GetComponentInParent<Player>().ChangeSkin(playerskin);
+                StartCoroutine(DelayChangeSkin(playerskin));
                 BeetleCrown.SetActive(false);
                 isBeetle = false;
             }
@@ -244,5 +248,13 @@ public class Combat : MonoBehaviour
         damageTaken += dmg;
         GetComponentInChildren<takeDmg>().Flash();
         GetComponentInChildren<percentDamage>().UpdateDmgTaken(damageTaken);
+    }
+
+    
+    IEnumerator DelayChangeSkin(int skinName)
+    {
+        Debug.Log("delayskin");
+        yield return new WaitForSeconds(0.4f);
+        GetComponentInParent<Player>().ChangeSkin(skinName);
     }
 }
