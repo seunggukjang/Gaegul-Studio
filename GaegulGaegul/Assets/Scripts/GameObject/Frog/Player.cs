@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        animator.SetLayerWeight(skin, 1);
         deathCounter = GameObject.Find("DeathCounter").GetComponent<DeathCounter>();
         spawnTransform = GameObject.Find("StartPosition").transform;
         if (spawnTransform)
@@ -45,8 +46,6 @@ public class Player : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         Collider2D deadLineCollide = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, deadThings);

@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+<<<<<<< Updated upstream:GaegulGaegul/Assets/MoveSaw.cs
 using TreeEditor;
+=======
+using TMPro;
+>>>>>>> Stashed changes:GaegulGaegul/Assets/Scripts/GameObject/MoveSaw.cs
 using UnityEngine;
 
 public class MoveSaw : MonoBehaviour
@@ -20,6 +24,10 @@ public class MoveSaw : MonoBehaviour
     private LayerMask frogMask;
     private AudioManager audiomanager;
     private bool isSoundPlay = false;
+    private bool canSoundPlay = false;
+    [SerializeField]private Transform m_FrogCheck;
+    private float m_radius;
+    private Transform soundFrogTransform;
     void Start()
     {
         originRotateVelocity = rotateVelocity;
@@ -28,30 +36,41 @@ public class MoveSaw : MonoBehaviour
         halfSize = transform.lossyScale * 0.4f;
         audiomanager = FindObjectOfType<AudioManager>();
         frogMask = 1 << LayerMask.NameToLayer("Frog");
-            
+        m_radius = m_FrogCheck.localScale.x;
     }
-    void Update()
+    private void FixedUpdate()
     {
-        if(Camera.main != null && audiomanager)
+        soundFrogTransform = null;
+        canSoundPlay = false;
+        Collider2D collider = Physics2D.OverlapCircle(m_FrogCheck.position, m_radius, frogMask);
+        if(collider)
         {
-            float cameradistance = (Camera.main.transform.position - transform.position).sqrMagnitude;
-            if (cameradistance < 5)
+            canSoundPlay = true;
+            soundFrogTransform = collider.transform;
+        }
+        if (audiomanager)
+        {
+            if (soundFrogTransform && canSoundPlay)
             {
-                if(isSoundPlay == false)
+                float distance = (soundFrogTransform.position - transform.position).sqrMagnitude;
+                if (isSoundPlay == false)
                 {
                     audiomanager.Play("saw");
                     isSoundPlay = true;
                 }
-                if (cameradistance > 1)
-                    audiomanager.SetVolume(1 / cameradistance);
-
+                if (distance > 1)
+                    audiomanager.SetVolume(1 / distance);
             }
             else
             {
                 audiomanager.Stop("saw");
-                isSoundPlay=false;
+                isSoundPlay = false;
             }
         }
+    }
+    void Update()
+    {
+        
         transform.Rotate(0,0, Time.deltaTime * rotateVelocity);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, halfSize.x, frogMask);
         if(colliders.Length > 0)
