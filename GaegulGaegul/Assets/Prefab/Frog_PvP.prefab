@@ -64,7 +64,7 @@ RectTransform:
   m_Children:
   - {fileID: 4075539790578600488}
   m_Father: {fileID: 7374167623005010094}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -155,14 +155,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834932001967151422}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.889, y: 0.15, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.4438698, w: 0.89609134}
+  m_LocalPosition: {x: 0.72, y: 0.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7374167623005010094}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 52.702}
 --- !u!1 &834932002122498162
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +193,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7374167623005010094}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &834932002122498160
 SpriteRenderer:
@@ -5090,6 +5090,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &4999676921701692043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3201927215776160882}
+  m_Layer: 3
+  m_Name: LadybugAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3201927215776160882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999676921701692043}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.889, y: 0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7374167623005010094}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5336727344105842729
 GameObject:
   m_ObjectHideFlags: 0
@@ -5349,6 +5380,8 @@ Transform:
   - {fileID: 834932000921594469}
   - {fileID: 834932002229848890}
   - {fileID: 834932001967151423}
+  - {fileID: 3201927215776160882}
+  - {fileID: 406364288623628011}
   - {fileID: 834932001919419824}
   - {fileID: 834932002122498163}
   m_Father: {fileID: 0}
@@ -5560,17 +5593,21 @@ MonoBehaviour:
   legAttack_range: 0.3
   legAttack_dmg: 18
   legAttack_cooldown: 0.8
-  Beetext: {fileID: 0}
-  BeeCrown: {fileID: 0}
+  Beetext: {fileID: 8370418761828673855}
+  BeeCrown: {fileID: 642488550141705939}
   BeeAttack_pos: {fileID: 834932001967151423}
   HoneyBulletPrefab: {fileID: 7610434445798427835, guid: df35572d47c36e54b98c96a24316ea1d, type: 3}
   BeeAttack_cooldown: 0.8
-  Ladybugtext: {fileID: 0}
-  LadybugCrown: {fileID: 0}
-  RedBulletPrefab: {fileID: 0}
+  Ladybugtext: {fileID: 8673093085078549097}
+  LadybugCrown: {fileID: 4621494037636853986}
+  LadybugAttack_pos: {fileID: 3201927215776160882}
+  RedBulletPrefab: {fileID: 7610434445798427835, guid: 2def3ee1cfc35b344a4d6e108ad24434, type: 3}
   LadybugAttack_cooldown: 0.8
-  Beetletext: {fileID: 0}
-  BeetleCrown: {fileID: 0}
+  BeetleAttack_pos: {fileID: 406364288623628011}
+  Beetletext: {fileID: 81623253011054840}
+  BeetleCrown: {fileID: 5045383733910885581}
+  BeetleAttack_dmg: 48
+  BeetleAttack_range: 0.5
   BeetleAttack_cooldown: 0.8
   damageTaken: 0
 --- !u!114 &834932001026744720
@@ -5585,7 +5622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5a92f7b37e54f4bb5ffa824d717bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offSetPower: 50
+  offSetPower: 10
 --- !u!1 &7374167623141880751
 GameObject:
   m_ObjectHideFlags: 0
@@ -6162,6 +6199,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7454352791369976242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406364288623628011}
+  m_Layer: 3
+  m_Name: BeetleAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406364288623628011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7454352791369976242}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.735, y: 0.08, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7374167623005010094}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8543671098080935629
 GameObject:
   m_ObjectHideFlags: 0
@@ -6383,8 +6451,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
+--- !u!114 &81623253011054840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 772294570135916906, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
+  m_PrefabInstance: {fileID: 834932001546490258}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &642488550141705939 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 251310794203688769, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
+  m_PrefabInstance: {fileID: 834932001546490258}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4075539790578600488 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3682114787558333370, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
   m_PrefabInstance: {fileID: 834932001546490258}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4621494037636853986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5455159236405682544, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
+  m_PrefabInstance: {fileID: 834932001546490258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5045383733910885581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5589684008083653983, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
+  m_PrefabInstance: {fileID: 834932001546490258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8370418761828673855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9205346336874494125, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
+  m_PrefabInstance: {fileID: 834932001546490258}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8673093085078549097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8343835363265487867, guid: da815cbdc0461d04cbe208a8bdfd7790, type: 3}
+  m_PrefabInstance: {fileID: 834932001546490258}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
