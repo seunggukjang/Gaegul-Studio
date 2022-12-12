@@ -36,20 +36,20 @@ public class Combat : MonoBehaviour
 
     private int LadybugBullet = 0;
     private bool isLadybug = false;
-    // public Transform LadybugAttack_pos;
-    // public GameObject HoneyBulletPrefab;
     public TextMeshProUGUI Ladybugtext;
     public GameObject LadybugCrown;
+    public Transform LadybugAttack_pos;
     public GameObject RedBulletPrefab;
     public float LadybugAttack_cooldown = 0.8f;
     private float next_LadybugAttack;
 
     private int BeetleBullet = 0;
     private bool isBeetle = false;
-    // public Transform BeetleAttack_pos;
-    // public GameObject HoneyBulletPrefab;
+    public Transform BeetleAttack_pos;
     public TextMeshProUGUI Beetletext;
     public GameObject BeetleCrown;
+    public int BeetleAttack_dmg = 48;
+    public float BeetleAttack_range = 0.5f;
     public float BeetleAttack_cooldown = 0.8f;
     private float next_BeetleAttack;
 
@@ -72,10 +72,8 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("bee : " + isBee + " ladybug : " + isLadybug + " beetle : " + isBeetle);
             if (isBee == true || isLadybug == true || isBeetle == true) {
                 m_Animator.SetTrigger("shoot");
-                Debug.Log("shoot");
             }
         }
 
@@ -128,13 +126,11 @@ public class Combat : MonoBehaviour
             next_BeeAttack = Time.time + BeeAttack_cooldown;
             BeeBullet--;
             Beetext.text = "x " + BeeBullet.ToString();
-            Debug.Log("BeeBullet: " + BeeBullet);
             BeeAttack();
             if (BeeBullet < 1) {
                 isBee = false;
                 GetComponentInParent<Player>().ChangeSkin(playerskin);
                 BeeCrown.SetActive(false);
-                // back to basic skin
             }
         }
 
@@ -146,7 +142,6 @@ public class Combat : MonoBehaviour
             next_LadybugAttack = Time.time + LadybugAttack_cooldown;
             LadybugAttack();
             LadybugBullet--;
-            Debug.Log("LadybugBullet: " + LadybugBullet);
             if (LadybugBullet < 1) {
                 GetComponentInParent<Player>().ChangeSkin(playerskin);
                 LadybugCrown.SetActive(false);
@@ -162,12 +157,10 @@ public class Combat : MonoBehaviour
             next_BeetleAttack = Time.time + BeetleAttack_cooldown;
             BeetleAttack();
             BeetleBullet--;
-            Debug.Log("BeetleBullet: " + BeetleBullet);
             if (BeetleBullet < 1) {
                 GetComponentInParent<Player>().ChangeSkin(playerskin);
                 BeetleCrown.SetActive(false);
                 isBeetle = false;
-                // back to basic skin
             }
         } 
     }
@@ -207,21 +200,33 @@ public class Combat : MonoBehaviour
     void BeeAttack()
     {
         Instantiate(HoneyBulletPrefab, BeeAttack_pos.position, BeeAttack_pos.rotation);
+        m_Animator.SetTrigger("specialAttack");
     }
 
     void LadybugAttack()
     {
-        Instantiate(RedBulletPrefab, BeeAttack_pos.position, BeeAttack_pos.rotation);
+        Instantiate(RedBulletPrefab, LadybugAttack_pos.position, LadybugAttack_pos.rotation);
+        m_Animator.SetTrigger("specialAttack");
     }
 
     void BeetleAttack()
     {
-        Instantiate(HoneyBulletPrefab, BeeAttack_pos.position, BeeAttack_pos.rotation);
+        m_Animator.SetTrigger("specialAttack");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(BeetleAttack_pos.position, BeetleAttack_range, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            if (enemy.gameObject != gameObject) {
+                Combat enemyCombat = enemy.GetComponent<Combat>();
+                enemyCombat.TakeDamage(BeetleAttack_dmg);
+                enemy.GetComponent<KnockBack>().Activate(transform.right, enemyCombat.damageTaken);
+            }
+        }
     }
 
     void Shield()
     {
-        Debug.Log("SIELD");
         m_Animator.SetTrigger("shield");
     }
 
