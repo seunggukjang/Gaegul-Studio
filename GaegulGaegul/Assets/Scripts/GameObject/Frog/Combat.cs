@@ -97,6 +97,9 @@ public class Combat : MonoBehaviour
         // TRANSFORMATION
         if (Input.GetKeyDown(KeyCode.N))
         {
+            if (isLadybug == true || isBeetle == true)
+                return;
+            isBee = true;
             BeeBullet = 3;
             GetComponentInParent<Player>().ChangeSkin(5);
             BeeCrown.SetActive(true);
@@ -104,6 +107,9 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
+            if (isBeetle == true || isBee == true)
+                return;
+            isLadybug = true;
             LadybugBullet = 3;
             GetComponentInParent<Player>().ChangeSkin(6);
             LadybugCrown.SetActive(true);
@@ -111,6 +117,9 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V))
         {
+            if (isLadybug == true || isBee == true)
+                return;
+            isBeetle = true;
             BeetleBullet = 3;
             GetComponentInParent<Player>().ChangeSkin(7);
             BeetleCrown.SetActive(true);
@@ -121,7 +130,6 @@ public class Combat : MonoBehaviour
         {
             if (isLadybug == true || isBeetle == true)
                 return;
-            isBee = true;
             Beetext.text = " x " + BeeBullet.ToString();
             next_BeeAttack = Time.time + BeeAttack_cooldown;
             BeeBullet--;
@@ -136,11 +144,8 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T) && Time.time > next_LadybugAttack && LadybugBullet > 0)
         {
-            if (isBee == true || isBeetle == true) {
-                
+            if (isBee == true || isBeetle == true)
                 return;
-            }
-            isLadybug = true;
             next_LadybugAttack = Time.time + LadybugAttack_cooldown;
             LadybugAttack();
             LadybugBullet--;
@@ -156,7 +161,6 @@ public class Combat : MonoBehaviour
         {
             if (isBee == true || isLadybug == true)
                 return;
-            isBeetle = true;
             next_BeetleAttack = Time.time + BeetleAttack_cooldown;
             BeetleAttack();
             BeetleBullet--;
@@ -253,7 +257,6 @@ public class Combat : MonoBehaviour
     
     IEnumerator DelayChangeSkin(int skinName)
     {
-        Debug.Log("delayskin");
         yield return new WaitForSeconds(0.4f);
         GetComponentInParent<Player>().ChangeSkin(skinName);
     }
