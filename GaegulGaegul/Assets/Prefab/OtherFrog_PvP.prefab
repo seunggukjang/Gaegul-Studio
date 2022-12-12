@@ -5761,6 +5761,7 @@ MonoBehaviour:
   m_GroundCheckForBigJump: {fileID: 2665765693504844711}
   spriteRenderer: {fileID: 5277862105508491295}
   head: {fileID: 3350392915211166927}
+  isPvPmode: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5907,9 +5908,18 @@ MonoBehaviour:
   legAttack_range: 0.3
   legAttack_dmg: 18
   legAttack_cooldown: 0.8
+  Beetext: {fileID: 0}
+  BeeCrown: {fileID: 0}
   BeeAttack_pos: {fileID: 2665765694244257429}
   HoneyBulletPrefab: {fileID: 7610434445798427835, guid: df35572d47c36e54b98c96a24316ea1d, type: 3}
   BeeAttack_cooldown: 0.8
+  Ladybugtext: {fileID: 0}
+  LadybugCrown: {fileID: 0}
+  RedBulletPrefab: {fileID: 0}
+  LadybugAttack_cooldown: 0.8
+  Beetletext: {fileID: 0}
+  BeetleCrown: {fileID: 0}
+  BeetleAttack_cooldown: 0.8
   damageTaken: 0
 --- !u!114 &2665765693165583308
 MonoBehaviour:

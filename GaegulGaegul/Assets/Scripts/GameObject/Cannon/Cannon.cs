@@ -13,7 +13,7 @@ public class Cannon : MonoBehaviour
     bool canFrogGet = false;
     bool isFrogIn = false;
     GameObject frogObject;
-    [SerializeField] private float fireForceX = 20;
+    [SerializeField] private float fireForceX = 180;
     [SerializeField] private float fireForceY = 20;
     [SerializeField] private float angularSpeed = 0.1f;
     [SerializeField] private bool isWeight = false;
