@@ -5,7 +5,7 @@ using UnityEngine;
 public class KnockBack : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [SerializeField] float offSetPower = 50f;
+    [SerializeField] float offSetPower = 10f;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();

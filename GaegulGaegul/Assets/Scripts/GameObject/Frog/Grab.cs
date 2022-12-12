@@ -151,6 +151,10 @@ public class Grab : MonoBehaviour
         string targetTag = targetRB.gameObject.tag;
         if(targetTag == "Hook" || targetTag == "Enemy" || targetTag == "Item" || targetTag == "Weight")
         {
+            if(targetTag == "Item")
+            {
+                animator.SetTrigger("eat");
+            }
             if(targetTag == "Hook" || targetTag == "Weight")
             {
                 joint.autoConfigureDistance = true;
@@ -180,12 +184,6 @@ public class Grab : MonoBehaviour
             tongueToObject.SetActive(true);
             tongue.targetTransform = targetRB.transform;
         }
-        //else if(targetTag == "Frog")
-        //{
-        //    tongueToPlayer.SetActive(true);
-        //    animator.SetTrigger("grab");
-        //    tongueFrog.SetJointTargetRigidBody(targetRB);
-        //}
         isGrab = true;
         return true;
     }

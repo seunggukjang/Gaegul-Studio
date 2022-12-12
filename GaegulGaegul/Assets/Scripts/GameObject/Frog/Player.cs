@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     {
         animator.SetLayerWeight(skin, 1);
         deathCounter = GameObject.Find("DeathCounter").GetComponent<DeathCounter>();
-        spawnTransform = GameObject.Find("StartPosition").transform;
+        
         if (spawnTransform)
             spawnPosition = spawnTransform.position;
         else
@@ -63,7 +63,11 @@ public class Player : MonoBehaviour
 
     public void ChangeSkin(int skin)
     {
-        // 5 = bee
+        int skinnbr = 8;
+        for (int i = 0; i < skinnbr; i++) {
+            animator.SetLayerWeight(i, 0);
+
+        }
         animator.SetLayerWeight(skin, 1);
     }
 
@@ -118,6 +122,11 @@ public class Player : MonoBehaviour
             StartCoroutine(Revive(whatDead));
 
         }
+    }
+
+    public int GetSkin()
+    {
+        return (skin);
     }
     
 }

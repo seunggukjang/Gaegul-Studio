@@ -231,8 +231,8 @@ public class CharacterController2D : MonoBehaviour
 	private void Flip()
 	{
 		m_FacingRight = !m_FacingRight;
-		spriteRenderer.flipX = !m_FacingRight;
-		// transform.Rotate(0f, 180f, 0f);
+		//spriteRenderer.flipX = !m_FacingRight;
+		transform.right *= -1;
 
 	}
 }
