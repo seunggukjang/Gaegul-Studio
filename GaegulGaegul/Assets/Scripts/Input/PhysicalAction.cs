@@ -85,36 +85,44 @@ public class PhysicalAction : MonoBehaviour
     {
         UnityEngine.Debug.Log("PRESSED KEY IS "+Input.anyKey);
 
-        float input_x = Input.GetAxis("Horizontal");
-        move.x = input_x;
-
-        if (Input.GetButtonDown("Jump") && Input.GetAxis("Vertical") >= 0)
+        // float input_x = Input.GetAxis("Horizontal");
+        // move.x = input_x;
+        if (Input.GetKey(KeyCode.Y) || Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Keypad3))//left
+        {
+            move.x = -0.5f;
+        }
+        if (Input.GetKey(KeyCode.T) || Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.Keypad4))//right
+        {
+            move.x = 0.5f;
+        }
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad5))
         {
             isJump = true;
         }
-        if(Input.GetButton("Jump") && Input.GetAxis("Vertical") < 0)
+        if(Input.GetKey(KeyCode.Q) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad5))
         {
             isJumpDown = true;
         }
-        if (Input.GetMouseButtonDown(0) && !isGrab)
+        if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Alpha5) || Input.GetKey(KeyCode.Alpha7) && !isGrab)
         {
             isGrab = true;
             Grab();
         }
-        if(Input.GetMouseButtonDown(1) && !isAttack)
-        {
-            isAttack = true;
+        // if(Input.GetKey(KeyCode.Z) && !isAttack)
+        // {
+        //     isAttack = true;
             
-        }
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            Restart();
-        }
+        // }
+        // if(Input.GetKeyDown(KeyCode.R))
+        // {
+        //     Restart();
+        // }
 
         Jump();
         JumpDown();
         Move(move);
         TongueAttack();
+        move.x = 0;
     }
     private void LateUpdate()
     {
