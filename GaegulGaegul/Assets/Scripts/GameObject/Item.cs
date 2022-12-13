@@ -9,7 +9,7 @@ public class Item : MonoBehaviour
     
     [SerializeField] private Transform startTransform;
     [SerializeField] private Transform stopTransform;
-    [SerializeField] private float smoothTime = 0.99f;
+    [SerializeField] private float smoothTime = 0.1f;
     private AudioManager audioManager;
     private bool isMove = true;
     private Vector3 stopPosition;
@@ -39,13 +39,13 @@ public class Item : MonoBehaviour
         switch (num)
         {
             case 0:
-                spriteRenderer.sprite = Resources.Load<Sprite>("Assets/Sprites/items/EnemyBee.png");
+                spriteRenderer.sprite = Resources.Load<Sprite>("EnemyBee");
                 break;
             case 1:
-                spriteRenderer.sprite = Resources.Load<Sprite>("Assets/Sprites/items/EnemyBeetle.png");
+                spriteRenderer.sprite = Resources.Load<Sprite>("EnemyBeetle");
                 break;
             case 2:
-                spriteRenderer.sprite = Resources.Load<Sprite>("Assets/Sprites/items/EnemyLadybug.png");
+                spriteRenderer.sprite = Resources.Load<Sprite>("EnemyLadybug");
                 break;
         }
     }

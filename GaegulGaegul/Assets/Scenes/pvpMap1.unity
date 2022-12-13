@@ -11099,7 +11099,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8908917290235848258, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: smoothTime
-      value: 0.6
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8908917290235848258, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: stopTransform
