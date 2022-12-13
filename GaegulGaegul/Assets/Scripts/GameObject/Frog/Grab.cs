@@ -153,6 +153,7 @@ public class Grab : MonoBehaviour
         {
             if(targetTag == "Item")
             {
+                targetRB.transform.GetComponent<Item>().isGrab = true;
                 animator.SetTrigger("eat");
             }
             if(targetTag == "Hook" || targetTag == "Weight")

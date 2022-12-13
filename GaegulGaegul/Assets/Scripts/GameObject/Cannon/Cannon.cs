@@ -17,6 +17,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] private float fireForceY = 20;
     [SerializeField] private float angularSpeed = 0.1f;
     [SerializeField] private bool isWeight = false;
+    [SerializeField] private GameObject chargedIcon;
     float angle = 0f;
     Vector3 previousRotation = new Vector3();
     Vector3 rotation = new Vector3();
@@ -84,7 +85,7 @@ public class Cannon : MonoBehaviour
             if (audioManager)
                 audioManager.Play("cannondrag");
             if (!isWeight)
-                transform.Rotate(previous_angle - angle, 0, 0);
+                transform.Rotate(0, 0, angle - previous_angle);
             else
             {
                 previousRotation.z = previous_angle;
@@ -104,6 +105,7 @@ public class Cannon : MonoBehaviour
             isFrogIn = true;
             frogObject.GetComponent<Grab>().CancelPulling();
             frogObject.SetActive(false);
+            chargedIcon.SetActive(true);
         }
     }
     public bool GetFrogIn()
@@ -125,7 +127,9 @@ public class Cannon : MonoBehaviour
         }
             
         frogObject.SetActive(true);
+        chargedIcon.SetActive(false);
         frogObject.transform.position = new Vector3(transform.position.x, transform.position.y, frogObject.transform.position.z);
+        frogObject.GetComponent<Player>().ReviveSkin();
         float radian = angle * Mathf.PI / 180;
         fire_direction.x = Mathf.Cos(radian) * fireForceX;
         fire_direction.y = Mathf.Sin(radian) * fireForceY;

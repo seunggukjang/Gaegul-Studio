@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        animator.SetLayerWeight(skin, 1);
         deathCounter = GameObject.Find("DeathCounter").GetComponent<DeathCounter>();
         
         if (spawnTransform)
@@ -45,8 +46,6 @@ public class Player : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         Collider2D deadLineCollide = Physics2D.OverlapArea(transform.position - halfSize, transform.position + halfSize, deadThings);
@@ -61,7 +60,10 @@ public class Player : MonoBehaviour
             StartCoroutine(Dead("saw"));
         }
     }
-
+    public void ReviveSkin()
+    {
+        animator.SetLayerWeight(skin, 1);
+    }
     public void ChangeSkin(int skin)
     {
         int skinnbr = 8;
@@ -76,11 +78,13 @@ public class Player : MonoBehaviour
     {
         if (dissolve && whatDead == "deadline")
         {
+            StopAllCoroutines();
             dissolve.SetIsAppear(true);
             yield return new WaitForSeconds(2);
         }
         else if (blackHole && whatDead == "saw")
         {
+            StopAllCoroutines();
             blackHole.SetIsAppear(true);
             yield return new WaitForSeconds(2);
         }

@@ -12243,6 +12243,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5628062552932887538, guid: 174ca239879c1ee41aa25bf29b7e124a, type: 3}
   m_PrefabInstance: {fileID: 5628062553072674426}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2058962080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7014344579806981807, guid: d10865eaad7838341a328497035ceb79, type: 3}
+  m_PrefabInstance: {fileID: 5433618068003636883}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2106682109
 GameObject:
   m_ObjectHideFlags: 0
@@ -12444,6 +12449,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.62
       objectReference: {fileID: 0}
+    - target: {fileID: 5433618069215714099, guid: d10865eaad7838341a328497035ceb79, type: 3}
+      propertyPath: chargedIcon
+      value: 
+      objectReference: {fileID: 2058962080}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d10865eaad7838341a328497035ceb79, type: 3}
 --- !u!1001 &5628062553072674426

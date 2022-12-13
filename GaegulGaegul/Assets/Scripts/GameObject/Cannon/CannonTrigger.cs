@@ -13,6 +13,7 @@ public class CannonTrigger : Trigger
     [SerializeField] private Cannon canon;
     [SerializeField] private GameObject onSprite;
     [SerializeField] private GameObject offSprite;
+    private AudioManager audioManager;
     bool isOff = false;
     void Start()
     {
@@ -20,7 +21,7 @@ public class CannonTrigger : Trigger
         halfSize = transform.lossyScale * 0.5f;
         position = transform.position;
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
-        
+        audioManager = FindObjectOfType<AudioManager>();
         frogMask = 1 << LayerMask.NameToLayer("Frog");
     }
     public override bool GetIsWork() { return this.isWork; }
