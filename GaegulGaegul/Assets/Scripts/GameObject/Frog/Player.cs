@@ -60,7 +60,10 @@ public class Player : MonoBehaviour
             StartCoroutine(Dead("saw"));
         }
     }
-
+    public void ReviveSkin()
+    {
+        animator.SetLayerWeight(skin, 1);
+    }
     public void ChangeSkin(int skin)
     {
         int skinnbr = 8;
@@ -75,11 +78,13 @@ public class Player : MonoBehaviour
     {
         if (dissolve && whatDead == "deadline")
         {
+            StopAllCoroutines();
             dissolve.SetIsAppear(true);
             yield return new WaitForSeconds(2);
         }
         else if (blackHole && whatDead == "saw")
         {
+            StopAllCoroutines();
             blackHole.SetIsAppear(true);
             yield return new WaitForSeconds(2);
         }

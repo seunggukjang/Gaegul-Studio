@@ -171,7 +171,27 @@ public class Combat : MonoBehaviour
             }
         } 
     }
-
+    public void ChangeToForm(int i)
+    {
+       switch(i)
+        {
+            case 0:
+                BeeBullet = 3;
+                GetComponentInParent<Player>().ChangeSkin(5);
+                BeeCrown.SetActive(true);
+                break;
+            case 1:
+                LadybugBullet = 3;
+                GetComponentInParent<Player>().ChangeSkin(6);
+                LadybugCrown.SetActive(true);
+                break;
+            case 2:
+                BeetleBullet = 3;
+                GetComponentInParent<Player>().ChangeSkin(7);
+                BeetleCrown.SetActive(true);
+                break;
+        }
+    }
     void headAttack()
     {
         m_Animator.SetTrigger("headAttack");
