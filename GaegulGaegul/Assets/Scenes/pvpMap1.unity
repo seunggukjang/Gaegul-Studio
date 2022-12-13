@@ -10205,6 +10205,18 @@ PrefabInstance:
       propertyPath: RedBulletPrefab
       value: 
       objectReference: {fileID: 7610434445798427835, guid: 2def3ee1cfc35b344a4d6e108ad24434, type: 3}
+    - target: {fileID: 834932001026744722, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayed.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 834932001026744722, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayed.Array.data[0]
+      value: 
+      objectReference: {fileID: 7908330126030362739}
+    - target: {fileID: 834932001026744722, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayed.Array.data[1]
+      value: 
+      objectReference: {fileID: 1107311691}
     - target: {fileID: 1365900937162852114, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -10225,6 +10237,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayer.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayer.Array.data[0]
+      value: 
+      objectReference: {fileID: 7908330126030362745}
+    - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayer.Array.data[1]
+      value: 
+      objectReference: {fileID: 1107311697}
     - target: {fileID: 7374167623005010094, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -10584,6 +10608,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7374167623005010094, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
   m_PrefabInstance: {fileID: 1016336112}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1107311691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 834932001026744722, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+  m_PrefabInstance: {fileID: 1016336112}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e44cb33c7c2b91489d3b155869ca64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1107311697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7374167623005010088, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+  m_PrefabInstance: {fileID: 1016336112}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66fec4a756d29d84fa6742fcd8fb1d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1259442326
 GameObject:
   m_ObjectHideFlags: 0
@@ -11801,6 +11847,18 @@ PrefabInstance:
       propertyPath: RedBulletPrefab
       value: 
       objectReference: {fileID: 7610434445798427835, guid: 2def3ee1cfc35b344a4d6e108ad24434, type: 3}
+    - target: {fileID: 834932001026744722, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayed.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 834932001026744722, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayed.Array.data[0]
+      value: 
+      objectReference: {fileID: 7908330126030362739}
+    - target: {fileID: 834932001026744722, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayed.Array.data[1]
+      value: 
+      objectReference: {fileID: 1107311691}
     - target: {fileID: 834932001919419824, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -11837,6 +11895,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog
       objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayer.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayer.Array.data[0]
+      value: 
+      objectReference: {fileID: 7908330126030362745}
+    - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: FrogsPlayer.Array.data[1]
+      value: 
+      objectReference: {fileID: 1107311697}
     - target: {fileID: 7374167623005010094, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -11893,3 +11963,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7374167623005010094, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
   m_PrefabInstance: {fileID: 834932001951260894}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7908330126030362739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 834932001026744722, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+  m_PrefabInstance: {fileID: 834932001951260894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e44cb33c7c2b91489d3b155869ca64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7908330126030362745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7374167623005010088, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+  m_PrefabInstance: {fileID: 834932001951260894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66fec4a756d29d84fa6742fcd8fb1d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
