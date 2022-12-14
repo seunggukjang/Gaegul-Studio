@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using System;
+using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
@@ -28,7 +29,17 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        Play("bgm");
+        if (SceneManager.GetActiveScene().name == "pvpMap1")
+        {
+            GetComponent<AudioSource>().Stop("bgm");
+            GetComponent<AudioSource>().Play("jungle");
+            GetComponent<AudioSource>().Play("battle");
+            GetComponent<AudioSource>().Play("battle2");
+        }
+        else
+        {
+
+        }
     }
     public void Play(string name)
     {

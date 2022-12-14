@@ -111,3 +111,64 @@ MonoBehaviour:
     pitch: 3
     loop: 1
     source: {fileID: 0}
+  - name: jungle
+    clip: {fileID: 8300000, guid: 85bfd02ec809af34eaaec60ede951215, type: 3}
+    vloume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: battle
+    clip: {fileID: 8300000, guid: f4a482c167357d04c9aaf9622c855268, type: 3}
+    vloume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: battle2
+    clip: {fileID: 8300000, guid: d45800cab686f8a49b4390ac7eca92a3, type: 3}
+    vloume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: pokemonbattle
+    clip: {fileID: 8300000, guid: 2b75f098c30a2f2439a5faabebd80cbd, type: 3}
+    vloume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: attack
+    clip: {fileID: 8300000, guid: de21f6cdf0c800d4b92231049ca1552c, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: damage
+    clip: {fileID: 8300000, guid: 005bca605776fd2439569d43bff9307f, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: menubutton
+    clip: {fileID: 8300000, guid: 253ce204e2dbc024eb09d6a7434a80e6, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: menubgm
+    clip: {fileID: 8300000, guid: 88bbf249e18b19346ae3d30c1e78c80c, type: 3}
+    vloume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: changeform
+    clip: {fileID: 8300000, guid: 169baf0dde2bddf44bc8368dae4df897, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: menubgm2
+    clip: {fileID: 8300000, guid: f691965b04cda194bbca54770350395e, type: 3}
+    vloume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  current_sound_name: 
