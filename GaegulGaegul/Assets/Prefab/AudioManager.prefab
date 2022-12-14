@@ -47,7 +47,7 @@ MonoBehaviour:
   sounds:
   - name: bgm
     clip: {fileID: 8300000, guid: 026f2260180827f49b8b1d564423e8a7, type: 3}
-    vloume: 0.143
+    vloume: 0.3
     pitch: 0.85
     loop: 1
     source: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 88bbf249e18b19346ae3d30c1e78c80c, type: 3}
     vloume: 0.3
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: changeform
     clip: {fileID: 8300000, guid: 169baf0dde2bddf44bc8368dae4df897, type: 3}
@@ -169,6 +169,17 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f691965b04cda194bbca54770350395e, type: 3}
     vloume: 0.3
     pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: damage2
+    clip: {fileID: 8300000, guid: bd83b4e7ee770a04590eca60f2324dea, type: 3}
+    vloume: 0.4
+    pitch: 1
     loop: 0
     source: {fileID: 0}
-  current_sound_name: 
+  - name: legattack
+    clip: {fileID: 8300000, guid: 0b0e9932d90b76a40a479fd343305b30, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

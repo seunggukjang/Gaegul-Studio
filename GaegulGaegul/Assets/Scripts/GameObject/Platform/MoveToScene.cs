@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MoveToScene : MonoBehaviour
 {
     AudioManager audio;
+    
     void Start()
     {
         audio = FindObjectOfType<AudioManager>();
@@ -13,15 +14,11 @@ public class MoveToScene : MonoBehaviour
     }
     public void LoadwithSceneID(int sceneID)
     {
+        if(audio)
+        audio.ChangeBGM(sceneID);
         SceneManager.LoadScene(sceneID);
     }
-    void ChangeBGM(int sceneID)
-    {
-        switch(sceneID)
-        {
-
-        }
-    }
+    
     public void QuitGame()
     {
         Application.Quit();

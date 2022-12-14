@@ -32,7 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Tuto 3.unity
     guid: ca04b11c2d423a54084e0626ff1824b2
-  - enabled: 1
-    path: Assets/Scenes/pvpMap1.unity
-    guid: 11e36de22e65a394fa3f810492c2dbe7
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
