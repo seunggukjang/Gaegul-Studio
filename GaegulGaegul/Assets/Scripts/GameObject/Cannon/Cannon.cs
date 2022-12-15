@@ -31,6 +31,8 @@ public class Cannon : MonoBehaviour
         frogMask = 1 << LayerMask.NameToLayer("Frog");
         canFrogGet = false;
         audioManager = AudioManager.instance;
+        if (!audioManager)
+            audioManager = FindObjectOfType<AudioManager>();
     }
     // Update is called once per frame
     private void FixedUpdate()

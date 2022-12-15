@@ -44,7 +44,8 @@ public class Player : MonoBehaviour
         saw = 1 << LayerMask.NameToLayer("Saw");
         halfSize = transform.lossyScale * 0.5f;
         audioManager = AudioManager.instance;
-
+        if (!audioManager)
+            audioManager = FindObjectOfType<AudioManager>();
     }
     void FixedUpdate()
     {

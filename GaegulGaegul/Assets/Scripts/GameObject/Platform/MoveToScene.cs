@@ -10,7 +10,8 @@ public class MoveToScene : MonoBehaviour
     void Start()
     {
         audio = AudioManager.instance;
-        
+        if (!audio)
+            audio = FindObjectOfType<AudioManager>();
     }
     public void LoadwithSceneID(int sceneID)
     {

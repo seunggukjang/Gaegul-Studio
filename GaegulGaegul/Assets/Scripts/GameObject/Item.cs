@@ -9,19 +9,29 @@ public class Item : MonoBehaviour
     
     [SerializeField] private Transform startTransform;
     [SerializeField] private Transform stopTransform;
-    [SerializeField] private float smoothTime = 0.1f;
+    [SerializeField] private Transform middleTransform1;
+    [SerializeField] private Transform middleTransform2;
+    [SerializeField] private float smoothTime = 1.2f;
+
     private AudioManager audioManager;
     private bool isMove = true;
     private Vector3 stopPosition;
     private Vector3 startPosition;
+    private Vector3 middlePosition1;
+    private Vector3 middlePosition2;
     private Vector3 velocity = Vector3.zero;
     private bool canMove = false;
+    private bool camMove2 = false;
     public bool isGrab = false;
-    private int form_number;
+    public int moveNumber = 0;
+    public int form_number;
+    
     private void Start()
     {
         audioManager = AudioManager.instance;
-        form_number = Random.Range(0, 2);
+        if (!audioManager)
+            audioManager = FindObjectOfType<AudioManager>();
+        form_number = Random.Range(0, 10);
         ChangeSprite(form_number);
         if (startTransform && stopTransform)
         {
@@ -29,23 +39,28 @@ public class Item : MonoBehaviour
             stopPosition = stopTransform.position;
             startPosition = startTransform.position;
         }
-            
+        if(middleTransform1 && middleTransform2)
+        {
+            camMove2 = true;
+            middlePosition1 = middleTransform1.position;
+            middlePosition2 = middleTransform2.position;
+        }
 
 
     }
     private void ChangeSprite(int num)
     {
         SpriteRenderer spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
-        switch (num)
+        switch (num % 3)
         {
             case 0:
                 spriteRenderer.sprite = Resources.Load<Sprite>("EnemyBee");
                 break;
             case 1:
-                spriteRenderer.sprite = Resources.Load<Sprite>("EnemyBeetle");
+                spriteRenderer.sprite = Resources.Load<Sprite>("EnemyLadybug");
                 break;
             case 2:
-                spriteRenderer.sprite = Resources.Load<Sprite>("EnemyLadybug");
+                spriteRenderer.sprite = Resources.Load<Sprite>("EnemyBeetle");
                 break;
         }
     }
@@ -69,23 +84,62 @@ public class Item : MonoBehaviour
     }
     private void Update()
     {
+        
         if (!canMove && !isGrab)
             return;
-        if (isMove)
+        if(camMove2)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, stopPosition, ref velocity, smoothTime);
-            if ((transform.position - stopPosition).sqrMagnitude < 0.1)
+            if(moveNumber == 0)
             {
-                isMove = false;
+                transform.position = Vector3.SmoothDamp(transform.position, middlePosition1, ref velocity, smoothTime);
+                if ((transform.position - middlePosition1).sqrMagnitude < 0.1)
+                {
+                    moveNumber = 1;
+                }
+            }
+            else if(moveNumber == 1)
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, middlePosition2, ref velocity, smoothTime);
+                if ((transform.position - middlePosition2).sqrMagnitude < 0.1)
+                {
+                    moveNumber = 2;
+                }
+            }
+            else if (moveNumber == 2)
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, stopPosition, ref velocity, smoothTime);
+                if ((transform.position - stopPosition).sqrMagnitude < 0.1)
+                {
+                    moveNumber = 3;
+                }
+            }
+            else if (moveNumber == 3)
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, startPosition, ref velocity, smoothTime);
+                if ((transform.position - middlePosition2).sqrMagnitude < 0.1)
+                {
+                    moveNumber = 0;
+                }
             }
         }
-        else
-        {
-            transform.position = Vector3.SmoothDamp(transform.position, startPosition, ref velocity, smoothTime);
-            if ((transform.position - startPosition).sqrMagnitude < 0.1)
+        else {
+            if (isMove)
             {
-                isMove = true;
+                transform.position = Vector3.SmoothDamp(transform.position, stopPosition, ref velocity, smoothTime);
+                if ((transform.position - stopPosition).sqrMagnitude < 0.1)
+                {
+                    isMove = false;
+                }
+            }
+            else
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, startPosition, ref velocity, smoothTime);
+                if ((transform.position - startPosition).sqrMagnitude < 0.1)
+                {
+                    isMove = true;
+                }
             }
         }
+        
     }
 }

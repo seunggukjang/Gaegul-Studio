@@ -66,6 +66,8 @@ public class CharacterController2D : MonoBehaviour
         halfSize.x = transform.lossyScale.x * 0.5f;
 		halfSize.y = transform.lossyScale.y * 0.5f;
 		audioManager = AudioManager.instance;
+		if (!audioManager)
+			audioManager = FindObjectOfType<AudioManager>();
 	}
 
     

@@ -16,6 +16,8 @@ public class GroundTrigger : Trigger
     void Start()
     {
         audioManager = AudioManager.instance;
+        if (!audioManager)
+            audioManager = FindObjectOfType<AudioManager>();
         this.isWork = false;
         halfSize = transform.lossyScale * 0.5f;
         position = transform.position;

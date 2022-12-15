@@ -22,6 +22,8 @@ public class CannonTrigger : Trigger
         position = transform.position;
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
         audioManager = AudioManager.instance;
+        if (!audioManager)
+            audioManager = FindObjectOfType<AudioManager>();
         frogMask = 1 << LayerMask.NameToLayer("Frog");
     }
     public override bool GetIsWork() { return this.isWork; }

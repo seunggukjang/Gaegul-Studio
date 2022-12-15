@@ -64,6 +64,8 @@ public class Combat : MonoBehaviour
     void Start()
     {
         audio = AudioManager.instance;
+        if (!audio)
+            audio = FindObjectOfType<AudioManager>();
         playerskin = GetComponent<Player>().GetSkin();
         damageTaken = 0;
     }

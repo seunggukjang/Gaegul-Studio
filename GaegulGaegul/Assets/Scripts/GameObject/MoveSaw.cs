@@ -24,6 +24,7 @@ public class MoveSaw : MonoBehaviour
         stopPosition = stopTransform.position;
         startPosition = startTransform.position;
         halfSize = transform.lossyScale * 0.4f;
+        audiomanager = AudioManager.instance;
         audiomanager = FindObjectOfType<AudioManager>();
         frogMask = 1 << LayerMask.NameToLayer("Frog");
             
