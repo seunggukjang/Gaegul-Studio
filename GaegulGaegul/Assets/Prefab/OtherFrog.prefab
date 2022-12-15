@@ -5584,7 +5584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTransform: {fileID: 0}
   dissolve: {fileID: 3610844062796304567}
-  combat: {fileID: 0}
+  blackHole: {fileID: 0}
   animator: {fileID: 6907470498461759161}
   skin: -1
 --- !u!114 &6907470498999401459
@@ -5617,6 +5617,7 @@ MonoBehaviour:
   m_GroundCheckForBigJump: {fileID: 0}
   spriteRenderer: {fileID: 3708901588433934647}
   head: {fileID: 134858832202662318}
+  isPvPmode: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []

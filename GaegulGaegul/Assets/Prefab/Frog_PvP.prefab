@@ -5414,6 +5414,7 @@ MonoBehaviour:
   m_GroundCheckForBigJump: {fileID: 834932002122498163}
   spriteRenderer: {fileID: 7374167624616424931}
   head: {fileID: 1714936078446812386}
+  isPvPmode: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
