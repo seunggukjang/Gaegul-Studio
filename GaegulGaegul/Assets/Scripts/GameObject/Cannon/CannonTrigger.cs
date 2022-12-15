@@ -21,7 +21,7 @@ public class CannonTrigger : Trigger
         halfSize = transform.lossyScale * 0.5f;
         position = transform.position;
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
         frogMask = 1 << LayerMask.NameToLayer("Frog");
     }
     public override bool GetIsWork() { return this.isWork; }
@@ -34,18 +34,31 @@ public class CannonTrigger : Trigger
         {
             onSprite.SetActive(false);
             offSprite.SetActive(true);
+            if (audioManager)
+            {
+                Debug.Log("switch off");
+                audioManager.Play("switch");
+            }
+               
             isOff = true;
         }
         else if(collider == null && isOff)
         {
             onSprite.SetActive(true);
             offSprite.SetActive(false);
+            if (audioManager)
+            {
+                Debug.Log("switch on");
+                audioManager.Play("switch");
+            }
+                
             isOff = false;
         }
         if (canon.GetFrogIn() && (collider || isFire))
         {
             this.isWork = true;
             canon.Fire();
+
             canon.SetFrogIn(false);
             
         }

@@ -47,7 +47,7 @@ MonoBehaviour:
   sounds:
   - name: bgm
     clip: {fileID: 8300000, guid: 026f2260180827f49b8b1d564423e8a7, type: 3}
-    vloume: 0.143
+    vloume: 0.3
     pitch: 0.85
     loop: 1
     source: {fileID: 0}
@@ -110,4 +110,100 @@ MonoBehaviour:
     vloume: 0.1
     pitch: 3
     loop: 1
+    source: {fileID: 0}
+  - name: jungle
+    clip: {fileID: 8300000, guid: 85bfd02ec809af34eaaec60ede951215, type: 3}
+    vloume: 0.073
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: battle
+    clip: {fileID: 8300000, guid: f4a482c167357d04c9aaf9622c855268, type: 3}
+    vloume: 0
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: battle2
+    clip: {fileID: 8300000, guid: d45800cab686f8a49b4390ac7eca92a3, type: 3}
+    vloume: 0
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: pokemonbattle
+    clip: {fileID: 8300000, guid: 2b75f098c30a2f2439a5faabebd80cbd, type: 3}
+    vloume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: headattack
+    clip: {fileID: 8300000, guid: de21f6cdf0c800d4b92231049ca1552c, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: damage
+    clip: {fileID: 8300000, guid: 005bca605776fd2439569d43bff9307f, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: menubutton
+    clip: {fileID: 8300000, guid: 253ce204e2dbc024eb09d6a7434a80e6, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: menubgm
+    clip: {fileID: 8300000, guid: 88bbf249e18b19346ae3d30c1e78c80c, type: 3}
+    vloume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: changeform
+    clip: {fileID: 8300000, guid: 169baf0dde2bddf44bc8368dae4df897, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: menubgm2
+    clip: {fileID: 8300000, guid: f691965b04cda194bbca54770350395e, type: 3}
+    vloume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: damage2
+    clip: {fileID: 8300000, guid: bd83b4e7ee770a04590eca60f2324dea, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: legattack
+    clip: {fileID: 8300000, guid: 0b0e9932d90b76a40a479fd343305b30, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: beeattack
+    clip: {fileID: 8300000, guid: 33062dc8079bd5846b45a7d48589b22c, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ladybugattack
+    clip: {fileID: 8300000, guid: d21788bd4c242404dbaf549124c3e6fc, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: beetlesattack
+    clip: {fileID: 8300000, guid: 70d02e3d23b4c914aaeb3d8b0555d62a, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: switch
+    clip: {fileID: 8300000, guid: d3939f891b0cb3f40892d02dfc7f2035, type: 3}
+    vloume: 0.4
+    pitch: 1
+    loop: 0
     source: {fileID: 0}

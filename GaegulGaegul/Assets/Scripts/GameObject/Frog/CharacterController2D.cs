@@ -20,7 +20,6 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheckForBigJump;
 	[SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] FrogHead head;
-	[SerializeField] private bool isPvPmode = false;
     bool jumpOffCoroutineIsRunning = false;
 	private bool m_Grounded;
 	private bool m_FrogBigJumpGround = false;
@@ -66,7 +65,7 @@ public class CharacterController2D : MonoBehaviour
 
         halfSize.x = transform.lossyScale.x * 0.5f;
 		halfSize.y = transform.lossyScale.y * 0.5f;
-		audioManager = FindObjectOfType<AudioManager>();
+		audioManager = AudioManager.instance;
 	}
 
     
@@ -162,8 +161,6 @@ public class CharacterController2D : MonoBehaviour
 		{
 			if (m_AirControl)
 			{
-				if(isPvPmode)
-				m_Rigidbody2D.mass = 0.2f;
 				m_Velocity.y = m_Rigidbody2D.velocity.y;
                 m_Velocity.x = move * m_SwingSpeed;
 				wasGrab = true;
@@ -176,7 +173,7 @@ public class CharacterController2D : MonoBehaviour
                 }
                 m_Rigidbody2D.AddForce(m_Velocity);
             }
-			else if (!wasGrab && previousMove * move < 0)
+			else if (!wasGrab && previousMove * move <= 0)
             {
 				m_Velocity.x = 0;
 				m_Velocity.y = m_Rigidbody2D.velocity.y;
@@ -188,8 +185,6 @@ public class CharacterController2D : MonoBehaviour
 		if (m_Grounded)
 		{
 			wasGrab = false;
-			if(isPvPmode)
-			m_Rigidbody2D.mass = 1f;
             if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("smallJump"))
 				m_Animator.SetTrigger("smallJump");
 			if (particleSystem != null)

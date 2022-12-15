@@ -24,6 +24,12 @@ public class Combat : MonoBehaviour
     public float legAttack_cooldown = 0.8f;
     private float next_legAttack;
 
+    public Transform legAttack2_pos;
+    public float legAttack2_range = 0.3f;
+    public int legAttack2_dmg = 18;
+    public float legAttack2_cooldown = 0.8f;
+    private float next_legAttack2;
+
     //TRANSFORMATIONS 
     private int BeeBullet = 0;
     private bool isBee = false;
@@ -36,52 +42,51 @@ public class Combat : MonoBehaviour
 
     private int LadybugBullet = 0;
     private bool isLadybug = false;
-    // public Transform LadybugAttack_pos;
-    // public GameObject HoneyBulletPrefab;
     public TextMeshProUGUI Ladybugtext;
     public GameObject LadybugCrown;
+    public Transform LadybugAttack_pos;
     public GameObject RedBulletPrefab;
     public float LadybugAttack_cooldown = 0.8f;
     private float next_LadybugAttack;
 
     private int BeetleBullet = 0;
     private bool isBeetle = false;
-    // public Transform BeetleAttack_pos;
-    // public GameObject HoneyBulletPrefab;
+    public Transform BeetleAttack_pos;
     public TextMeshProUGUI Beetletext;
     public GameObject BeetleCrown;
+    public int BeetleAttack_dmg = 48;
+    public float BeetleAttack_range = 0.8f;
     public float BeetleAttack_cooldown = 0.8f;
     private float next_BeetleAttack;
-
+    private AudioManager audio;
     public float damageTaken;
 
     void Start()
     {
+        audio = AudioManager.instance;
         playerskin = GetComponent<Player>().GetSkin();
-        Debug.Log("playerskin = " + playerskin);
         damageTaken = 0;
     }
 
     void Update()
     {
+
+        if (m_Animator.GetBool("isShield"))
+        {
+            Debug.Log("il ce shield");
+        }
+
         // BASIC ATTACKS
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            Shield();
+            m_Animator.SetTrigger("shield");
+            m_Animator.SetBool("isShield", true);
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.O) && Time.time > next_legAttack2)
         {
-            Debug.Log("bee : " + isBee + " ladybug : " + isLadybug + " beetle : " + isBeetle);
-            if (isBee == true || isLadybug == true || isBeetle == true) {
-                m_Animator.SetTrigger("shoot");
-                Debug.Log("shoot");
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            m_Animator.SetTrigger("legBottom");
+            next_legAttack2 = Time.time + legAttack2_cooldown;
+            legAttack2();
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && Time.time > next_headAttack)
@@ -99,6 +104,9 @@ public class Combat : MonoBehaviour
         // TRANSFORMATION
         if (Input.GetKeyDown(KeyCode.N))
         {
+            if (isLadybug == true || isBeetle == true)
+                return;
+            isBee = true;
             BeeBullet = 3;
             GetComponentInParent<Player>().ChangeSkin(5);
             BeeCrown.SetActive(true);
@@ -106,6 +114,9 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
+            if (isBeetle == true || isBee == true)
+                return;
+            isLadybug = true;
             LadybugBullet = 3;
             GetComponentInParent<Player>().ChangeSkin(6);
             LadybugCrown.SetActive(true);
@@ -113,6 +124,9 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V))
         {
+            if (isLadybug == true || isBee == true)
+                return;
+            isBeetle = true;
             BeetleBullet = 3;
             GetComponentInParent<Player>().ChangeSkin(7);
             BeetleCrown.SetActive(true);
@@ -123,18 +137,15 @@ public class Combat : MonoBehaviour
         {
             if (isLadybug == true || isBeetle == true)
                 return;
-            isBee = true;
             Beetext.text = " x " + BeeBullet.ToString();
             next_BeeAttack = Time.time + BeeAttack_cooldown;
             BeeBullet--;
             Beetext.text = "x " + BeeBullet.ToString();
-            Debug.Log("BeeBullet: " + BeeBullet);
             BeeAttack();
             if (BeeBullet < 1) {
-                isBee = false;
-                GetComponentInParent<Player>().ChangeSkin(playerskin);
+                StartCoroutine(DelayChangeSkin(playerskin));
                 BeeCrown.SetActive(false);
-                // back to basic skin
+                isBee = false;
             }
         }
 
@@ -142,13 +153,12 @@ public class Combat : MonoBehaviour
         {
             if (isBee == true || isBeetle == true)
                 return;
-            isLadybug = true;
             next_LadybugAttack = Time.time + LadybugAttack_cooldown;
             LadybugAttack();
             LadybugBullet--;
-            Debug.Log("LadybugBullet: " + LadybugBullet);
+            Ladybugtext.text = "x " + LadybugBullet.ToString();
             if (LadybugBullet < 1) {
-                GetComponentInParent<Player>().ChangeSkin(playerskin);
+                StartCoroutine(DelayChangeSkin(playerskin));
                 LadybugCrown.SetActive(false);
                 isLadybug = false;
             }
@@ -158,22 +168,22 @@ public class Combat : MonoBehaviour
         {
             if (isBee == true || isLadybug == true)
                 return;
-            isBeetle = true;
             next_BeetleAttack = Time.time + BeetleAttack_cooldown;
             BeetleAttack();
             BeetleBullet--;
-            Debug.Log("BeetleBullet: " + BeetleBullet);
+            Beetletext.text = "x " + BeetleBullet.ToString();
             if (BeetleBullet < 1) {
-                GetComponentInParent<Player>().ChangeSkin(playerskin);
+                StartCoroutine(DelayChangeSkin(playerskin));
                 BeetleCrown.SetActive(false);
                 isBeetle = false;
-                // back to basic skin
             }
         } 
     }
     public void ChangeToForm(int i)
     {
-       switch(i)
+        if(audio)
+        audio.Play("changeform");
+       switch (i)
         {
             case 0:
                 BeeBullet = 3;
@@ -195,7 +205,11 @@ public class Combat : MonoBehaviour
     void headAttack()
     {
         m_Animator.SetTrigger("headAttack");
-
+        if (audio)
+        {
+            audio.Play("headattack");
+        }
+            
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(headAttack_pos.position, headAttack_range, enemyLayers);
 
         foreach(Collider2D enemy in hitEnemies)
@@ -211,15 +225,33 @@ public class Combat : MonoBehaviour
     void legAttack()
     {
         m_Animator.SetTrigger("legAttack");
-
+        if (audio)
+            audio.Play("legattack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(legAttack_pos.position, legAttack_range, enemyLayers);
 
         foreach(Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject != gameObject) {
                 Combat enemyCombat = enemy.GetComponent<Combat>();
-                enemyCombat.TakeDamage(headAttack_dmg);
+                enemyCombat.TakeDamage(legAttack_dmg);
                 enemy.GetComponent<KnockBack>().Activate(transform.up, enemyCombat.damageTaken);
+            }
+        }
+    }
+
+    void legAttack2()
+    {
+        m_Animator.SetTrigger("legBottom");
+        if (audio)
+            audio.Play("legattack");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(legAttack2_pos.position, legAttack2_range, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            if (enemy.gameObject != gameObject) {
+                Combat enemyCombat = enemy.GetComponent<Combat>();
+                enemyCombat.TakeDamage(legAttack2_dmg);
+                enemy.GetComponent<KnockBack>().Activate(-transform.up, enemyCombat.damageTaken);
             }
         }
     }
@@ -227,22 +259,34 @@ public class Combat : MonoBehaviour
     void BeeAttack()
     {
         Instantiate(HoneyBulletPrefab, BeeAttack_pos.position, BeeAttack_pos.rotation);
+        m_Animator.SetTrigger("specialAttack");
+        if (audio)
+            audio.Play("beeattack");
     }
 
     void LadybugAttack()
     {
-        Instantiate(RedBulletPrefab, BeeAttack_pos.position, BeeAttack_pos.rotation);
+        Instantiate(RedBulletPrefab, LadybugAttack_pos.position, LadybugAttack_pos.rotation);
+        m_Animator.SetTrigger("specialAttack");
+        if (audio)
+            audio.Play("ladybugattack");
     }
 
     void BeetleAttack()
     {
-        Instantiate(HoneyBulletPrefab, BeeAttack_pos.position, BeeAttack_pos.rotation);
-    }
+        m_Animator.SetTrigger("specialAttack");
+        if (audio)
+            audio.Play("beetlesattack");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(BeetleAttack_pos.position, BeetleAttack_range, enemyLayers);
 
-    void Shield()
-    {
-        Debug.Log("SIELD");
-        m_Animator.SetTrigger("shield");
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            if (enemy.gameObject != gameObject) {
+                Combat enemyCombat = enemy.GetComponent<Combat>();
+                enemyCombat.TakeDamage(BeetleAttack_dmg);
+                enemy.GetComponent<KnockBack>().Activate(transform.right, enemyCombat.damageTaken);
+            }
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -256,8 +300,21 @@ public class Combat : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        if (m_Animator.GetBool("isShield"))
+        {
+            Debug.Log("il ce shield");
+        }
         damageTaken += dmg;
         GetComponentInChildren<takeDmg>().Flash();
         GetComponentInChildren<percentDamage>().UpdateDmgTaken(damageTaken);
+        if (audio)
+            audio.Play("damage2");
+    }
+
+    
+    IEnumerator DelayChangeSkin(int skinName)
+    {
+        yield return new WaitForSeconds(0.4f);
+        GetComponentInParent<Player>().ChangeSkin(skinName);
     }
 }

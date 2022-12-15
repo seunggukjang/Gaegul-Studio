@@ -30,7 +30,7 @@ public class Cannon : MonoBehaviour
         position = transform.position + offsetPosition;
         frogMask = 1 << LayerMask.NameToLayer("Frog");
         canFrogGet = false;
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
     }
     // Update is called once per frame
     private void FixedUpdate()

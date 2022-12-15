@@ -83,6 +83,8 @@ public class PhysicalAction : MonoBehaviour
     }
     void Update()
     {
+        //UnityEngine.Debug.Log("PRESSED KEY IS "+Input.anyKey);
+
         float input_x = Input.GetAxis("Horizontal");
         move.x = input_x;
 

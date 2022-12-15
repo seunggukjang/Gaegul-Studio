@@ -26,10 +26,12 @@ public class LevelManager : MonoBehaviour
     private int totalPages = 0;
     private Spacer[] pages;
 
+    private AudioManager audio;
     void Start()
     {
         fillList();
         handlePages();
+        audio = AudioManager.instance;
         //SaveAll();
     }
 
@@ -113,6 +115,12 @@ public class LevelManager : MonoBehaviour
 
     void loadLevel(string levelName)
     {
+        if (audio)
+        {
+            audio.ChangeBGM(levelName);
+            Debug.Log("levelname changed");
+        }
+            
         SceneManager.LoadScene(levelName);
     }
 
