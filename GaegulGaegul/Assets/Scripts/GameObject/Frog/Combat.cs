@@ -58,11 +58,12 @@ public class Combat : MonoBehaviour
     public float BeetleAttack_range = 0.8f;
     public float BeetleAttack_cooldown = 0.8f;
     private float next_BeetleAttack;
-
+    private AudioManager audio;
     public float damageTaken;
 
     void Start()
     {
+        audio = AudioManager.instance;
         playerskin = GetComponent<Player>().GetSkin();
         damageTaken = 0;
     }
@@ -180,7 +181,9 @@ public class Combat : MonoBehaviour
     }
     public void ChangeToForm(int i)
     {
-       switch(i)
+        if(audio)
+        audio.Play("changeform");
+       switch (i)
         {
             case 0:
                 BeeBullet = 3;
@@ -202,7 +205,11 @@ public class Combat : MonoBehaviour
     void headAttack()
     {
         m_Animator.SetTrigger("headAttack");
-
+        if (audio)
+        {
+            audio.Play("headattack");
+        }
+            
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(headAttack_pos.position, headAttack_range, enemyLayers);
 
         foreach(Collider2D enemy in hitEnemies)
@@ -218,7 +225,8 @@ public class Combat : MonoBehaviour
     void legAttack()
     {
         m_Animator.SetTrigger("legAttack");
-
+        if (audio)
+            audio.Play("legattack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(legAttack_pos.position, legAttack_range, enemyLayers);
 
         foreach(Collider2D enemy in hitEnemies)
@@ -234,7 +242,8 @@ public class Combat : MonoBehaviour
     void legAttack2()
     {
         m_Animator.SetTrigger("legBottom");
-
+        if (audio)
+            audio.Play("legattack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(legAttack2_pos.position, legAttack2_range, enemyLayers);
 
         foreach(Collider2D enemy in hitEnemies)
@@ -242,7 +251,7 @@ public class Combat : MonoBehaviour
             if (enemy.gameObject != gameObject) {
                 Combat enemyCombat = enemy.GetComponent<Combat>();
                 enemyCombat.TakeDamage(legAttack2_dmg);
-                enemy.GetComponent<KnockBack>().Activate(transform.up, enemyCombat.damageTaken);
+                enemy.GetComponent<KnockBack>().Activate(-transform.up, enemyCombat.damageTaken);
             }
         }
     }
@@ -251,18 +260,23 @@ public class Combat : MonoBehaviour
     {
         Instantiate(HoneyBulletPrefab, BeeAttack_pos.position, BeeAttack_pos.rotation);
         m_Animator.SetTrigger("specialAttack");
+        if (audio)
+            audio.Play("beeattack");
     }
 
     void LadybugAttack()
     {
         Instantiate(RedBulletPrefab, LadybugAttack_pos.position, LadybugAttack_pos.rotation);
         m_Animator.SetTrigger("specialAttack");
+        if (audio)
+            audio.Play("ladybugattack");
     }
 
     void BeetleAttack()
     {
         m_Animator.SetTrigger("specialAttack");
-
+        if (audio)
+            audio.Play("beetlesattack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(BeetleAttack_pos.position, BeetleAttack_range, enemyLayers);
 
         foreach(Collider2D enemy in hitEnemies)
@@ -293,6 +307,8 @@ public class Combat : MonoBehaviour
         damageTaken += dmg;
         GetComponentInChildren<takeDmg>().Flash();
         GetComponentInChildren<percentDamage>().UpdateDmgTaken(damageTaken);
+        if (audio)
+            audio.Play("damage2");
     }
 
     

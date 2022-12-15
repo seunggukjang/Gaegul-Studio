@@ -10,10 +10,12 @@ public class GroundTrigger : Trigger
     LayerMask frogMask;
     [SerializeField] private GameObject offSprite;
     [SerializeField] private GameObject onSprite;
+    private AudioManager audioManager;
     bool isOff = false;
 
     void Start()
     {
+        audioManager = AudioManager.instance;
         this.isWork = false;
         halfSize = transform.lossyScale * 0.5f;
         position = transform.position;
@@ -29,6 +31,8 @@ public class GroundTrigger : Trigger
         {
             onSprite.SetActive(false);
             offSprite.SetActive(true);
+            if (audioManager)
+                audioManager.Play("switch");
             this.isWork = true;
             isOff = true;
         }
@@ -36,6 +40,8 @@ public class GroundTrigger : Trigger
         {
             onSprite.SetActive(true);
             offSprite.SetActive(false);
+            if (audioManager)
+                audioManager.Play("switch");
             isOff = false;
         }
     }

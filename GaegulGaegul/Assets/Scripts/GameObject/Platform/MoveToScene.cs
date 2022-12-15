@@ -9,13 +9,17 @@ public class MoveToScene : MonoBehaviour
     
     void Start()
     {
-        audio = FindObjectOfType<AudioManager>();
+        audio = AudioManager.instance;
         
     }
     public void LoadwithSceneID(int sceneID)
     {
         if(audio)
-        audio.ChangeBGM(sceneID);
+        {
+            audio.Play("menubutton");
+            audio.ChangeBGM(sceneID);
+        }
+        
         SceneManager.LoadScene(sceneID);
     }
     

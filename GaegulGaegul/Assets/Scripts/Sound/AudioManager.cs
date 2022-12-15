@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    public static AudioManager instance;
+    public static AudioManager instance = new AudioManager();
     private string current_sound_name;
     public static int previous_sceneID = 0;
     private void Awake()
@@ -65,8 +65,6 @@ public class AudioManager : MonoBehaviour
     }
     public void ChangeBGM(int sceneID)
     {
-        Debug.Log("sceneID : " + sceneID);
-        Debug.Log("previous id : " + previous_sceneID);
         if (sceneID == 3)
         {
             previous_sceneID = sceneID;
@@ -77,10 +75,7 @@ public class AudioManager : MonoBehaviour
             if (previous_sceneID > 6)
             {
                 Play("menubgm");
-                //Play("menubgm2");
                 Stop("jungle");
-                Stop("battle");
-                Stop("battle2");
                 Stop("bgm");
             }
         }
@@ -89,10 +84,7 @@ public class AudioManager : MonoBehaviour
             if (previous_sceneID > 9 || previous_sceneID < 6)
             {
                 Stop("menubgm");
-                Stop("menubgm2");
                 Stop("jungle");
-                Stop("battle");
-                Stop("battle2");
                 Play("bgm");
             }
         }
@@ -101,10 +93,7 @@ public class AudioManager : MonoBehaviour
             if (previous_sceneID >= 0 || previous_sceneID <= 9)
             {
                 Stop("menubgm");
-                Stop("menubgm2");
                 Play("jungle");
-                Play("battle");
-                Play("battle2");
                 Stop("bgm");
             }
         }
@@ -113,24 +102,16 @@ public class AudioManager : MonoBehaviour
     }
     public void ChangeBGM(string levelname)
     {
-        Debug.Log("levelname : " + levelname);
         if (levelname == "Tuto 1" || levelname == "Tuto 2" || levelname == "Tuto 3")
         {
-            Debug.Log("level tuto");
             Stop("menubgm");
-            Stop("menubgm2");
             Stop("jungle");
-            Stop("battle");
-            Stop("battle2");
             Play("bgm");
         }
         else if (levelname == "pvpMap1")
         {
             Stop("menubgm");
-            Stop("menubgm2");
             Play("jungle");
-            Play("battle");
-            Play("battle2");
             Stop("bgm");
         }
 

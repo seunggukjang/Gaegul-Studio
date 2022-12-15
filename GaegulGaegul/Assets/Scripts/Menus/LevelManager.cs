@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
     {
         fillList();
         handlePages();
-        audio = FindObjectOfType<AudioManager>();
+        audio = AudioManager.instance;
         //SaveAll();
     }
 

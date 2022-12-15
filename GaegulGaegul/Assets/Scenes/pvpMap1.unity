@@ -568,6 +568,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825077, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: sounds.Array.data[11].vloume
+      value: 0.039
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825077, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: sounds.Array.data[12].vloume
+      value: 0.074
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825077, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: sounds.Array.data[13].vloume
+      value: 0.062
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910610390811825077, guid: 494c757ec53d1104799d302cd5958add, type: 3}
+      propertyPath: sounds.Array.data[18].vloume
+      value: 0.12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 494c757ec53d1104799d302cd5958add, type: 3}
 --- !u!1 &210158556 stripped
@@ -4275,16 +4291,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 29, y: -9, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 30, y: -9, z: 0}
     second:
       serializedVersion: 2
@@ -4356,16 +4362,6 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: 37, y: -9, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 38, y: -9, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 2
@@ -4981,7 +4977,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 2269ece598296244cb68b4e0a5fe5e83, type: 2}
   - m_RefCount: 19
     m_Data: {fileID: 11400000, guid: 5e069a30e25a99f4ebf9772e07f4eeb3, type: 2}
-  - m_RefCount: 56
+  - m_RefCount: 54
     m_Data: {fileID: 11400000, guid: 96f1387da1ee3084199a72fad4fcb1cd, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: a4652bcd15143524da8da29a294964f0, type: 2}
@@ -4996,7 +4992,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 5927a706fdb5a9341851e666e1ef4702, type: 3}
   - m_RefCount: 19
     m_Data: {fileID: 21300000, guid: 6c3fb653efa2ebd429742dc664f8b159, type: 3}
-  - m_RefCount: 56
+  - m_RefCount: 54
     m_Data: {fileID: 21300000, guid: 2f4741cc1f960ec4d804347f80b76d26, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 65464371f54811e4a83bd0a7586ac814, type: 3}
@@ -5007,7 +5003,7 @@ Tilemap:
   - m_RefCount: 12
     m_Data: {fileID: 21300000, guid: cefc0421e98962c4baa883f84e44bb72, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 186
+  - m_RefCount: 184
     m_Data:
       e00: 1
       e01: 0
@@ -5026,7 +5022,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 186
+  - m_RefCount: 184
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -11097,7 +11093,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8908917290235848258, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: smoothTime
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8908917290235848258, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
       propertyPath: stopTransform

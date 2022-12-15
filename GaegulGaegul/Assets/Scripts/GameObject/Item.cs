@@ -20,7 +20,7 @@ public class Item : MonoBehaviour
     private int form_number;
     private void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
         form_number = Random.Range(0, 2);
         ChangeSprite(form_number);
         if (startTransform && stopTransform)
