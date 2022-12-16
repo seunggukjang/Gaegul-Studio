@@ -100,7 +100,7 @@ public class PhysicalAction : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Y) || Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Keypad3))//left
         {
-            move.x = -0.5f;
+            move.x = -2f;
             if (Input.GetKey(KeyCode.Y))
                 actOnFrog = 1;
             if (Input.GetKey(KeyCode.H))
@@ -112,7 +112,7 @@ public class PhysicalAction : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.T) || Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.Keypad4))//right
         {
-            move.x = 0.5f;
+            move.x = 2f;
             if (Input.GetKey(KeyCode.T))
                 actOnFrog = 1;
             if (Input.GetKey(KeyCode.G))
@@ -137,6 +137,7 @@ public class PhysicalAction : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.Q) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad5))
         {
+            UnityEngine.Debug.Log("jump ?");
             isJumpDown = true;
             if (Input.GetKey(KeyCode.Q))
                 actOnFrog = 1;
@@ -147,17 +148,17 @@ public class PhysicalAction : MonoBehaviour
             if (Input.GetKey(KeyCode.Keypad5))
                 actOnFrog = 4;
         }
-        if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Alpha5) || Input.GetKey(KeyCode.Alpha7) && !isGrab)
+        if (Input.GetKey(KeyCode.Keypad8) || Input.GetKey(KeyCode.Alpha4) || Input.GetKey(KeyCode.Alpha6) || Input.GetKey(KeyCode.Alpha8) && !isGrab)
         {
             isGrab = true;
-            // if (Input.GetKey(KeyCode.Alpha1))
-                // actOnFrog = 1;
-            // if (Input.GetKey(KeyCode.Alpha3))
-                // actOnFrog = 2;
-            // if (Input.GetKey(KeyCode.Alpha5))
-                // actOnFrog = 3;
-            // if (Input.GetKey(KeyCode.Alpha7))
-                // actOnFrog = 4;
+            if (Input.GetKey(KeyCode.Keypad8))
+                actOnFrog = 1;
+            if (Input.GetKey(KeyCode.Alpha4))
+                actOnFrog = 2;
+            if (Input.GetKey(KeyCode.Alpha6))
+                actOnFrog = 3;
+            if (Input.GetKey(KeyCode.Alpha8))
+                actOnFrog = 4;
             Grab();
         }
         // if(Input.GetKey(KeyCode.Z) && !isAttack)

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CharacterController2D : MonoBehaviour
 {
-	[SerializeField] private float m_SwingSpeed = 1f;
+	[SerializeField] private float m_SwingSpeed = 4.8f;
 	[SerializeField] private float m_MaxSwingSpeed = 10f;
 	[SerializeField] private float m_maxSpeedX = 1.08f;
 	[SerializeField] private float m_MoveSpeed = 10f;
@@ -107,7 +107,7 @@ public class CharacterController2D : MonoBehaviour
     }
     public void JumpUp()
 	{
-		
+		UnityEngine.Debug.Log("jump stp");	
         if (m_Grounded)
         {
             if (particleSystem != null)
@@ -151,6 +151,7 @@ public class CharacterController2D : MonoBehaviour
 	float previousMove = 0;
 	public void Move(float move, bool crouch)
 	{
+            	UnityEngine.Debug.Log("AIR CONTROL STATUS : "+m_AirControl);
 		
 		if (move == 0)
 		{
@@ -162,6 +163,8 @@ public class CharacterController2D : MonoBehaviour
 		{
 			if (m_AirControl)
 			{
+            	UnityEngine.Debug.Log("Haha ^^ Your move is " + move + "so your velocity must be " + move*m_SwingSpeed);
+
 				m_Velocity.y = m_Rigidbody2D.velocity.y;
                 m_Velocity.x = move * m_SwingSpeed;
 				wasGrab = true;
@@ -170,8 +173,7 @@ public class CharacterController2D : MonoBehaviour
 				if(swingSpeed > m_MaxSwingSpeed)
 				{
 					m_Velocity.x = 0;
-					m_Velocity.y = 0;
-                    
+					m_Velocity.y = 0;                    
                 }
                 m_Rigidbody2D.AddForce(m_Velocity);
             }
@@ -218,7 +220,9 @@ public class CharacterController2D : MonoBehaviour
 		}
 		else if (m_AirControl)
 		{
-			m_Velocity.x = 0;
+            UnityEngine.Debug.Log("Haha ^^ Your move is " + move + "so your velocity must be " + move*m_SwingSpeed);
+
+			// m_Velocity.x = 0;
 			m_Velocity.y = m_Rigidbody2D.velocity.y;
 			m_Velocity.x = move * m_SwingSpeed;
 			m_Rigidbody2D.AddForce(m_Velocity);
