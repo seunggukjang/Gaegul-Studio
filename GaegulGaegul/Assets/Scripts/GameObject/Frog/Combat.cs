@@ -6,6 +6,8 @@ using TMPro;
 public class Combat : MonoBehaviour
 {
 
+    public List<Combat> FrogsPlayed;
+    private int frogConcerned = 1;
 	[SerializeField] private Animator m_Animator;
 
     private int playerskin;
@@ -79,60 +81,120 @@ public class Combat : MonoBehaviour
         }
 
         // BASIC ATTACKS
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            m_Animator.SetTrigger("shield");
-            m_Animator.SetBool("isShield", true);
+            FrogsPlayed[0].m_Animator.SetTrigger("shield");
+            FrogsPlayed[0].m_Animator.SetBool("isShield", true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            FrogsPlayed[1].m_Animator.SetTrigger("shield");
+            FrogsPlayed[1].m_Animator.SetBool("isShield", true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            FrogsPlayed[2].m_Animator.SetTrigger("shield");
+            FrogsPlayed[2].m_Animator.SetBool("isShield", true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            FrogsPlayed[3].m_Animator.SetTrigger("shield");
+            FrogsPlayed[3].m_Animator.SetBool("isShield", true);
         }
 
-        if (Input.GetKeyDown(KeyCode.O) && Time.time > next_legAttack2)
+        if (Input.GetKeyDown(KeyCode.E) && Time.time > next_legAttack2)
         {
             next_legAttack2 = Time.time + legAttack2_cooldown;
-            legAttack2();
+            FrogsPlayed[0].legAttack2();
+        }
+        if (Input.GetKeyDown(KeyCode.D) && Time.time > next_legAttack2)
+        {
+            next_legAttack2 = Time.time + legAttack2_cooldown;
+            FrogsPlayed[1].legAttack2();
+        }
+        if (Input.GetKeyDown(KeyCode.C) && Time.time > next_legAttack2)
+        {
+            next_legAttack2 = Time.time + legAttack2_cooldown;
+            FrogsPlayed[2].legAttack2();
+        }
+        if (Input.GetKeyDown(KeyCode.Slash) && Time.time > next_legAttack2)
+        {
+            next_legAttack2 = Time.time + legAttack2_cooldown;
+            FrogsPlayed[3].legAttack2();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && Time.time > next_headAttack)
+        if (Input.GetKeyDown(KeyCode.W) && Time.time > next_headAttack)
         {
             next_headAttack = Time.time + headAttack_cooldown;
-            headAttack();
+            FrogsPlayed[0].headAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.S) && Time.time > next_headAttack)
+        {
+            next_headAttack = Time.time + headAttack_cooldown;
+            FrogsPlayed[1].headAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.X) && Time.time > next_headAttack)
+        {
+            next_headAttack = Time.time + headAttack_cooldown;
+            FrogsPlayed[2].headAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.Period) && Time.time > next_headAttack)
+        {
+            next_headAttack = Time.time + headAttack_cooldown;
+            FrogsPlayed[3].headAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && Time.time > next_legAttack)
+        if (Input.GetKeyDown(KeyCode.R) && Time.time > next_legAttack)
         {
             next_legAttack = Time.time + legAttack_cooldown;
-            legAttack();
+            FrogsPlayed[0].legAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.F) && Time.time > next_legAttack)
+        {
+            next_legAttack = Time.time + legAttack_cooldown;
+            FrogsPlayed[1].legAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.V) && Time.time > next_legAttack)
+        {
+            next_legAttack = Time.time + legAttack_cooldown;
+            FrogsPlayed[2].legAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.Quote) && Time.time > next_legAttack)
+        {
+            next_legAttack = Time.time + legAttack_cooldown;
+            FrogsPlayed[3].legAttack();
         }
     
         // TRANSFORMATION
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            if (isLadybug == true || isBeetle == true)
-                return;
-            isBee = true;
-            BeeBullet = 3;
-            GetComponentInParent<Player>().ChangeSkin(5);
-            BeeCrown.SetActive(true);
-        }
+        // if (Input.GetKeyDown(KeyCode.N))
+        // {
+        //     if (isLadybug == true || isBeetle == true)
+        //         return;
+        //     isBee = true;
+        //     BeeBullet = 3;
+        //     GetComponentInParent<Player>().ChangeSkin(5);
+        //     BeeCrown.SetActive(true);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            if (isBeetle == true || isBee == true)
-                return;
-            isLadybug = true;
-            LadybugBullet = 3;
-            GetComponentInParent<Player>().ChangeSkin(6);
-            LadybugCrown.SetActive(true);
-        }
+        // if (Input.GetKeyDown(KeyCode.B))
+        // {
+        //     if (isBeetle == true || isBee == true)
+        //         return;
+        //     isLadybug = true;
+        //     LadybugBullet = 3;
+        //     GetComponentInParent<Player>().ChangeSkin(6);
+        //     LadybugCrown.SetActive(true);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            if (isLadybug == true || isBee == true)
-                return;
-            isBeetle = true;
-            BeetleBullet = 3;
-            GetComponentInParent<Player>().ChangeSkin(7);
-            BeetleCrown.SetActive(true);
-        }
+        // if (Input.GetKeyDown(KeyCode.V))
+        // {
+        //     if (isLadybug == true || isBee == true)
+        //         return;
+        //     isBeetle = true;
+        //     BeetleBullet = 3;
+        //     GetComponentInParent<Player>().ChangeSkin(7);
+        //     BeetleCrown.SetActive(true);
+        // }
 
         // TRANSFORMATION ATTACK
         if (Input.GetKeyDown(KeyCode.T) && Time.time > next_BeeAttack && BeeBullet > 0)

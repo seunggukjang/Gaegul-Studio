@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Grab : MonoBehaviour
 {
-    public float grabRangeRadius = 3f;
-    public float mouseGrabThicknessTongue = 0.5f;
+    public float grabRangeRadius = 5f;
+    public float mouseGrabThicknessTongue = 5f;
     [SerializeField] private Transform mouseGrabRange;
     private SpringJoint2D joint;
     Rigidbody2D targetRB = null;
@@ -46,19 +46,23 @@ public class Grab : MonoBehaviour
     }
     private Vector3 GetFrogToMouseDirection()
     {
-        return (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        // return (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        return transform.position.normalized;
     }
     private Rigidbody2D SelectTarget()
     {
         foreach(LayerMask l in layers)
         {
-            RaycastHit2D[] targetHit2Ds = Physics2D.CircleCastAll(transform.position, mouseGrabThicknessTongue, GetFrogToMouseDirection(), mouseGrabRange.lossyScale.x * 0.5f, l);
+            RaycastHit2D[] targetHit2Ds = Physics2D.CircleCastAll(transform.position, mouseGrabThicknessTongue, GetFrogToMouseDirection(), transform.position.x * 0.6f, l);
             foreach(RaycastHit2D hit in targetHit2Ds)
             {
                 if(hit)
                 {
+                    UnityEngine.Debug.Log("I found a "+hit.transform.name);
+
                     if(hit.transform.name == gameObject.name)
                         continue;
+                        
                     else
                     {
                         targetRB = hit.rigidbody;
@@ -146,8 +150,11 @@ public class Grab : MonoBehaviour
     }
     public bool Grip()
     {
-        if(!CanGrip() || SelectTarget() == null)
+
+        if(!CanGrip() || SelectTarget() == null) {
             return false;
+        }
+
         string targetTag = targetRB.gameObject.tag;
         if(targetTag == "Hook" || targetTag == "Enemy" || targetTag == "Item" || targetTag == "Weight")
         {
