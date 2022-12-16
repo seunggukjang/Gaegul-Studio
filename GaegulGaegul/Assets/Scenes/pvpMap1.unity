@@ -1004,7 +1004,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7908330126030362736}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &515036036
 GameObject:
@@ -10591,13 +10591,17 @@ PrefabInstance:
       propertyPath: m_MaxSwingSpeed
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7374167623005010094, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7374167623005010094, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.96
+      value: 41.68
       objectReference: {fileID: 0}
     - target: {fileID: 7374167623005010094, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10637,6 +10641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+--- !u!1 &1016336113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7374167623005010081, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+  m_PrefabInstance: {fileID: 1016336112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1054635569 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8370418761828673855, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
@@ -10950,6 +10959,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7374167623005010094, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
   m_PrefabInstance: {fileID: 1016336112}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1107311689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016336113}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 890a69baf3e646342afed8b25b1dbb0c, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Xbox Control Scheme
+  m_DefaultActionMap: Player2
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1214994064 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8908917290235848262, guid: 20fc1d24068ddc541b02ba1341173983, type: 3}
@@ -11988,7 +12027,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7908330126030362736}
-  m_RootOrder: 13
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1994021445 stripped
 MonoBehaviour:
@@ -12234,6 +12273,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 834932001967151423, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 834932002122498163, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -12252,7 +12295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3201927215776160882, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7374167623005010006, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: spawnTransform
