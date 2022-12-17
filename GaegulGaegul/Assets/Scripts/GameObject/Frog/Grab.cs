@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Grab : MonoBehaviour
 {
-    public float grabRangeRadius = 5f;
+    float grabRangeRadius = 5f;
     public float mouseGrabThicknessTongue = 5f;
-    [SerializeField] private Transform mouseGrabRange;
+    [SerializeField] private Transform grabRange;
     private SpringJoint2D joint;
     Rigidbody2D targetRB = null;
     Collider2D targetCollider;
@@ -30,6 +30,8 @@ public class Grab : MonoBehaviour
         //layers[1] = 1 << LayerMask.NameToLayer("Frog");
         layers[1] = 1 << LayerMask.NameToLayer("Item");
         layers[2] = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Item") | 1 << LayerMask.NameToLayer("Weight");
+        if (grabRange)
+            grabRangeRadius = grabRange.lossyScale.x;
     }
     void Update()
     {
@@ -44,28 +46,22 @@ public class Grab : MonoBehaviour
             return -1;
         return targetRB.gameObject.GetInstanceID();
     }
-    private Vector3 GetFrogToMouseDirection()
-    {
-        // return (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-        return transform.position.normalized;
-    }
+    
     private Rigidbody2D SelectTarget()
     {
         foreach(LayerMask l in layers)
         {
-            RaycastHit2D[] targetHit2Ds = Physics2D.CircleCastAll(transform.position, mouseGrabThicknessTongue, GetFrogToMouseDirection(), transform.position.x * 0.6f, l);
-            foreach(RaycastHit2D hit in targetHit2Ds)
+            Collider2D[] targetHit2Ds = Physics2D.OverlapCircleAll(transform.position, grabRangeRadius, l);
+            foreach(Collider2D hit in targetHit2Ds)
             {
                 if(hit)
                 {
-                    UnityEngine.Debug.Log("I found a "+hit.transform.name);
-
                     if(hit.transform.name == gameObject.name)
                         continue;
                         
                     else
                     {
-                        targetRB = hit.rigidbody;
+                        targetRB = hit.transform.GetComponent<Rigidbody2D>();
                         return targetRB;
                     }
                 }
@@ -85,7 +81,7 @@ public class Grab : MonoBehaviour
                 {
                     holdingEnemy = targetRB.GetComponent<Enemy>();
                     holdingEnemy.gameObject.SetActive(true);
-                    holdingEnemy.LaunchWithEnemy(GetFrogToMouseDirection(), fireForce, transform.position);
+                    holdingEnemy.LaunchWithEnemy(transform.forward, fireForce, transform.position);
                     isGrab = false;
                     targetRB = null;
                     return false;
