@@ -10237,6 +10237,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010081, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010088, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: m_TopFrogCheck
+      value: 
+      objectReference: {fileID: 1631328060}
     - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: FrogsPlayer.Array.size
       value: 2
@@ -11387,6 +11395,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1631328060 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2267054364258139473, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+  m_PrefabInstance: {fileID: 1016336112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1795827485
 GameObject:
   m_ObjectHideFlags: 0
@@ -11617,6 +11630,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1895285252 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2267054364258139473, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+  m_PrefabInstance: {fileID: 834932001951260894}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1906643537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8673093085078549097, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
@@ -11894,6 +11912,18 @@ PrefabInstance:
     - target: {fileID: 7374167623005010081, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_Name
       value: Frog
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010081, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010088, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: m_TopFrogCheck
+      value: 
+      objectReference: {fileID: 1895285252}
+    - target: {fileID: 7374167623005010088, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: m_MaxSwingSpeed
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: FrogsPlayer.Array.size
