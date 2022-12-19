@@ -10246,6 +10246,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1631328060}
     - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: actOnFrog
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: FrogsPlayer.Array.size
       value: 2
       objectReference: {fileID: 0}
