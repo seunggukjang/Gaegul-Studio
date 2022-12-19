@@ -10239,12 +10239,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7374167623005010081, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7374167623005010088, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: m_TopFrogCheck
       value: 
       objectReference: {fileID: 1631328060}
+    - target: {fileID: 7374167623005010088, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
+      propertyPath: m_MaxSwingSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7374167623005010089, guid: 4cf5ac64a64e3964cb0c54d5b7b342c0, type: 3}
       propertyPath: FrogsPlayer.Array.size
       value: 2

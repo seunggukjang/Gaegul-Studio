@@ -5,7 +5,7 @@ using System.Collections;
 public class CharacterController2D : MonoBehaviour
 {
 	[SerializeField] private float m_SwingSpeed = 4.8f;
-	[SerializeField] private float m_MaxSwingSpeed = 10f;
+	[SerializeField] private float m_MaxSwingSpeed = 120f;
 	[SerializeField] private float m_maxSpeedX = 1.08f;
 	[SerializeField] private float m_MoveSpeed = 10f;
 	[SerializeField] private float m_SmallJumpSpeed = 5f;

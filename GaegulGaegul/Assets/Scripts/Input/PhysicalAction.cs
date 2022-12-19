@@ -149,10 +149,10 @@ public class PhysicalAction : MonoBehaviour
             if (Input.GetKey(KeyCode.Keypad5))
                 actOnFrog = 4;
         }
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Alpha8) && !isGrab)
+        if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Alpha8) && !isGrab)
         {
             isGrab = true;
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Keypad7))
                 actOnFrog = 1;
             if (Input.GetKey(KeyCode.Alpha4))
                 actOnFrog = 2;
