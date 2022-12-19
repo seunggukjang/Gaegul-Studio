@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PhysicalAction : MonoBehaviour
 {
-    private int actOnFrog = 1;
+    [SerializeField] private int actOnFrog = 1;
     private CharacterController2D controller;
     private Grab g;
     private TongueAttack tongueAttack;
@@ -22,7 +22,7 @@ public class PhysicalAction : MonoBehaviour
 
     private void Start()
     {
-        actOnFrog = 1;
+        SetKeyMap();
         // controller = GetComponent<CharacterController2D>();
     }
     void Restart()
@@ -92,74 +92,76 @@ public class PhysicalAction : MonoBehaviour
     {
         controller = FrogsPlayer[actOnFrog-1].GetComponent<CharacterController2D>();
     }
+    KeyCode leftMove;
+    KeyCode rightMove;
+    KeyCode jumpUp;
+    KeyCode jumpDown;
+    KeyCode grab;
+    void SetKeyMap()
+    {
+        switch(actOnFrog)
+        {
+            case 1:
+                leftMove = KeyCode.Y;
+                rightMove = KeyCode.T;
+                jumpUp = KeyCode.Q;
+                jumpDown = KeyCode.U;
+                grab = KeyCode.Space;
+                break;
+            case 2:
+                leftMove = KeyCode.H;
+                rightMove = KeyCode.G;
+                jumpUp = KeyCode.A;
+                jumpDown = KeyCode.J;
+                grab = KeyCode.Alpha4;
+                break;
+            case 3:
+                leftMove = KeyCode.N;
+                rightMove = KeyCode.B;
+                jumpUp = KeyCode.W;
+                jumpDown = KeyCode.Question;
+                grab = KeyCode.Alpha6;
+                break;
+            case 4:
+                leftMove = KeyCode.Keypad3;
+                rightMove = KeyCode.Keypad4;
+                jumpUp = KeyCode.Keypad5;
+                jumpDown = KeyCode.Alpha7;
+                grab = KeyCode.Alpha8;
+                break;
+        }
+    }
     void Update()
     {
-        UnityEngine.Debug.Log("PRESSED KEY IS "+Input.anyKey);
+        //UnityEngine.Debug.Log("PRESSED KEY IS "+Input.anyKey);
 
         // float input_x = Input.GetAxis("Horizontal");
         // move.x = input_x;
 
-        if (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Keypad3))//left
+        if (Input.GetKey(leftMove))
         {
             move.x = -2f;
-            if (Input.GetKey(KeyCode.Y))
-                actOnFrog = 1;
-            if (Input.GetKey(KeyCode.H))
-                actOnFrog = 2;
-            if (Input.GetKey(KeyCode.N))
-                actOnFrog = 3;
-            if (Input.GetKey(KeyCode.Keypad3))
-                actOnFrog = 4;
+           
         }
-        if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.Keypad4))//right
+        if (Input.GetKey(rightMove))//right
         {
             move.x = 2f;
-            if (Input.GetKey(KeyCode.T))
-                actOnFrog = 1;
-            if (Input.GetKey(KeyCode.G))
-                actOnFrog = 2;
-            if (Input.GetKey(KeyCode.B))
-                actOnFrog = 3;
-            if (Input.GetKey(KeyCode.Keypad4))
-                actOnFrog = 4;
-
+            
         }
-        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad5))
+        if (Input.GetKeyDown(jumpUp))
         {
             isJump = true;
-            if (Input.GetKey(KeyCode.Q))
-                actOnFrog = 1;
-            if (Input.GetKey(KeyCode.A))
-                actOnFrog = 2;
-            if (Input.GetKey(KeyCode.W))
-                actOnFrog = 3;
-            if (Input.GetKey(KeyCode.Keypad5))
-                actOnFrog = 4;
+            
         }
-        if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad5))
+        if(Input.GetKeyDown(jumpDown))
         {
             UnityEngine.Debug.Log("jump ?");
             isJumpDown = true;
-            if (Input.GetKey(KeyCode.Q))
-                actOnFrog = 1;
-            if (Input.GetKey(KeyCode.A))
-                actOnFrog = 2;
-            if (Input.GetKey(KeyCode.W))
-                actOnFrog = 3;
-            if (Input.GetKey(KeyCode.Keypad5))
-                actOnFrog = 4;
+            
         }
-        if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Alpha8) && !isGrab)
+        if (Input.GetKeyDown(grab)&& !isGrab)
         {
             isGrab = true;
-            if (Input.GetKey(KeyCode.Keypad7))
-                actOnFrog = 1;
-            if (Input.GetKey(KeyCode.Alpha4))
-                actOnFrog = 2;
-            if (Input.GetKey(KeyCode.Alpha6))
-                actOnFrog = 3;
-            if (Input.GetKey(KeyCode.Alpha8))
-                actOnFrog = 4;
             
         }
         // if(Input.GetKey(KeyCode.Z) && !isAttack)
