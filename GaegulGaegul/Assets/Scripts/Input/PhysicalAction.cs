@@ -99,7 +99,7 @@ public class PhysicalAction : MonoBehaviour
         // float input_x = Input.GetAxis("Horizontal");
         // move.x = input_x;
 
-        if (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Keypad3))//left
+        if (Input.GetKey(KeyCode.Y) || Input.GetKey(KeyCode.H) || Input.GetKey(KeyCode.N) || Input.GetKey(KeyCode.Keypad3))//left
         {
             move.x = -2f;
             if (Input.GetKey(KeyCode.Y))
@@ -111,7 +111,7 @@ public class PhysicalAction : MonoBehaviour
             if (Input.GetKey(KeyCode.Keypad3))
                 actOnFrog = 4;
         }
-        if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.Keypad4))//right
+        if (Input.GetKey(KeyCode.T) || Input.GetKey(KeyCode.G) || Input.GetKey(KeyCode.B) || Input.GetKey(KeyCode.Keypad4))//right
         {
             move.x = 2f;
             if (Input.GetKey(KeyCode.T))
@@ -149,10 +149,10 @@ public class PhysicalAction : MonoBehaviour
             if (Input.GetKey(KeyCode.Keypad5))
                 actOnFrog = 4;
         }
-        if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Alpha8) && !isGrab)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Alpha8) && !isGrab)
         {
             isGrab = true;
-            if (Input.GetKey(KeyCode.Keypad7))
+            if (Input.GetKey(KeyCode.Space))
                 actOnFrog = 1;
             if (Input.GetKey(KeyCode.Alpha4))
                 actOnFrog = 2;
